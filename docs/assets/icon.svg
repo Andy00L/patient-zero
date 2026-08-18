@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Patient Zero">
+  <!-- The mark is the product: one origin, the hops that were measured, and the hop that was
+       not. Rings expand from the lower left rather than from the centre, so the glyph reads as
+       propagation away from an index case instead of as a target. The outer ring is dashed
+       because the graph is allowed to say it does not know how far the compromise reached.
+       Colours are the app's accent and muted ink; both hold their contrast on GitHub's light
+       and dark backgrounds, so no prefers-color-scheme variant is needed. -->
+  <g fill="none" stroke-linecap="round">
+    <circle cx="12" cy="20" r="15" stroke="#8C8178" stroke-width="1.5" stroke-dasharray="2.5 3.5" />
+    <circle cx="12" cy="20" r="10.5" stroke="#8C8178" stroke-width="1.5" />
+    <circle cx="12" cy="20" r="6" stroke="#C8873F" stroke-width="1.75" />
+  </g>
+  <circle cx="12" cy="20" r="2.75" fill="#C8873F" />
+</svg>

@@ -1,12 +1,24 @@
-# 🩸 Patient Zero
+<p align="center">
+  <img src="docs/assets/icon.svg" width="88" alt="Patient Zero icon">
+</p>
 
-**Supply chain forensics on a graph that is allowed to say it does not know.**
+<h1 align="center">Patient Zero</h1>
 
-[![Hack Hydra](https://img.shields.io/badge/Hack_Hydra-Track_02-C8873F?style=flat-square&labelColor=161211)](https://github.com/hydra-db/hydradb)
-[![Graph engine](https://img.shields.io/badge/graph-HydraDB_OSS-8A5A26?style=flat-square&labelColor=161211)](https://github.com/hydra-db/hydradb)
-[![Bun](https://img.shields.io/badge/runtime-Bun_1.3.14-8C8178?style=flat-square&labelColor=161211)](https://bun.sh)
-[![Next.js](https://img.shields.io/badge/Next.js-16.3.1-8C8178?style=flat-square&labelColor=161211)](https://nextjs.org)
-[![License](https://img.shields.io/badge/license-Apache_2.0-A8A09B?style=flat-square&labelColor=161211)](./LICENSE)
+<p align="center">
+  <strong>Supply chain forensics on a graph that is allowed to say it does not know.</strong>
+</p>
+
+<p align="center">
+  Built for the Hack Hydra hackathon, Track 02.
+</p>
+
+<p align="center">
+  <a href="https://github.com/hydra-db/hydradb"><img alt="Hack Hydra" src="https://img.shields.io/badge/Hack_Hydra-Track_02-C8873F?style=flat-square&labelColor=161211"></a>
+  <a href="https://github.com/hydra-db/hydradb"><img alt="Graph engine" src="https://img.shields.io/badge/graph-HydraDB_OSS-8A5A26?style=flat-square&labelColor=161211"></a>
+  <a href="https://bun.sh"><img alt="Bun" src="https://img.shields.io/badge/runtime-Bun_1.3.14-8C8178?style=flat-square&labelColor=161211"></a>
+  <a href="https://nextjs.org"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-16.3.1-8C8178?style=flat-square&labelColor=161211"></a>
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache_2.0-A8A09B?style=flat-square&labelColor=161211"></a>
+</p>
 
 A lockfile records what you installed. It does not record whether you installed it
 during the hours a package was compromised.
@@ -242,13 +254,33 @@ A security tool that overstates its evidence is worse than one that reports less
 - **Three of the four incident packs are historical, one is modeled.** Every pack carries a
   `dataOrigin` field. `self-replicating-worm-2025` is `modeled`: it is built to the shape of
   the 2025 worm campaign, not harvested from it, and it says so in the data, in the schema
-  that validates the data, and here. The other three carry 155 distinct source URLs
-  between them.
+  that validates the data, and here. Sourcing splits unevenly and the split is worth
+  stating: the three historical packs carry 28 distinct source URLs between them, and the
+  modeled pack carries 127 of its own, which are the writeups its shape was built from
+  rather than evidence about the events it describes. 155 URLs across the four, and no
+  overlap between the two groups.
 - **The curated data is small and countable.** 96 compromised versions across 47 packages,
   48 advisories, 30 services with 63 lockfile resolutions, and 71 timeline entries. Those
-  are the numbers behind the window table above. The ingested slice is larger and its exact
-  size depends on when you run `bun run ingest`, so the manifest it writes records the
-  coverage instead of this file claiming a figure.
+  are the numbers behind the window table above.
+- **The committed ingested slice has no closed package closure, and the data says so.**
+  `data/graph/demo-snapshot.json` is the curated seed merged with one ingest run: 402
+  packages, 721 versions, 117 maintainers, 30 services, 77 advisories, 506 resolution
+  edges. Its manifest records 0 packages `closed` and 120 `partial`, because that run used
+  a depth budget of 1 and a package budget of 120. The other 282 `Package` nodes are stubs
+  the expansion stopped at, and 332 versions were referenced but never fetched. A package
+  that can reach a stub has an unknown remainder, so a dependency traversal over this slice
+  abstains instead of reporting `not_exposed`. All 30 services are `closed`, which is why
+  the bitemporal question, the one the radar opens on, can still return a real negative on
+  the service side. For a wider slice:
+  `bun run ingest -- --max-depth 3 --max-packages 2000 --max-versions 8`, which rewrites
+  the manifest to match what it actually reached.
+- **Where the two snapshots disagreed, the curated pack won, 134 times.** Merging the seed
+  into the ingest found 134 conflicting properties, every one of them
+  `Version.has_install_script` on a worm-pack version. The registry no longer serves the
+  malicious metadata for those versions, so it reports `false` where the incident writeup
+  recorded an install hook. The merge keeps the hand sourced value and records the count in
+  the manifest notes rather than resolving it silently. `bun run graph:demo` exits 2 when it
+  resolves a conflict, 0 when there was none, so a rebuild cannot hide one.
 - **Every answer is a lower bound on the slice, and says so.** The slice manifest marks each
   package `closed`, `partial`, or `absent`, and that mark is what decides whether an empty
   traversal is allowed to read `not_exposed`.
@@ -268,6 +300,40 @@ A security tool that overstates its evidence is worse than one that reports less
   [`docs/UI_DESIGN_SYSTEM.md`](./docs/UI_DESIGN_SYSTEM.md), including the rule that
   `exposed`, `unknown`, and `not_exposed` are three visually distinct states so an
   abstention can never be mistaken for a clean result.
+
+## 🧩 Prior art and related work
+
+The supply chain tooling that exists is good, and two entries below are dependencies of
+this project rather than rivals to it. The line that separates all of them from this one
+is the clock they read. They answer "is the version you have now affected", which is a
+question about known time only. This project keeps known time and valid time apart, so it
+can answer a question none of them are shaped for: was this service holding the bad
+version during the hours before any advisory existed, whether or not it has since been
+upgraded away.
+
+- **[Socket](https://github.com/SocketDev/socket-cli)**: analyses what a package's code
+  does (install scripts, network, filesystem, and shell access) and flags it at review
+  time. It judges the package; this project judges the lockfile's timing. The local
+  persistence scanner here overlaps at the edges and is deliberately narrower: 27
+  indicators, read only, no verdict on code it has not matched.
+- **[Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts)
+  and [Snyk](https://snyk.io)**: match the manifest you have today against advisory
+  version ranges and open the bump. Both are the right tool for remediation and neither
+  retains the fact that you resolved the compromised version on a Tuesday nine days
+  before the advisory published, because the manifest no longer says so once it is fixed.
+- **[deps.dev](https://deps.dev)**: Google's public dependency graph API, and one of the
+  three sources `bun run ingest` reads. It returns a package's dependencies and never its
+  dependents, which is the reason this project materialises `DEPENDED_ON_BY` at ingest
+  time instead of asking an API for the reverse edge. See
+  `src/lib/ingest/deps-dev.ts`.
+- **[OSV](https://osv.dev)**: the advisory database, also read by the ingest. Its
+  `published` field is the known-time clock every window in the table above is measured
+  against. OSV states what is affected; it does not hold who resolved it, and it is not
+  trying to.
+- **[OpenSSF Scorecard](https://scorecard.dev)**: scores a repository's practices, such as
+  branch protection and signed releases. That is a prediction about future risk from
+  process; the maintainer leaderboard here is a measurement of present blast radius from
+  `MAINTAINS` edges. The two are orthogonal and a serious program wants both.
 
 ## 🗂️ Repository layout
 
@@ -297,5 +363,4 @@ Indian Type Foundry. All rights reserved. Both faces are self-hosted under
 [`src/app/fonts/NOTICE.md`](./src/app/fonts/NOTICE.md) carries the full notice.
 
 Incident facts come from public advisories, registry metadata, and published writeups. The
-source URL for each one lives in the pack that states it, in `data/incidents`. Built for
-Hack Hydra, Track 02.
+source URL for each one lives in the pack that states it, in `data/incidents`.

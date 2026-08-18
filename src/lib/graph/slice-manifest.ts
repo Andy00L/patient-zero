@@ -22,7 +22,15 @@ export type Coverage =
   | "closed"
   /** Present, but the closure was cut short by a depth or budget limit. */
   | "partial"
-  /** Not in the graph at all. Every answer about it is unknown. */
+  /**
+   * The manifest makes no coverage claim about it, so every answer about it is unknown.
+   *
+   * This is not the same as "not in the graph". A dependency expansion that stops at its depth
+   * budget still writes a stub node for the package it stopped at, so the shipped slice holds
+   * hundreds of Package nodes the ingest never fetched: they exist, they carry a key, and they
+   * have no out-edges. Their emptiness is the budget, not the registry. Reporting them as absent
+   * is what keeps a traversal that ends on one of them from reading as a real negative.
+   */
   | "absent";
 
 export type SliceManifest = {
