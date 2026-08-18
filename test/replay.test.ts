@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
-import { type ReplayTimeline, buildReplayTimeline, frameAt } from "@/lib/analysis/replay";
+import { type ReplayTimeline, buildReplayTimeline } from "@/lib/analysis/replay";
+import { frameAt } from "@/lib/analysis/replay-frames";
 import { MemoryGraph } from "@/lib/graph/memory-gateway";
 import { packageKey, serviceKey, versionKey } from "@/lib/graph/model";
 import type { SliceCoverage } from "@/lib/graph/slice-manifest";

@@ -14,7 +14,8 @@ import { Panel, PanelBody, PanelHeader } from "@/components/ui/panel";
 import { AbstainNotice, EmptyState } from "@/components/ui/state";
 import { DataValue, DefinitionRow, FieldLabel, UnitSuffix } from "@/components/ui/text";
 import { VerdictPill } from "@/components/ui/verdict";
-import { frameAt, type ReplayExposure, type ReplayTimeline } from "@/lib/analysis/replay";
+import type { ReplayExposure, ReplayTimeline } from "@/lib/analysis/replay";
+import { frameAt } from "@/lib/analysis/replay-frames";
 import { formatCount, formatInstant, isKnownInstant, measureDuration } from "@/lib/format";
 
 /**

@@ -232,27 +232,10 @@ export async function buildReplayTimeline(
   });
 }
 
-/**
- * Bounds-checked frame lookup for the UI.
- *
- * A scrubber is driven by a pointer, a keyboard and a URL parameter, so an out-of-range
- * index is an ordinary input rather than a bug. It comes back as a Failure the caller can
- * render, never as an exception and never as `undefined` pretending to be a frame.
- */
-export function frameAt(timeline: ReplayTimeline, index: number): Result<ReplayFrame, Failure> {
-  if (!Number.isInteger(index)) {
-    return fail("invalid_input", `[frameAt] frame index ${index} is not an integer`);
-  }
-  const frame = timeline.frames[index];
-  if (frame === undefined) {
-    return fail(
-      "invalid_input",
-      `[frameAt] frame ${index} is outside 0 to ${timeline.frames.length - 1}`,
-      { context: { packSlug: timeline.packSlug, frameCount: timeline.frames.length } },
-    );
-  }
-  return succeed(frame);
-}
+// `frameAt` lives in ./replay-frames.ts and is deliberately not re-exported from here. This
+// module imports the pack loader, so it reaches `node:fs/promises`, and a client component that
+// imports any runtime value from it drags the filesystem into the browser chunk. Re-exporting the
+// one function the client needs would put that trap back behind a convenient name.
 
 // ---------------------------------------------------------------------------
 // Frame instants

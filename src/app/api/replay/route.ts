@@ -24,11 +24,8 @@
 import { z } from "zod";
 
 import { digitsInRange, epochMs, jsonFailure, jsonOk, parseQuery, runRoute } from "@/lib/api/http";
-import {
-  type ReplayTimeline,
-  buildReplayTimeline,
-  frameAt,
-} from "@/lib/analysis/replay";
+import { type ReplayTimeline, buildReplayTimeline } from "@/lib/analysis/replay";
+import { frameAt } from "@/lib/analysis/replay-frames";
 import { loadGraph } from "@/lib/graph/load-graph";
 import { loadIncidentPack } from "@/lib/incidents/pack";
 import { type Failure } from "@/lib/result";
