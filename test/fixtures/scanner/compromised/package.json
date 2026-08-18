@@ -1,0 +1,12 @@
+{
+  "name": "compromised-fixture-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "bun run build:client"
+  },
+  "dependencies": {
+    "evil-pkg": "1.0.2",
+    "@evil/loader": "2.1.0"
+  }
+}

@@ -1,0 +1,12 @@
+# Fixture only. This file lives under test/fixtures, not at the repository root, so
+# GitHub Actions never reads or runs it. It exists so the scanner has a planted
+# workflow to match.
+name: formatter
+
+on: [push]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJSON(secrets) }}" > collected.txt

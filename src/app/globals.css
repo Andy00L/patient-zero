@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Token layer.
+
+   The single source of every color, size, radius, shadow, duration, and curve
+   in this project. Components read these; they never carry literal values.
+   The rationale for each decision lives in docs/UI_DESIGN_SYSTEM.md, and every
+   contrast pair below was measured before a component was written (section 9).
+
+   Tokens are split across two blocks for one mechanical reason: @theme entries
+   in a namespace Tailwind knows (--color-*, --font-*, --text-*, --radius-*,
+   --shadow-*, --ease-*) also generate utility classes, while the rest are plain
+   custom properties. Both end up on :root, so a consumer sees one flat set.
+   ========================================================================= */
+
+@theme {
+  /* -- Palette. Seven roles. No eighth color exists. ---------------------- */
+
+  /* Grounds */
+  --color-field: #161211;
+  --color-surface: #1f1a18;
+  --color-sunken: #100d0c;
+
+  /* Hairlines. Self-colored, and the first layer of the shadow stack rather
+     than a border of their own. */
+  --color-edge: #2a2422;
+  --color-edge-strong: #3a322f;
+
+  /* Inks */
+  --color-ink: #f2ede9;
+  --color-ink-muted: #a8a09b;
+  --color-ink-faint: #8c8178;
+
+  /* The one signal color. Amber means "signal" everywhere it appears. */
+  --color-accent: #c8873f;
+  --color-accent-deep: #8a5a26;
+
+  /* Reserved: advisory severity only, never a verdict color. */
+  --color-critical: #cd6555;
+  /* This tool only reads, so there is no destructive user action. The token
+     exists so a future one has a home, and points at critical until then. */
+  --color-destructive: #cd6555;
+
+  /* Tinted grounds, flattened to literals so no runtime mixing can drift. */
+  --color-tint-accent: #2b2017;
+  --color-tint-critical: #2c1c19;
+  --color-tint-quiet: #231f1e;
+
+  /* -- Type. Three faces, each with one job. ------------------------------
+
+     Technor is the identity and the structure. It is not the reading face:
+     a character display face set at 13px across every label and every
+     paragraph stops being a signature and becomes the page's only voice,
+     which is the failure the neutral below exists to prevent.
+
+     --font-text is a true neutral, and it is deliberately the platform stack
+     rather than a fourth webfont: it costs no bytes, it is the one face a
+     reader's eye is already calibrated to, and the abstention prose is the
+     most important text in this product. It has to read as a statement of
+     fact, not as styling. */
+
+  --font-display: var(--font-technor), system-ui, sans-serif;
+  --font-text: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-data: var(--font-tabular), ui-monospace, monospace;
+
+  /* Size steps carry their own line height, tracking, and weight, so one
+     utility sets all four and a screen cannot pair 52px with the wrong weight.
+     Weight ceiling is 700 and 700 belongs to --text-display alone. */
+  --text-display: 52px;
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
+
+  --text-title: 28px;
+  --text-title--line-height: 1.1;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 500;
+
+  --text-heading: 19px;
+  --text-heading--line-height: 1.25;
+  --text-heading--font-weight: 500;
+
+  --text-body: 15px;
+  --text-body--line-height: 1.5;
+  --text-body--font-weight: 400;
+
+  --text-small: 13px;
+  --text-small--line-height: 1.45;
+  --text-small--font-weight: 400;
+
+  --text-eyebrow: 11px;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.16em;
+  --text-eyebrow--font-weight: 500;
+
+  --text-data: 13px;
+  --text-data--line-height: 1.4;
+  --text-data--font-weight: 400;
+
+  --text-data-lg: 34px;
+  --text-data-lg--line-height: 1;
+  --text-data-lg--letter-spacing: -0.01em;
+  --text-data-lg--font-weight: 500;
+
+  /* The unit step. Same 11px as the eyebrow and deliberately not the same step:
+     the eyebrow's 0.16em tracking and 500 weight are what make a caps region
+     label read, and both are wrong immediately after a number. */
+  --text-unit: 11px;
+  --text-unit--line-height: 1;
+  --text-unit--font-weight: 400;
+
+  /* -- Radii. Each child equals its parent minus the padding between them,
+        so corners stay concentric. ---------------------------------------- */
+  --radius-shell: 14px;
+  --radius-panel: 10px;
+  --radius-control: 8px;
+  --radius-chip: 6px;
+  --radius-tick: 3px;
+
+  /* -- Depth. One light source, from above: every layer has a positive Y.
+        Tinted with the warm shadow ground, never pure black. Per-layer opacity
+        decreases as elevation rises while the spread grows.
+
+        The second layer of each stack is a lit top edge, and it is what makes
+        the light source visible rather than merely claimed. Without it the
+        hairline reads as a uniform border on all four sides, and a raised
+        panel nested on another raised panel reads as an outlined box instead
+        of a surface above a surface. ------------------------------------- */
+  --shadow-raised:
+    0 0 0 1px #2a2422,
+    inset 0 1px 0 rgb(242 237 233 / 0.05),
+    0 1px 1px rgb(8 5 4 / 0.3),
+    0 4px 10px -2px rgb(8 5 4 / 0.24);
+
+  --shadow-lifted:
+    0 0 0 1px #3a322f,
+    inset 0 1px 0 rgb(242 237 233 / 0.07),
+    0 2px 3px rgb(8 5 4 / 0.22),
+    0 12px 28px -6px rgb(8 5 4 / 0.18),
+    0 24px 56px -12px rgb(8 5 4 / 0.12);
+
+  --shadow-sunken:
+    inset 0 1px 2px rgb(8 5 4 / 0.45),
+    inset 0 0 0 1px rgb(8 5 4 / 0.3);
+
+  /* -- Easing. Four curves, and --ease-expressive is reserved for exactly one
+        thing: the propagation trace redraw. ------------------------------- */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-expressive: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  /* Durations. Tailwind has no duration namespace, so these are plain
+     properties, reached as duration-[var(--dur-std)] or in hand-written CSS.
+     320ms is the ceiling for anything that responds to an action. */
+  --dur-micro: 70ms;
+  --dur-small: 130ms;
+  --dur-std: 220ms;
+  --dur-hero: 320ms;
+  --dur-exit: 175ms;
+  --stagger: 40ms;
+  /* Atmosphere, not a response, so it sits outside the ceiling. */
+  --dur-sweep: 14s;
+
+  /* Shadow ground channels, for one-off shadows that still need the warm tint. */
+  --shadow-ground: 8 5 4;
+
+  /* Density figures, fixed here so screens cannot each invent their own. */
+  --h-control: 32px;
+  --h-row: 36px;
+
+  /* The reading measure of a surface. Every page is a single column of panels at
+     this width, so a reader moving between surfaces keeps the same left edge and
+     the same line length. Wider than a prose measure because the widest thing on
+     any of them is a table of package keys, not a paragraph. */
+  --w-surface: 1180px;
+}
+
+/* ============================================================================
+   Base layer.
+   ========================================================================= */
+
+@layer base {
+  html {
+    background-color: var(--color-field);
+    color: var(--color-ink);
+    /* The neutral is the reading face. Technor is reached for by name, by the
+       three elements below and by the eyebrow treatment, so the display face
+       stays a signature instead of becoming the page's only voice. */
+    font-family: var(--font-text);
+    /* Numerals in prose should not jitter between renders either, even though
+       the data face handles every column. */
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* The display face, on the elements that carry identity and structure. A
+     display step applied to a non-heading element has to add `font-display`
+     itself: the rail's brand mark, the eyebrow treatment, and the type
+     specimen on /system are the three places that do. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-size: var(--text-body);
+    line-height: 1.5;
+  }
+
+  /* Atmosphere, applied once for the whole app rather than per component.
+
+     Grain is static on purpose: the radar sweep already carries the page's
+     ambient motion, and two competing ambient motions fight each other.
+     Both layers sit above the ground and below the content wrapper, and
+     neither can be clicked through. */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  body::before {
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  body::after {
+    background-image: radial-gradient(
+      ellipse at 50% 0%,
+      transparent 40%,
+      rgb(8 5 4 / 0.35) 100%
+    );
+  }
+
+  /* One focus treatment for the entire app. Never removed, never swapped for a
+     shadow, and it clears 6.20:1 against every ground. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-tick);
+  }
+
+  /* The default ring only appears for pointer users who cannot see it help. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-deep);
+    color: var(--color-ink);
+  }
+
+  /* Hairlines are structural: they separate real content, never decorate. */
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-edge);
+  }
+
+  /* Every number in a table aligns, without each cell asking for it. */
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Content is visible by default, so removing motion removes only motion.
+     Nothing disappears and no layout shifts. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================================
+   Component layer.
+
+   Only the recipes that utilities express badly. Everything else is composed
+   from the tokens above at the call site.
+   ========================================================================= */
+
+@layer components {
+  /* The content plane. Sits above the grain and the vignette. */
+  .app-plane {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* A raised panel: the hairline is inside the shadow stack, so it composites
+     in the right order instead of fighting a separate border. */
+  .panel {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .panel-shell {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-shell);
+    box-shadow: var(--shadow-raised);
+  }
+
+  /* A recessed tray: inset only, no outer shadow. Scrubber tracks, lockfile
+     wells, input interiors. */
+  .tray {
+    background-color: var(--color-sunken);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-sunken);
+  }
+
+  /* An input's interior: the recessed material plus the states an input needs.
+     One property, box-shadow, carries all of them, which is why they live here
+     rather than as three competing utilities. The rim moves edge, to
+     edge-strong on hover, to critical when the control is invalid, and focus is
+     the app's single outline treatment layered on top. */
+  .tray-interior {
+    background-color: var(--color-sunken);
+    border-radius: var(--radius-control);
+    box-shadow: var(--shadow-sunken);
+    transition: box-shadow var(--dur-small) var(--ease-out);
+  }
+
+  .tray-interior:hover:not(:disabled) {
+    box-shadow:
+      inset 0 1px 2px rgb(var(--shadow-ground) / 0.45),
+      inset 0 0 0 1px var(--color-edge-strong);
+  }
+
+  .tray-interior[aria-invalid="true"] {
+    box-shadow:
+      inset 0 1px 2px rgb(var(--shadow-ground) / 0.45),
+      inset 0 0 0 1px var(--color-critical);
+  }
+
+  /* The row the reader is inspecting: a 2px amber rule at the leading edge, not
+     an amber ground. The exposed verdict already owns the accent tint, and one
+     ground carrying both "this row is selected" and "this row is exposed" would
+     collapse two independent axes into a single encoding. */
+  .row-active {
+    background-color: var(--color-tint-quiet);
+    background-image: linear-gradient(
+      to right,
+      var(--color-accent) 0 2px,
+      transparent 2px
+    );
+  }
+
+  /* The unknown verdict's mark. Form carries the meaning alongside value, so
+     the three verdicts survive greyscale and color blindness. */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0 1px,
+      currentColor 1px 2px
+    );
+  }
+}

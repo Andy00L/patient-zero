@@ -1,0 +1,19 @@
+# Fixture requirements file for the lockfile parser tests.
+-r base-requirements.txt
+--requirement extra-requirements.txt
+-c constraints.txt
+-e ./local-package
+
+requests==2.31.0
+Flask == 3.0.2  # an inline comment after whitespace
+urllib3>=1.26.8
+click~=8.1.0
+django!=4.0.1
+pyyaml
+certifi==2024.2.2 --hash=sha256:0000000000000000000000000000000000000000000000000000000000000000
+importlib-metadata==7.0.1 ; python_version < "3.10"
+requests[security]==2.31.0
+zope.interface==6.2
+six==1.16.*
+sqlalchemy \
+    ==2.0.29

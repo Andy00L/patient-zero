@@ -1,0 +1,5633 @@
+{
+  "formatVersion": 1,
+  "generatedAtMs": 1787049717485,
+  "source": "seed-incidents",
+  "manifest": {
+    "version": 1,
+    "generatedAtMs": 1787049717485,
+    "ecosystems": [
+      "npm"
+    ],
+    "closedPackageKeys": [],
+    "partialPackageKeys": [
+      "npm:@achrinza/node-ipc",
+      "npm:@fingerprintjs/fingerprintjs",
+      "npm:@voiceflow/alexa-types",
+      "npm:@voiceflow/anthropic",
+      "npm:@voiceflow/api-sdk",
+      "npm:@voiceflow/backend-utils",
+      "npm:@voiceflow/base-types",
+      "npm:@voiceflow/body-parser",
+      "npm:@voiceflow/chat-types",
+      "npm:@voiceflow/circleci-config-sdk-orb-import",
+      "npm:@voiceflow/commitlint-config",
+      "npm:@voiceflow/common",
+      "npm:@voiceflow/dependency-cruiser-config",
+      "npm:@voiceflow/dtos-interact",
+      "npm:@voiceflow/encryption",
+      "npm:@voiceflow/eslint-config",
+      "npm:@voiceflow/eslint-plugin",
+      "npm:@voiceflow/exception",
+      "npm:@voiceflow/fetch",
+      "npm:@voiceflow/general-types",
+      "npm:@voiceflow/git-branch-check",
+      "npm:@voiceflow/google-dfes-types",
+      "npm:@voiceflow/google-types",
+      "npm:@voiceflow/husky-config",
+      "npm:@voiceflow/logger",
+      "npm:@voiceflow/metrics",
+      "npm:@voiceflow/natural-language-commander",
+      "npm:@voiceflow/npm-package-json-lint-config",
+      "npm:@voiceflow/openai",
+      "npm:@voiceflow/pino",
+      "npm:@voiceflow/pino-pretty",
+      "npm:@voiceflow/prettier-config",
+      "npm:@voiceflow/react-chat",
+      "npm:@voiceflow/runtime",
+      "npm:@voiceflow/runtime-client-js",
+      "npm:@voiceflow/sdk-runtime",
+      "npm:@voiceflow/semantic-release-config",
+      "npm:@voiceflow/serverless-plugin-typescript",
+      "npm:@voiceflow/slate-serializer",
+      "npm:@voiceflow/stitches-react",
+      "npm:@voiceflow/storybook-config",
+      "npm:@voiceflow/stylelint-config",
+      "npm:@voiceflow/test-common",
+      "npm:@voiceflow/tsconfig",
+      "npm:@vue/cli-service",
+      "npm:@vue/cli-shared-utils",
+      "npm:event-stream",
+      "npm:flatmap-stream",
+      "npm:gulp-livereload",
+      "npm:karma",
+      "npm:node-ipc",
+      "npm:nodemon",
+      "npm:peacenotwar",
+      "npm:ps-tree",
+      "npm:react-device-detect",
+      "npm:ua-parser-js"
+    ],
+    "closedServiceKeys": [
+      "svc:admin-web",
+      "svc:agent-supervisor",
+      "svc:analytics-api",
+      "svc:analytics-collector",
+      "svc:asset-pipeline",
+      "svc:billing-api",
+      "svc:build-agent",
+      "svc:checkout-web",
+      "svc:ci-browser-tests",
+      "svc:ci-lint-runner",
+      "svc:conversation-api",
+      "svc:desktop-build-agent",
+      "svc:dev-portal",
+      "svc:fraud-scoring",
+      "svc:intent-etl",
+      "svc:internal-tools-web",
+      "svc:ipc-bridge",
+      "svc:jobs-runner",
+      "svc:ledger-api",
+      "svc:marketing-site",
+      "svc:mobile-gateway",
+      "svc:notification-worker",
+      "svc:partner-portal",
+      "svc:release-runner",
+      "svc:search-indexer",
+      "svc:support-chat-web",
+      "svc:support-widget",
+      "svc:transcript-archive",
+      "svc:voice-gateway",
+      "svc:web-storefront"
+    ],
+    "counts": {
+      "packages": 56,
+      "versions": 125,
+      "maintainers": 0,
+      "services": 30,
+      "advisories": 48,
+      "resolutionEdges": 63
+    },
+    "notes": []
+  },
+  "nodes": [
+    {
+      "id": 0,
+      "label": "Package",
+      "properties": {
+        "key": "npm:event-stream",
+        "ecosystem": "npm",
+        "name": "event-stream",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 1,
+      "label": "Package",
+      "properties": {
+        "key": "npm:flatmap-stream",
+        "ecosystem": "npm",
+        "name": "flatmap-stream",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 2,
+      "label": "Package",
+      "properties": {
+        "key": "npm:nodemon",
+        "ecosystem": "npm",
+        "name": "nodemon",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 3,
+      "label": "Package",
+      "properties": {
+        "key": "npm:ps-tree",
+        "ecosystem": "npm",
+        "name": "ps-tree",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 4,
+      "label": "Package",
+      "properties": {
+        "key": "npm:gulp-livereload",
+        "ecosystem": "npm",
+        "name": "gulp-livereload",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 5,
+      "label": "Package",
+      "properties": {
+        "key": "npm:node-ipc",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 6,
+      "label": "Package",
+      "properties": {
+        "key": "npm:peacenotwar",
+        "ecosystem": "npm",
+        "name": "peacenotwar",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 7,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@vue/cli-service",
+        "ecosystem": "npm",
+        "name": "@vue/cli-service",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 8,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@vue/cli-shared-utils",
+        "ecosystem": "npm",
+        "name": "@vue/cli-shared-utils",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 9,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@achrinza/node-ipc",
+        "ecosystem": "npm",
+        "name": "@achrinza/node-ipc",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 10,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/prettier-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/prettier-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 11,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/tsconfig",
+        "ecosystem": "npm",
+        "name": "@voiceflow/tsconfig",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 12,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/husky-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/husky-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 13,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/commitlint-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/commitlint-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 14,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/storybook-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/storybook-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 15,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/stylelint-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stylelint-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 16,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/git-branch-check",
+        "ecosystem": "npm",
+        "name": "@voiceflow/git-branch-check",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 17,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/serverless-plugin-typescript",
+        "ecosystem": "npm",
+        "name": "@voiceflow/serverless-plugin-typescript",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 18,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/anthropic",
+        "ecosystem": "npm",
+        "name": "@voiceflow/anthropic",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 19,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/npm-package-json-lint-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/npm-package-json-lint-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 20,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/openai",
+        "ecosystem": "npm",
+        "name": "@voiceflow/openai",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 21,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/metrics",
+        "ecosystem": "npm",
+        "name": "@voiceflow/metrics",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 22,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/semantic-release-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/semantic-release-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 23,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 24,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/body-parser",
+        "ecosystem": "npm",
+        "name": "@voiceflow/body-parser",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 25,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/circleci-config-sdk-orb-import",
+        "ecosystem": "npm",
+        "name": "@voiceflow/circleci-config-sdk-orb-import",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 26,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-plugin",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-plugin",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 27,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/pino-pretty",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino-pretty",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 28,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/stitches-react",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stitches-react",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 29,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/slate-serializer",
+        "ecosystem": "npm",
+        "name": "@voiceflow/slate-serializer",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 30,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/dependency-cruiser-config",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dependency-cruiser-config",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 31,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/test-common",
+        "ecosystem": "npm",
+        "name": "@voiceflow/test-common",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 32,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/runtime-client-js",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime-client-js",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 33,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/encryption",
+        "ecosystem": "npm",
+        "name": "@voiceflow/encryption",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 34,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/fetch",
+        "ecosystem": "npm",
+        "name": "@voiceflow/fetch",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 35,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/natural-language-commander",
+        "ecosystem": "npm",
+        "name": "@voiceflow/natural-language-commander",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 36,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/backend-utils",
+        "ecosystem": "npm",
+        "name": "@voiceflow/backend-utils",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 37,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/pino",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 38,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/exception",
+        "ecosystem": "npm",
+        "name": "@voiceflow/exception",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 39,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/general-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/general-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 40,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/chat-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/chat-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 41,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/logger",
+        "ecosystem": "npm",
+        "name": "@voiceflow/logger",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 42,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/common",
+        "ecosystem": "npm",
+        "name": "@voiceflow/common",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 43,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/google-dfes-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-dfes-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 44,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/runtime",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 45,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/sdk-runtime",
+        "ecosystem": "npm",
+        "name": "@voiceflow/sdk-runtime",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 46,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/alexa-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/alexa-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 47,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/api-sdk",
+        "ecosystem": "npm",
+        "name": "@voiceflow/api-sdk",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 48,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/google-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 49,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/react-chat",
+        "ecosystem": "npm",
+        "name": "@voiceflow/react-chat",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 50,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/dtos-interact",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dtos-interact",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 51,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@voiceflow/base-types",
+        "ecosystem": "npm",
+        "name": "@voiceflow/base-types",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 52,
+      "label": "Package",
+      "properties": {
+        "key": "npm:ua-parser-js",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 53,
+      "label": "Package",
+      "properties": {
+        "key": "npm:karma",
+        "ecosystem": "npm",
+        "name": "karma",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 54,
+      "label": "Package",
+      "properties": {
+        "key": "npm:react-device-detect",
+        "ecosystem": "npm",
+        "name": "react-device-detect",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 55,
+      "label": "Package",
+      "properties": {
+        "key": "npm:@fingerprintjs/fingerprintjs",
+        "ecosystem": "npm",
+        "name": "@fingerprintjs/fingerprintjs",
+        "weekly_downloads": -1
+      }
+    },
+    {
+      "id": 56,
+      "label": "Version",
+      "properties": {
+        "key": "npm:event-stream:3.3.6",
+        "ecosystem": "npm",
+        "name": "event-stream",
+        "version": "3.3.6",
+        "published_at_ms": 1536481739503,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 57,
+      "label": "Version",
+      "properties": {
+        "key": "npm:flatmap-stream:0.1.1",
+        "ecosystem": "npm",
+        "name": "flatmap-stream",
+        "version": "0.1.1",
+        "published_at_ms": 1536481739503,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 58,
+      "label": "Version",
+      "properties": {
+        "key": "npm:nodemon:1.13.0",
+        "ecosystem": "npm",
+        "name": "nodemon",
+        "version": "1.13.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 59,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ps-tree:1.1.0",
+        "ecosystem": "npm",
+        "name": "ps-tree",
+        "version": "1.1.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 60,
+      "label": "Version",
+      "properties": {
+        "key": "npm:gulp-livereload:3.8.1",
+        "ecosystem": "npm",
+        "name": "gulp-livereload",
+        "version": "3.8.1",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 61,
+      "label": "Version",
+      "properties": {
+        "key": "npm:event-stream:3.3.4",
+        "ecosystem": "npm",
+        "name": "event-stream",
+        "version": "3.3.4",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 62,
+      "label": "Version",
+      "properties": {
+        "key": "npm:event-stream:4.0.1",
+        "ecosystem": "npm",
+        "name": "event-stream",
+        "version": "4.0.1",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 63,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ps-tree:1.2.0",
+        "ecosystem": "npm",
+        "name": "ps-tree",
+        "version": "1.2.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 64,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:10.1.1",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "10.1.1",
+        "published_at_ms": 1646651039179,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 65,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:10.1.2",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "10.1.2",
+        "published_at_ms": 1646689024333,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 66,
+      "label": "Version",
+      "properties": {
+        "key": "npm:peacenotwar:9.1.3",
+        "ecosystem": "npm",
+        "name": "peacenotwar",
+        "version": "9.1.3",
+        "published_at_ms": 1646758649531,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 67,
+      "label": "Version",
+      "properties": {
+        "key": "npm:peacenotwar:9.1.5",
+        "ecosystem": "npm",
+        "name": "peacenotwar",
+        "version": "9.1.5",
+        "published_at_ms": 1647319150435,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 68,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:11.0.0",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "11.0.0",
+        "published_at_ms": 1646760335673,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 69,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:11.1.0",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "11.1.0",
+        "published_at_ms": 1647319745699,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 70,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:9.2.2",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "9.2.2",
+        "published_at_ms": 1647322826758,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 71,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@vue/cli-service:4.5.15",
+        "ecosystem": "npm",
+        "name": "@vue/cli-service",
+        "version": "4.5.15",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 72,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@vue/cli-shared-utils:4.5.15",
+        "ecosystem": "npm",
+        "name": "@vue/cli-shared-utils",
+        "version": "4.5.15",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 73,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@vue/cli-service:5.0.1",
+        "ecosystem": "npm",
+        "name": "@vue/cli-service",
+        "version": "5.0.1",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 74,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@vue/cli-shared-utils:5.0.1",
+        "ecosystem": "npm",
+        "name": "@vue/cli-shared-utils",
+        "version": "5.0.1",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 75,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:10.1.0",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "10.1.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 76,
+      "label": "Version",
+      "properties": {
+        "key": "npm:node-ipc:10.1.3",
+        "ecosystem": "npm",
+        "name": "node-ipc",
+        "version": "10.1.3",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 77,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@vue/cli-shared-utils:4.5.17",
+        "ecosystem": "npm",
+        "name": "@vue/cli-shared-utils",
+        "version": "4.5.17",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 78,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@achrinza/node-ipc:9.2.2",
+        "ecosystem": "npm",
+        "name": "@achrinza/node-ipc",
+        "version": "9.2.2",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 79,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/prettier-config:1.10.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/prettier-config",
+        "version": "1.10.1",
+        "published_at_ms": 1763983108459,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 80,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/tsconfig:1.12.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/tsconfig",
+        "version": "1.12.1",
+        "published_at_ms": 1763983109322,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 81,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/husky-config:1.3.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/husky-config",
+        "version": "1.3.1",
+        "published_at_ms": 1763983109369,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 82,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/commitlint-config:2.6.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/commitlint-config",
+        "version": "2.6.1",
+        "published_at_ms": 1763983109428,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 83,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/storybook-config:1.2.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/storybook-config",
+        "version": "1.2.2",
+        "published_at_ms": 1763983109675,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 84,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/stylelint-config:1.1.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stylelint-config",
+        "version": "1.1.1",
+        "published_at_ms": 1763983110291,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 85,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/git-branch-check:1.4.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/git-branch-check",
+        "version": "1.4.3",
+        "published_at_ms": 1763983112157,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 86,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/serverless-plugin-typescript:2.1.7",
+        "ecosystem": "npm",
+        "name": "@voiceflow/serverless-plugin-typescript",
+        "version": "2.1.7",
+        "published_at_ms": 1763983113659,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 87,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/anthropic:0.4.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/anthropic",
+        "version": "0.4.4",
+        "published_at_ms": 1763983113984,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 88,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/npm-package-json-lint-config:1.1.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/npm-package-json-lint-config",
+        "version": "1.1.1",
+        "published_at_ms": 1763983114549,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 89,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/openai:3.2.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/openai",
+        "version": "3.2.2",
+        "published_at_ms": 1763983114808,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 90,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/metrics:1.5.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/metrics",
+        "version": "1.5.1",
+        "published_at_ms": 1763983114965,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 91,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/semantic-release-config:1.4.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/semantic-release-config",
+        "version": "1.4.1",
+        "published_at_ms": 1763983115415,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 92,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-config:7.16.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-config",
+        "version": "7.16.4",
+        "published_at_ms": 1763983116172,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 93,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/body-parser:1.21.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/body-parser",
+        "version": "1.21.2",
+        "published_at_ms": 1763983116192,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 94,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/circleci-config-sdk-orb-import:0.2.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/circleci-config-sdk-orb-import",
+        "version": "0.2.1",
+        "published_at_ms": 1763983116264,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 95,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-plugin:1.6.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-plugin",
+        "version": "1.6.1",
+        "published_at_ms": 1763983116352,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 96,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/pino-pretty:4.4.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino-pretty",
+        "version": "4.4.1",
+        "published_at_ms": 1763983117135,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 97,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/stitches-react:2.3.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stitches-react",
+        "version": "2.3.2",
+        "published_at_ms": 1763983117484,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 98,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/slate-serializer:1.7.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/slate-serializer",
+        "version": "1.7.3",
+        "published_at_ms": 1763983119939,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 99,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/dependency-cruiser-config:1.8.11",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dependency-cruiser-config",
+        "version": "1.8.11",
+        "published_at_ms": 1763983120223,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 100,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/test-common:2.1.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/test-common",
+        "version": "2.1.1",
+        "published_at_ms": 1763983120383,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 101,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/runtime-client-js:1.17.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime-client-js",
+        "version": "1.17.2",
+        "published_at_ms": 1763983120790,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 102,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/encryption:0.3.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/encryption",
+        "version": "0.3.2",
+        "published_at_ms": 1763983120963,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 103,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/fetch:1.11.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/fetch",
+        "version": "1.11.1",
+        "published_at_ms": 1763983120968,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 104,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/natural-language-commander:0.5.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/natural-language-commander",
+        "version": "0.5.2",
+        "published_at_ms": 1763983121584,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 105,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/backend-utils:5.0.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/backend-utils",
+        "version": "5.0.1",
+        "published_at_ms": 1763983121805,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 106,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/pino:6.11.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino",
+        "version": "6.11.3",
+        "published_at_ms": 1763983121952,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 107,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/exception:1.10.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/exception",
+        "version": "1.10.1",
+        "published_at_ms": 1763983123111,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 108,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/general-types:3.2.22",
+        "ecosystem": "npm",
+        "name": "@voiceflow/general-types",
+        "version": "3.2.22",
+        "published_at_ms": 1763983123180,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 109,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/chat-types:2.14.58",
+        "ecosystem": "npm",
+        "name": "@voiceflow/chat-types",
+        "version": "2.14.58",
+        "published_at_ms": 1763983123367,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 110,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/logger:2.4.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/logger",
+        "version": "2.4.2",
+        "published_at_ms": 1763983123438,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 111,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/common:8.9.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/common",
+        "version": "8.9.1",
+        "published_at_ms": 1763983126413,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 112,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/google-dfes-types:2.17.12",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-dfes-types",
+        "version": "2.17.12",
+        "published_at_ms": 1763983126484,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 113,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/runtime:1.29.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime",
+        "version": "1.29.1",
+        "published_at_ms": 1763983126667,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 114,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/sdk-runtime:1.43.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/sdk-runtime",
+        "version": "1.43.1",
+        "published_at_ms": 1763983127140,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 115,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/alexa-types:2.15.60",
+        "ecosystem": "npm",
+        "name": "@voiceflow/alexa-types",
+        "version": "2.15.60",
+        "published_at_ms": 1763983127300,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 116,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/api-sdk:3.28.58",
+        "ecosystem": "npm",
+        "name": "@voiceflow/api-sdk",
+        "version": "3.28.58",
+        "published_at_ms": 1763983127878,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 117,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/google-types:2.21.12",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-types",
+        "version": "2.21.12",
+        "published_at_ms": 1763983129712,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 118,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/react-chat:1.65.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/react-chat",
+        "version": "1.65.3",
+        "published_at_ms": 1763983130560,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 119,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/dtos-interact:1.40.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dtos-interact",
+        "version": "1.40.1",
+        "published_at_ms": 1763983130950,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 120,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/base-types:2.136.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/base-types",
+        "version": "2.136.2",
+        "published_at_ms": 1763983131173,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 121,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/husky-config:1.3.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/husky-config",
+        "version": "1.3.2",
+        "published_at_ms": 1763983202843,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 122,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/git-branch-check:1.4.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/git-branch-check",
+        "version": "1.4.4",
+        "published_at_ms": 1763983202878,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 123,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/stylelint-config:1.1.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stylelint-config",
+        "version": "1.1.2",
+        "published_at_ms": 1763983204493,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 124,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/prettier-config:1.10.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/prettier-config",
+        "version": "1.10.2",
+        "published_at_ms": 1763983204516,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 125,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/semantic-release-config:1.4.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/semantic-release-config",
+        "version": "1.4.2",
+        "published_at_ms": 1763983204606,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 126,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/tsconfig:1.12.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/tsconfig",
+        "version": "1.12.2",
+        "published_at_ms": 1763983204885,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 127,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/commitlint-config:2.6.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/commitlint-config",
+        "version": "2.6.2",
+        "published_at_ms": 1763983205991,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 128,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/npm-package-json-lint-config:1.1.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/npm-package-json-lint-config",
+        "version": "1.1.2",
+        "published_at_ms": 1763983206369,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 129,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/anthropic:0.4.5",
+        "ecosystem": "npm",
+        "name": "@voiceflow/anthropic",
+        "version": "0.4.5",
+        "published_at_ms": 1763983207777,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 130,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/circleci-config-sdk-orb-import:0.2.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/circleci-config-sdk-orb-import",
+        "version": "0.2.2",
+        "published_at_ms": 1763983207931,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 131,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/storybook-config:1.2.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/storybook-config",
+        "version": "1.2.3",
+        "published_at_ms": 1763983208867,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 132,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/body-parser:1.21.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/body-parser",
+        "version": "1.21.3",
+        "published_at_ms": 1763983209329,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 133,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/metrics:1.5.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/metrics",
+        "version": "1.5.2",
+        "published_at_ms": 1763983209513,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 134,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/serverless-plugin-typescript:2.1.8",
+        "ecosystem": "npm",
+        "name": "@voiceflow/serverless-plugin-typescript",
+        "version": "2.1.8",
+        "published_at_ms": 1763983209515,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 135,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/stitches-react:2.3.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/stitches-react",
+        "version": "2.3.3",
+        "published_at_ms": 1763983209522,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 136,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-config:7.16.5",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-config",
+        "version": "7.16.5",
+        "published_at_ms": 1763983209528,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 137,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/pino-pretty:4.4.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino-pretty",
+        "version": "4.4.2",
+        "published_at_ms": 1763983210211,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 138,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-plugin:1.6.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-plugin",
+        "version": "1.6.2",
+        "published_at_ms": 1763983210925,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 139,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/openai:3.2.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/openai",
+        "version": "3.2.3",
+        "published_at_ms": 1763983211655,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 140,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/test-common:2.1.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/test-common",
+        "version": "2.1.2",
+        "published_at_ms": 1763983212783,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 141,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/natural-language-commander:0.5.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/natural-language-commander",
+        "version": "0.5.3",
+        "published_at_ms": 1763983212868,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 142,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/backend-utils:5.0.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/backend-utils",
+        "version": "5.0.2",
+        "published_at_ms": 1763983213112,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 143,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/slate-serializer:1.7.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/slate-serializer",
+        "version": "1.7.4",
+        "published_at_ms": 1763983213762,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 144,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/encryption:0.3.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/encryption",
+        "version": "0.3.3",
+        "published_at_ms": 1763983214440,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 145,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/fetch:1.11.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/fetch",
+        "version": "1.11.2",
+        "published_at_ms": 1763983214555,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 146,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/dependency-cruiser-config:1.8.12",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dependency-cruiser-config",
+        "version": "1.8.12",
+        "published_at_ms": 1763983214634,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 147,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/runtime-client-js:1.17.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime-client-js",
+        "version": "1.17.3",
+        "published_at_ms": 1763983214895,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 148,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/pino:6.11.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/pino",
+        "version": "6.11.4",
+        "published_at_ms": 1763983215809,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 149,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/logger:2.4.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/logger",
+        "version": "2.4.3",
+        "published_at_ms": 1763983216133,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 150,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/exception:1.10.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/exception",
+        "version": "1.10.2",
+        "published_at_ms": 1763983216867,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 151,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/chat-types:2.14.59",
+        "ecosystem": "npm",
+        "name": "@voiceflow/chat-types",
+        "version": "2.14.59",
+        "published_at_ms": 1763983217066,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 152,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/general-types:3.2.23",
+        "ecosystem": "npm",
+        "name": "@voiceflow/general-types",
+        "version": "3.2.23",
+        "published_at_ms": 1763983217336,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 153,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/api-sdk:3.28.59",
+        "ecosystem": "npm",
+        "name": "@voiceflow/api-sdk",
+        "version": "3.28.59",
+        "published_at_ms": 1763983219467,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 154,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/google-dfes-types:2.17.13",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-dfes-types",
+        "version": "2.17.13",
+        "published_at_ms": 1763983219675,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 155,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/alexa-types:2.15.61",
+        "ecosystem": "npm",
+        "name": "@voiceflow/alexa-types",
+        "version": "2.15.61",
+        "published_at_ms": 1763983220244,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 156,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/common:8.9.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/common",
+        "version": "8.9.2",
+        "published_at_ms": 1763983220923,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 157,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/sdk-runtime:1.43.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/sdk-runtime",
+        "version": "1.43.2",
+        "published_at_ms": 1763983221234,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 158,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/runtime:1.29.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/runtime",
+        "version": "1.29.2",
+        "published_at_ms": 1763983221586,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 159,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/google-types:2.21.13",
+        "ecosystem": "npm",
+        "name": "@voiceflow/google-types",
+        "version": "2.21.13",
+        "published_at_ms": 1763983222753,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 160,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/react-chat:1.65.4",
+        "ecosystem": "npm",
+        "name": "@voiceflow/react-chat",
+        "version": "1.65.4",
+        "published_at_ms": 1763983224402,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 161,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/dtos-interact:1.40.2",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dtos-interact",
+        "version": "1.40.2",
+        "published_at_ms": 1763983224435,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 162,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/base-types:2.136.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/base-types",
+        "version": "2.136.3",
+        "published_at_ms": 1763983226039,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 163,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/general-types:3.2.21",
+        "ecosystem": "npm",
+        "name": "@voiceflow/general-types",
+        "version": "3.2.21",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 164,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/sdk-runtime:1.43.0",
+        "ecosystem": "npm",
+        "name": "@voiceflow/sdk-runtime",
+        "version": "1.43.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 165,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/eslint-config:7.16.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/eslint-config",
+        "version": "7.16.3",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 166,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/base-types:2.136.1",
+        "ecosystem": "npm",
+        "name": "@voiceflow/base-types",
+        "version": "2.136.1",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 167,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/common:8.9.0",
+        "ecosystem": "npm",
+        "name": "@voiceflow/common",
+        "version": "8.9.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 168,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/dtos-interact:1.40.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/dtos-interact",
+        "version": "1.40.3",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 169,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@voiceflow/common:8.9.3",
+        "ecosystem": "npm",
+        "name": "@voiceflow/common",
+        "version": "8.9.3",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 170,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:0.7.29",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "0.7.29",
+        "published_at_ms": 1634904921378,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 171,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:0.8.0",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "0.8.0",
+        "published_at_ms": 1634904966877,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 172,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:1.0.0",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "1.0.0",
+        "published_at_ms": 1634904979726,
+        "has_install_script": true
+      }
+    },
+    {
+      "id": 173,
+      "label": "Version",
+      "properties": {
+        "key": "npm:karma:6.3.4",
+        "ecosystem": "npm",
+        "name": "karma",
+        "version": "6.3.4",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 174,
+      "label": "Version",
+      "properties": {
+        "key": "npm:react-device-detect:1.17.0",
+        "ecosystem": "npm",
+        "name": "react-device-detect",
+        "version": "1.17.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 175,
+      "label": "Version",
+      "properties": {
+        "key": "npm:@fingerprintjs/fingerprintjs:3.3.0",
+        "ecosystem": "npm",
+        "name": "@fingerprintjs/fingerprintjs",
+        "version": "3.3.0",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 176,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:0.7.28",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "0.7.28",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 177,
+      "label": "Version",
+      "properties": {
+        "key": "npm:karma:6.3.2",
+        "ecosystem": "npm",
+        "name": "karma",
+        "version": "6.3.2",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 178,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:0.7.30",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "0.7.30",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 179,
+      "label": "Version",
+      "properties": {
+        "key": "npm:react-device-detect:2.1.2",
+        "ecosystem": "npm",
+        "name": "react-device-detect",
+        "version": "2.1.2",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 180,
+      "label": "Version",
+      "properties": {
+        "key": "npm:ua-parser-js:0.7.31",
+        "ecosystem": "npm",
+        "name": "ua-parser-js",
+        "version": "0.7.31",
+        "published_at_ms": -1,
+        "has_install_script": false
+      }
+    },
+    {
+      "id": 181,
+      "label": "Service",
+      "properties": {
+        "key": "svc:jobs-runner",
+        "name": "jobs-runner",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 182,
+      "label": "Service",
+      "properties": {
+        "key": "svc:build-agent",
+        "name": "build-agent",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 183,
+      "label": "Service",
+      "properties": {
+        "key": "svc:asset-pipeline",
+        "name": "asset-pipeline",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 184,
+      "label": "Service",
+      "properties": {
+        "key": "svc:search-indexer",
+        "name": "search-indexer",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 185,
+      "label": "Service",
+      "properties": {
+        "key": "svc:checkout-web",
+        "name": "checkout-web",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 186,
+      "label": "Service",
+      "properties": {
+        "key": "svc:ledger-api",
+        "name": "ledger-api",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 187,
+      "label": "Service",
+      "properties": {
+        "key": "svc:notification-worker",
+        "name": "notification-worker",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 188,
+      "label": "Service",
+      "properties": {
+        "key": "svc:ipc-bridge",
+        "name": "ipc-bridge",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 189,
+      "label": "Service",
+      "properties": {
+        "key": "svc:agent-supervisor",
+        "name": "agent-supervisor",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 190,
+      "label": "Service",
+      "properties": {
+        "key": "svc:desktop-build-agent",
+        "name": "desktop-build-agent",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 191,
+      "label": "Service",
+      "properties": {
+        "key": "svc:admin-web",
+        "name": "admin-web",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 192,
+      "label": "Service",
+      "properties": {
+        "key": "svc:dev-portal",
+        "name": "dev-portal",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 193,
+      "label": "Service",
+      "properties": {
+        "key": "svc:internal-tools-web",
+        "name": "internal-tools-web",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 194,
+      "label": "Service",
+      "properties": {
+        "key": "svc:release-runner",
+        "name": "release-runner",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 195,
+      "label": "Service",
+      "properties": {
+        "key": "svc:intent-etl",
+        "name": "intent-etl",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 196,
+      "label": "Service",
+      "properties": {
+        "key": "svc:conversation-api",
+        "name": "conversation-api",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 197,
+      "label": "Service",
+      "properties": {
+        "key": "svc:support-chat-web",
+        "name": "support-chat-web",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 198,
+      "label": "Service",
+      "properties": {
+        "key": "svc:ci-lint-runner",
+        "name": "ci-lint-runner",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 199,
+      "label": "Service",
+      "properties": {
+        "key": "svc:voice-gateway",
+        "name": "voice-gateway",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 200,
+      "label": "Service",
+      "properties": {
+        "key": "svc:transcript-archive",
+        "name": "transcript-archive",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 201,
+      "label": "Service",
+      "properties": {
+        "key": "svc:billing-api",
+        "name": "billing-api",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 202,
+      "label": "Service",
+      "properties": {
+        "key": "svc:analytics-collector",
+        "name": "analytics-collector",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 203,
+      "label": "Service",
+      "properties": {
+        "key": "svc:ci-browser-tests",
+        "name": "ci-browser-tests",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 204,
+      "label": "Service",
+      "properties": {
+        "key": "svc:web-storefront",
+        "name": "web-storefront",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 205,
+      "label": "Service",
+      "properties": {
+        "key": "svc:support-widget",
+        "name": "support-widget",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 206,
+      "label": "Service",
+      "properties": {
+        "key": "svc:mobile-gateway",
+        "name": "mobile-gateway",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 207,
+      "label": "Service",
+      "properties": {
+        "key": "svc:analytics-api",
+        "name": "analytics-api",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 208,
+      "label": "Service",
+      "properties": {
+        "key": "svc:fraud-scoring",
+        "name": "fraud-scoring",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 209,
+      "label": "Service",
+      "properties": {
+        "key": "svc:partner-portal",
+        "name": "partner-portal",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 210,
+      "label": "Service",
+      "properties": {
+        "key": "svc:marketing-site",
+        "name": "marketing-site",
+        "source": "seed"
+      }
+    },
+    {
+      "id": 211,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-mh6f-8j2x-4483",
+        "ghsa_id": "GHSA-mh6f-8j2x-4483",
+        "published_at_ms": 1543276701000,
+        "modified_at_ms": 1631736506000,
+        "summary": "Embedded malicious code in event-stream: version 3.3.6 added a dependency on flatmap-stream, which carried code targeting Copay wallet builds."
+      }
+    },
+    {
+      "id": 212,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-9x64-5r7x-2q53",
+        "ghsa_id": "GHSA-9x64-5r7x-2q53",
+        "published_at_ms": 1598995292000,
+        "modified_at_ms": 1633095004000,
+        "summary": "Embedded malicious code in flatmap-stream 0.1.1. Published nearly two years after the event-stream advisory, which is itself a known-time fact worth replaying."
+      }
+    },
+    {
+      "id": 213,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-97m3-w2cp-4xx6",
+        "ghsa_id": "GHSA-97m3-w2cp-4xx6",
+        "published_at_ms": 1647474872000,
+        "modified_at_ms": 1773630753092,
+        "summary": "Embedded malicious code in node-ipc: 10.1.1 and 10.1.2 overwrote files with a heart symbol on hosts whose IP geolocated to Russia or Belarus. Tracked as CVE-2022-23812."
+      }
+    },
+    {
+      "id": 214,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-8gr3-2gjw-jj7g",
+        "ghsa_id": "GHSA-8gr3-2gjw-jj7g",
+        "published_at_ms": 1647474873000,
+        "modified_at_ms": 1647474873000,
+        "summary": "Hidden functionality in node-ipc: version 9.2.2 depends on peacenotwar, which writes a protest file to the desktop when imported. The advisory lists 9.2.2 as the only affected version and the 9.x line has no later release, so there is no fixed version to name."
+      }
+    },
+    {
+      "id": 215,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-3mpp-xfvh-qh37",
+        "ghsa_id": "GHSA-3mpp-xfvh-qh37",
+        "published_at_ms": 1647474875000,
+        "modified_at_ms": 1723673595000,
+        "summary": "node-ipc behaviour change: 11.0.0 through 11.1.0 depend on peacenotwar, and 12.0.0 removed the dependency."
+      }
+    },
+    {
+      "id": 216,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-56wg-3462-8w3r",
+        "ghsa_id": "GHSA-56wg-3462-8w3r",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764596837538,
+        "summary": "Malicious code in @voiceflow/alexa-types (npm). Versions 2.15.60 and 2.15.61 were removed from the registry and 2.15.62 was republished clean. OSV record MAL-2025-191331."
+      }
+    },
+    {
+      "id": 217,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191332",
+        "ghsa_id": "MAL-2025-191332",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564064421,
+        "summary": "Malicious code in @voiceflow/anthropic (npm). Versions 0.4.4 and 0.4.5 were removed from the registry and 0.4.6 was republished clean."
+      }
+    },
+    {
+      "id": 218,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-w6mp-8jg5-f9g7",
+        "ghsa_id": "GHSA-w6mp-8jg5-f9g7",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564064652,
+        "summary": "Malicious code in @voiceflow/api-sdk (npm). Versions 3.28.58 and 3.28.59 were removed from the registry and 3.28.60 was republished clean. OSV record MAL-2025-191333."
+      }
+    },
+    {
+      "id": 219,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-rxrh-wp76-98jm",
+        "ghsa_id": "GHSA-rxrh-wp76-98jm",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564065355,
+        "summary": "Malicious code in @voiceflow/backend-utils (npm). Versions 5.0.1 and 5.0.2 were removed from the registry and 5.0.3 was republished clean. OSV record MAL-2025-191334."
+      }
+    },
+    {
+      "id": 220,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-qh85-xh2g-7fph",
+        "ghsa_id": "GHSA-qh85-xh2g-7fph",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564064450,
+        "summary": "Malicious code in @voiceflow/base-types (npm). Versions 2.136.2 and 2.136.3 were removed from the registry and 2.136.4 was republished clean. OSV record MAL-2025-191335."
+      }
+    },
+    {
+      "id": 221,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-c89h-mw7j-hh48",
+        "ghsa_id": "GHSA-c89h-mw7j-hh48",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564067001,
+        "summary": "Malicious code in @voiceflow/body-parser (npm). Versions 1.21.2 and 1.21.3 were removed from the registry and 1.21.4 was republished clean. OSV record MAL-2025-191336."
+      }
+    },
+    {
+      "id": 222,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-8j92-6vpr-72v7",
+        "ghsa_id": "GHSA-8j92-6vpr-72v7",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564068286,
+        "summary": "Malicious code in @voiceflow/chat-types (npm). Versions 2.14.58 and 2.14.59 were removed from the registry and 2.14.60 was republished clean. OSV record MAL-2025-191337."
+      }
+    },
+    {
+      "id": 223,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191338",
+        "ghsa_id": "MAL-2025-191338",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563857967,
+        "summary": "Malicious code in @voiceflow/circleci-config-sdk-orb-import (npm). Versions 0.2.1 and 0.2.2 were removed from the registry and 0.2.3 was republished clean."
+      }
+    },
+    {
+      "id": 224,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-r464-qjp3-q96h",
+        "ghsa_id": "GHSA-r464-qjp3-q96h",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563858874,
+        "summary": "Malicious code in @voiceflow/commitlint-config (npm). Versions 2.6.1 and 2.6.2 were removed from the registry and 2.6.3 was republished clean. OSV record MAL-2025-191339."
+      }
+    },
+    {
+      "id": 225,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-9gp9-qjxp-vv82",
+        "ghsa_id": "GHSA-9gp9-qjxp-vv82",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563859408,
+        "summary": "Malicious code in @voiceflow/common (npm). Versions 8.9.1 and 8.9.2 were removed from the registry and 8.9.3 was republished clean. OSV record MAL-2025-191340."
+      }
+    },
+    {
+      "id": 226,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-qr77-hmp6-8qwv",
+        "ghsa_id": "GHSA-qr77-hmp6-8qwv",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564068328,
+        "summary": "Malicious code in @voiceflow/dependency-cruiser-config (npm). Versions 1.8.11 and 1.8.12 were removed from the registry and 1.8.13 was republished clean. OSV record MAL-2025-191342."
+      }
+    },
+    {
+      "id": 227,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-69fv-v5hx-vg3h",
+        "ghsa_id": "GHSA-69fv-v5hx-vg3h",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564068938,
+        "summary": "Malicious code in @voiceflow/dtos-interact (npm). Versions 1.40.1 and 1.40.2 were removed from the registry and 1.40.3 was republished clean. OSV record MAL-2025-191343."
+      }
+    },
+    {
+      "id": 228,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-wq75-fgvh-2wcg",
+        "ghsa_id": "GHSA-wq75-fgvh-2wcg",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1766505313876,
+        "summary": "Malicious code in @voiceflow/encryption (npm). Versions 0.3.2 and 0.3.3 were removed from the registry and 0.3.4 was republished clean. OSV record MAL-2025-191344."
+      }
+    },
+    {
+      "id": 229,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-8624-gc9h-3mfj",
+        "ghsa_id": "GHSA-8624-gc9h-3mfj",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764596835256,
+        "summary": "Malicious code in @voiceflow/eslint-config (npm). Versions 7.16.4 and 7.16.5 were removed from the registry and 7.16.6 was republished clean. OSV record MAL-2025-191345."
+      }
+    },
+    {
+      "id": 230,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-8qwv-8v32-9x47",
+        "ghsa_id": "GHSA-8qwv-8v32-9x47",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564071444,
+        "summary": "Malicious code in @voiceflow/eslint-plugin (npm). Versions 1.6.1 and 1.6.2 were removed from the registry and 1.6.3 was republished clean. OSV record MAL-2025-191346."
+      }
+    },
+    {
+      "id": 231,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-q7cp-f4mj-8m39",
+        "ghsa_id": "GHSA-q7cp-f4mj-8m39",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564072454,
+        "summary": "Malicious code in @voiceflow/exception (npm). Versions 1.10.1 and 1.10.2 were removed from the registry and 1.10.3 was republished clean. OSV record MAL-2025-191347."
+      }
+    },
+    {
+      "id": 232,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-h72r-3grf-6mvr",
+        "ghsa_id": "GHSA-h72r-3grf-6mvr",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564072778,
+        "summary": "Malicious code in @voiceflow/fetch (npm). Versions 1.11.1 and 1.11.2 were removed from the registry and 1.11.3 was republished clean. OSV record MAL-2025-191348."
+      }
+    },
+    {
+      "id": 233,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-xxr5-4rpj-p266",
+        "ghsa_id": "GHSA-xxr5-4rpj-p266",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564074563,
+        "summary": "Malicious code in @voiceflow/general-types (npm). Versions 3.2.22 and 3.2.23 were removed from the registry and 3.2.24 was republished clean. OSV record MAL-2025-191349."
+      }
+    },
+    {
+      "id": 234,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-hhxh-3pg7-v6rm",
+        "ghsa_id": "GHSA-hhxh-3pg7-v6rm",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564074733,
+        "summary": "Malicious code in @voiceflow/git-branch-check (npm). Versions 1.4.3 and 1.4.4 were removed from the registry and 1.4.5 was republished clean. OSV record MAL-2025-191350."
+      }
+    },
+    {
+      "id": 235,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-3gc8-xqj9-q2gv",
+        "ghsa_id": "GHSA-3gc8-xqj9-q2gv",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563866741,
+        "summary": "Malicious code in @voiceflow/google-dfes-types (npm). Versions 2.17.12 and 2.17.13 were removed from the registry and 2.17.14 was republished clean. OSV record MAL-2025-191351."
+      }
+    },
+    {
+      "id": 236,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-hq26-8vww-cmm8",
+        "ghsa_id": "GHSA-hq26-8vww-cmm8",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563867041,
+        "summary": "Malicious code in @voiceflow/google-types (npm). Versions 2.21.12 and 2.21.13 were removed from the registry and 2.21.14 was republished clean. OSV record MAL-2025-191352."
+      }
+    },
+    {
+      "id": 237,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-7744-xv9c-x2h3",
+        "ghsa_id": "GHSA-7744-xv9c-x2h3",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564075316,
+        "summary": "Malicious code in @voiceflow/husky-config (npm). Versions 1.3.1 and 1.3.2 were removed from the registry and 1.3.3 was republished clean. OSV record MAL-2025-191353."
+      }
+    },
+    {
+      "id": 238,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-c8h8-j498-cv9w",
+        "ghsa_id": "GHSA-c8h8-j498-cv9w",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564075908,
+        "summary": "Malicious code in @voiceflow/logger (npm). Versions 2.4.2 and 2.4.3 were removed from the registry and 2.4.4 was republished clean. OSV record MAL-2025-191354."
+      }
+    },
+    {
+      "id": 239,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-xxjx-ccwm-wm65",
+        "ghsa_id": "GHSA-xxjx-ccwm-wm65",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563873732,
+        "summary": "Malicious code in @voiceflow/metrics (npm). Versions 1.5.1 and 1.5.2 were removed from the registry and 1.5.3 was republished clean. OSV record MAL-2025-191355."
+      }
+    },
+    {
+      "id": 240,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-4xjf-wwjc-fmhv",
+        "ghsa_id": "GHSA-4xjf-wwjc-fmhv",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563871893,
+        "summary": "Malicious code in @voiceflow/natural-language-commander (npm). Versions 0.5.2 and 0.5.3 were removed from the registry and 0.5.4 was republished clean. OSV record MAL-2025-191356."
+      }
+    },
+    {
+      "id": 241,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191362",
+        "ghsa_id": "MAL-2025-191362",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564077964,
+        "summary": "Malicious code in @voiceflow/npm-package-json-lint-config (npm). Versions 1.1.1 and 1.1.2 were removed from the registry and 1.1.3 was republished clean."
+      }
+    },
+    {
+      "id": 242,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191363",
+        "ghsa_id": "MAL-2025-191363",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564080520,
+        "summary": "Malicious code in @voiceflow/openai (npm). Versions 3.2.2 and 3.2.3 were removed from the registry and 3.2.4 was republished clean."
+      }
+    },
+    {
+      "id": 243,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191364",
+        "ghsa_id": "MAL-2025-191364",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564076931,
+        "summary": "Malicious code in @voiceflow/pino (npm). Versions 6.11.3 and 6.11.4 were removed from the registry and 6.11.5 was republished clean."
+      }
+    },
+    {
+      "id": 244,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191365",
+        "ghsa_id": "MAL-2025-191365",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564078514,
+        "summary": "Malicious code in @voiceflow/pino-pretty (npm). Versions 4.4.1 and 4.4.2 were removed from the registry and 4.4.3 was republished clean."
+      }
+    },
+    {
+      "id": 245,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-mjm4-9rx8-2f3w",
+        "ghsa_id": "GHSA-mjm4-9rx8-2f3w",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563879107,
+        "summary": "Malicious code in @voiceflow/prettier-config (npm). Versions 1.10.1 and 1.10.2 were removed from the registry and 1.10.3 was republished clean. OSV record MAL-2025-191366."
+      }
+    },
+    {
+      "id": 246,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-r7m3-3p95-v4rc",
+        "ghsa_id": "GHSA-r7m3-3p95-v4rc",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564080627,
+        "summary": "Malicious code in @voiceflow/react-chat (npm). Versions 1.65.3 and 1.65.4 were removed from the registry and 2.1.0 was republished clean. OSV record MAL-2025-191367."
+      }
+    },
+    {
+      "id": 247,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-59v7-979j-g8cq",
+        "ghsa_id": "GHSA-59v7-979j-g8cq",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563880258,
+        "summary": "Malicious code in @voiceflow/runtime (npm). Versions 1.29.1 and 1.29.2 were removed from the registry and 1.29.3 was republished clean. OSV record MAL-2025-191368."
+      }
+    },
+    {
+      "id": 248,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191369",
+        "ghsa_id": "MAL-2025-191369",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563880141,
+        "summary": "Malicious code in @voiceflow/runtime-client-js (npm). Versions 1.17.2 and 1.17.3 were removed from the registry and 1.17.4 was republished clean."
+      }
+    },
+    {
+      "id": 249,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-443c-69pp-ccw3",
+        "ghsa_id": "GHSA-443c-69pp-ccw3",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563881388,
+        "summary": "Malicious code in @voiceflow/sdk-runtime (npm). Versions 1.43.1 and 1.43.2 were removed from the registry and 1.43.3 was republished clean. OSV record MAL-2025-191370."
+      }
+    },
+    {
+      "id": 250,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-97w9-v7w9-jc93",
+        "ghsa_id": "GHSA-97w9-v7w9-jc93",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564082725,
+        "summary": "Malicious code in @voiceflow/semantic-release-config (npm). Versions 1.4.1 and 1.4.2 were removed from the registry and 1.4.3 was republished clean. OSV record MAL-2025-191372."
+      }
+    },
+    {
+      "id": 251,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191373",
+        "ghsa_id": "MAL-2025-191373",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563885583,
+        "summary": "Malicious code in @voiceflow/serverless-plugin-typescript (npm). Versions 2.1.7 and 2.1.8 were removed from the registry and 2.1.9 was republished clean."
+      }
+    },
+    {
+      "id": 252,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-vh49-8mp2-7r75",
+        "ghsa_id": "GHSA-vh49-8mp2-7r75",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563886228,
+        "summary": "Malicious code in @voiceflow/slate-serializer (npm). Versions 1.7.3 and 1.7.4 were removed from the registry and 1.7.5 was republished clean. OSV record MAL-2025-191374."
+      }
+    },
+    {
+      "id": 253,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-69v5-rhjr-mxf9",
+        "ghsa_id": "GHSA-69v5-rhjr-mxf9",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764563887321,
+        "summary": "Malicious code in @voiceflow/stitches-react (npm). Versions 2.3.2 and 2.3.3 were removed from the registry and 2.3.4 was republished clean. OSV record MAL-2025-191375."
+      }
+    },
+    {
+      "id": 254,
+      "label": "Advisory",
+      "properties": {
+        "key": "MAL-2025-191376",
+        "ghsa_id": "MAL-2025-191376",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564085488,
+        "summary": "Malicious code in @voiceflow/storybook-config (npm). Versions 1.2.2 and 1.2.3 were removed from the registry and 1.2.4 was republished clean."
+      }
+    },
+    {
+      "id": 255,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-5qm4-x7j8-95q7",
+        "ghsa_id": "GHSA-5qm4-x7j8-95q7",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564082610,
+        "summary": "Malicious code in @voiceflow/stylelint-config (npm). Versions 1.1.1 and 1.1.2 were removed from the registry and 1.1.3 was republished clean. OSV record MAL-2025-191377."
+      }
+    },
+    {
+      "id": 256,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-574j-2rmr-3gv5",
+        "ghsa_id": "GHSA-574j-2rmr-3gv5",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564085729,
+        "summary": "Malicious code in @voiceflow/test-common (npm). Versions 2.1.1 and 2.1.2 were removed from the registry and 2.1.3 was republished clean. OSV record MAL-2025-191378."
+      }
+    },
+    {
+      "id": 257,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-2p99-x643-gvfv",
+        "ghsa_id": "GHSA-2p99-x643-gvfv",
+        "published_at_ms": 1764029809000,
+        "modified_at_ms": 1764564087953,
+        "summary": "Malicious code in @voiceflow/tsconfig (npm). Versions 1.12.1 and 1.12.2 were removed from the registry and 1.12.3 was republished clean. OSV record MAL-2025-191379."
+      }
+    },
+    {
+      "id": 258,
+      "label": "Advisory",
+      "properties": {
+        "key": "GHSA-pjwm-rvh2-c87w",
+        "ghsa_id": "GHSA-pjwm-rvh2-c87w",
+        "published_at_ms": 1634935094000,
+        "modified_at_ms": 1784154643045,
+        "summary": "Embedded malicious code in ua-parser-js: 0.7.29, 0.8.0 and 1.0.0 ran a script that installed a password stealer and a cryptominer. Tracked as CVE-2021-4229."
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": 0,
+      "relType": "VERSION_OF",
+      "fromNodeId": 56,
+      "toNodeId": 0,
+      "properties": {}
+    },
+    {
+      "id": 1,
+      "relType": "VERSION_OF",
+      "fromNodeId": 57,
+      "toNodeId": 1,
+      "properties": {}
+    },
+    {
+      "id": 2,
+      "relType": "VERSION_OF",
+      "fromNodeId": 58,
+      "toNodeId": 2,
+      "properties": {}
+    },
+    {
+      "id": 3,
+      "relType": "VERSION_OF",
+      "fromNodeId": 59,
+      "toNodeId": 3,
+      "properties": {}
+    },
+    {
+      "id": 4,
+      "relType": "VERSION_OF",
+      "fromNodeId": 60,
+      "toNodeId": 4,
+      "properties": {}
+    },
+    {
+      "id": 5,
+      "relType": "VERSION_OF",
+      "fromNodeId": 61,
+      "toNodeId": 0,
+      "properties": {}
+    },
+    {
+      "id": 6,
+      "relType": "VERSION_OF",
+      "fromNodeId": 62,
+      "toNodeId": 0,
+      "properties": {}
+    },
+    {
+      "id": 7,
+      "relType": "VERSION_OF",
+      "fromNodeId": 63,
+      "toNodeId": 3,
+      "properties": {}
+    },
+    {
+      "id": 8,
+      "relType": "VERSION_OF",
+      "fromNodeId": 64,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 9,
+      "relType": "VERSION_OF",
+      "fromNodeId": 65,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 10,
+      "relType": "VERSION_OF",
+      "fromNodeId": 66,
+      "toNodeId": 6,
+      "properties": {}
+    },
+    {
+      "id": 11,
+      "relType": "VERSION_OF",
+      "fromNodeId": 67,
+      "toNodeId": 6,
+      "properties": {}
+    },
+    {
+      "id": 12,
+      "relType": "VERSION_OF",
+      "fromNodeId": 68,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 13,
+      "relType": "VERSION_OF",
+      "fromNodeId": 69,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 14,
+      "relType": "VERSION_OF",
+      "fromNodeId": 70,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 15,
+      "relType": "VERSION_OF",
+      "fromNodeId": 71,
+      "toNodeId": 7,
+      "properties": {}
+    },
+    {
+      "id": 16,
+      "relType": "VERSION_OF",
+      "fromNodeId": 72,
+      "toNodeId": 8,
+      "properties": {}
+    },
+    {
+      "id": 17,
+      "relType": "VERSION_OF",
+      "fromNodeId": 73,
+      "toNodeId": 7,
+      "properties": {}
+    },
+    {
+      "id": 18,
+      "relType": "VERSION_OF",
+      "fromNodeId": 74,
+      "toNodeId": 8,
+      "properties": {}
+    },
+    {
+      "id": 19,
+      "relType": "VERSION_OF",
+      "fromNodeId": 75,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 20,
+      "relType": "VERSION_OF",
+      "fromNodeId": 76,
+      "toNodeId": 5,
+      "properties": {}
+    },
+    {
+      "id": 21,
+      "relType": "VERSION_OF",
+      "fromNodeId": 77,
+      "toNodeId": 8,
+      "properties": {}
+    },
+    {
+      "id": 22,
+      "relType": "VERSION_OF",
+      "fromNodeId": 78,
+      "toNodeId": 9,
+      "properties": {}
+    },
+    {
+      "id": 23,
+      "relType": "VERSION_OF",
+      "fromNodeId": 79,
+      "toNodeId": 10,
+      "properties": {}
+    },
+    {
+      "id": 24,
+      "relType": "VERSION_OF",
+      "fromNodeId": 80,
+      "toNodeId": 11,
+      "properties": {}
+    },
+    {
+      "id": 25,
+      "relType": "VERSION_OF",
+      "fromNodeId": 81,
+      "toNodeId": 12,
+      "properties": {}
+    },
+    {
+      "id": 26,
+      "relType": "VERSION_OF",
+      "fromNodeId": 82,
+      "toNodeId": 13,
+      "properties": {}
+    },
+    {
+      "id": 27,
+      "relType": "VERSION_OF",
+      "fromNodeId": 83,
+      "toNodeId": 14,
+      "properties": {}
+    },
+    {
+      "id": 28,
+      "relType": "VERSION_OF",
+      "fromNodeId": 84,
+      "toNodeId": 15,
+      "properties": {}
+    },
+    {
+      "id": 29,
+      "relType": "VERSION_OF",
+      "fromNodeId": 85,
+      "toNodeId": 16,
+      "properties": {}
+    },
+    {
+      "id": 30,
+      "relType": "VERSION_OF",
+      "fromNodeId": 86,
+      "toNodeId": 17,
+      "properties": {}
+    },
+    {
+      "id": 31,
+      "relType": "VERSION_OF",
+      "fromNodeId": 87,
+      "toNodeId": 18,
+      "properties": {}
+    },
+    {
+      "id": 32,
+      "relType": "VERSION_OF",
+      "fromNodeId": 88,
+      "toNodeId": 19,
+      "properties": {}
+    },
+    {
+      "id": 33,
+      "relType": "VERSION_OF",
+      "fromNodeId": 89,
+      "toNodeId": 20,
+      "properties": {}
+    },
+    {
+      "id": 34,
+      "relType": "VERSION_OF",
+      "fromNodeId": 90,
+      "toNodeId": 21,
+      "properties": {}
+    },
+    {
+      "id": 35,
+      "relType": "VERSION_OF",
+      "fromNodeId": 91,
+      "toNodeId": 22,
+      "properties": {}
+    },
+    {
+      "id": 36,
+      "relType": "VERSION_OF",
+      "fromNodeId": 92,
+      "toNodeId": 23,
+      "properties": {}
+    },
+    {
+      "id": 37,
+      "relType": "VERSION_OF",
+      "fromNodeId": 93,
+      "toNodeId": 24,
+      "properties": {}
+    },
+    {
+      "id": 38,
+      "relType": "VERSION_OF",
+      "fromNodeId": 94,
+      "toNodeId": 25,
+      "properties": {}
+    },
+    {
+      "id": 39,
+      "relType": "VERSION_OF",
+      "fromNodeId": 95,
+      "toNodeId": 26,
+      "properties": {}
+    },
+    {
+      "id": 40,
+      "relType": "VERSION_OF",
+      "fromNodeId": 96,
+      "toNodeId": 27,
+      "properties": {}
+    },
+    {
+      "id": 41,
+      "relType": "VERSION_OF",
+      "fromNodeId": 97,
+      "toNodeId": 28,
+      "properties": {}
+    },
+    {
+      "id": 42,
+      "relType": "VERSION_OF",
+      "fromNodeId": 98,
+      "toNodeId": 29,
+      "properties": {}
+    },
+    {
+      "id": 43,
+      "relType": "VERSION_OF",
+      "fromNodeId": 99,
+      "toNodeId": 30,
+      "properties": {}
+    },
+    {
+      "id": 44,
+      "relType": "VERSION_OF",
+      "fromNodeId": 100,
+      "toNodeId": 31,
+      "properties": {}
+    },
+    {
+      "id": 45,
+      "relType": "VERSION_OF",
+      "fromNodeId": 101,
+      "toNodeId": 32,
+      "properties": {}
+    },
+    {
+      "id": 46,
+      "relType": "VERSION_OF",
+      "fromNodeId": 102,
+      "toNodeId": 33,
+      "properties": {}
+    },
+    {
+      "id": 47,
+      "relType": "VERSION_OF",
+      "fromNodeId": 103,
+      "toNodeId": 34,
+      "properties": {}
+    },
+    {
+      "id": 48,
+      "relType": "VERSION_OF",
+      "fromNodeId": 104,
+      "toNodeId": 35,
+      "properties": {}
+    },
+    {
+      "id": 49,
+      "relType": "VERSION_OF",
+      "fromNodeId": 105,
+      "toNodeId": 36,
+      "properties": {}
+    },
+    {
+      "id": 50,
+      "relType": "VERSION_OF",
+      "fromNodeId": 106,
+      "toNodeId": 37,
+      "properties": {}
+    },
+    {
+      "id": 51,
+      "relType": "VERSION_OF",
+      "fromNodeId": 107,
+      "toNodeId": 38,
+      "properties": {}
+    },
+    {
+      "id": 52,
+      "relType": "VERSION_OF",
+      "fromNodeId": 108,
+      "toNodeId": 39,
+      "properties": {}
+    },
+    {
+      "id": 53,
+      "relType": "VERSION_OF",
+      "fromNodeId": 109,
+      "toNodeId": 40,
+      "properties": {}
+    },
+    {
+      "id": 54,
+      "relType": "VERSION_OF",
+      "fromNodeId": 110,
+      "toNodeId": 41,
+      "properties": {}
+    },
+    {
+      "id": 55,
+      "relType": "VERSION_OF",
+      "fromNodeId": 111,
+      "toNodeId": 42,
+      "properties": {}
+    },
+    {
+      "id": 56,
+      "relType": "VERSION_OF",
+      "fromNodeId": 112,
+      "toNodeId": 43,
+      "properties": {}
+    },
+    {
+      "id": 57,
+      "relType": "VERSION_OF",
+      "fromNodeId": 113,
+      "toNodeId": 44,
+      "properties": {}
+    },
+    {
+      "id": 58,
+      "relType": "VERSION_OF",
+      "fromNodeId": 114,
+      "toNodeId": 45,
+      "properties": {}
+    },
+    {
+      "id": 59,
+      "relType": "VERSION_OF",
+      "fromNodeId": 115,
+      "toNodeId": 46,
+      "properties": {}
+    },
+    {
+      "id": 60,
+      "relType": "VERSION_OF",
+      "fromNodeId": 116,
+      "toNodeId": 47,
+      "properties": {}
+    },
+    {
+      "id": 61,
+      "relType": "VERSION_OF",
+      "fromNodeId": 117,
+      "toNodeId": 48,
+      "properties": {}
+    },
+    {
+      "id": 62,
+      "relType": "VERSION_OF",
+      "fromNodeId": 118,
+      "toNodeId": 49,
+      "properties": {}
+    },
+    {
+      "id": 63,
+      "relType": "VERSION_OF",
+      "fromNodeId": 119,
+      "toNodeId": 50,
+      "properties": {}
+    },
+    {
+      "id": 64,
+      "relType": "VERSION_OF",
+      "fromNodeId": 120,
+      "toNodeId": 51,
+      "properties": {}
+    },
+    {
+      "id": 65,
+      "relType": "VERSION_OF",
+      "fromNodeId": 121,
+      "toNodeId": 12,
+      "properties": {}
+    },
+    {
+      "id": 66,
+      "relType": "VERSION_OF",
+      "fromNodeId": 122,
+      "toNodeId": 16,
+      "properties": {}
+    },
+    {
+      "id": 67,
+      "relType": "VERSION_OF",
+      "fromNodeId": 123,
+      "toNodeId": 15,
+      "properties": {}
+    },
+    {
+      "id": 68,
+      "relType": "VERSION_OF",
+      "fromNodeId": 124,
+      "toNodeId": 10,
+      "properties": {}
+    },
+    {
+      "id": 69,
+      "relType": "VERSION_OF",
+      "fromNodeId": 125,
+      "toNodeId": 22,
+      "properties": {}
+    },
+    {
+      "id": 70,
+      "relType": "VERSION_OF",
+      "fromNodeId": 126,
+      "toNodeId": 11,
+      "properties": {}
+    },
+    {
+      "id": 71,
+      "relType": "VERSION_OF",
+      "fromNodeId": 127,
+      "toNodeId": 13,
+      "properties": {}
+    },
+    {
+      "id": 72,
+      "relType": "VERSION_OF",
+      "fromNodeId": 128,
+      "toNodeId": 19,
+      "properties": {}
+    },
+    {
+      "id": 73,
+      "relType": "VERSION_OF",
+      "fromNodeId": 129,
+      "toNodeId": 18,
+      "properties": {}
+    },
+    {
+      "id": 74,
+      "relType": "VERSION_OF",
+      "fromNodeId": 130,
+      "toNodeId": 25,
+      "properties": {}
+    },
+    {
+      "id": 75,
+      "relType": "VERSION_OF",
+      "fromNodeId": 131,
+      "toNodeId": 14,
+      "properties": {}
+    },
+    {
+      "id": 76,
+      "relType": "VERSION_OF",
+      "fromNodeId": 132,
+      "toNodeId": 24,
+      "properties": {}
+    },
+    {
+      "id": 77,
+      "relType": "VERSION_OF",
+      "fromNodeId": 133,
+      "toNodeId": 21,
+      "properties": {}
+    },
+    {
+      "id": 78,
+      "relType": "VERSION_OF",
+      "fromNodeId": 134,
+      "toNodeId": 17,
+      "properties": {}
+    },
+    {
+      "id": 79,
+      "relType": "VERSION_OF",
+      "fromNodeId": 135,
+      "toNodeId": 28,
+      "properties": {}
+    },
+    {
+      "id": 80,
+      "relType": "VERSION_OF",
+      "fromNodeId": 136,
+      "toNodeId": 23,
+      "properties": {}
+    },
+    {
+      "id": 81,
+      "relType": "VERSION_OF",
+      "fromNodeId": 137,
+      "toNodeId": 27,
+      "properties": {}
+    },
+    {
+      "id": 82,
+      "relType": "VERSION_OF",
+      "fromNodeId": 138,
+      "toNodeId": 26,
+      "properties": {}
+    },
+    {
+      "id": 83,
+      "relType": "VERSION_OF",
+      "fromNodeId": 139,
+      "toNodeId": 20,
+      "properties": {}
+    },
+    {
+      "id": 84,
+      "relType": "VERSION_OF",
+      "fromNodeId": 140,
+      "toNodeId": 31,
+      "properties": {}
+    },
+    {
+      "id": 85,
+      "relType": "VERSION_OF",
+      "fromNodeId": 141,
+      "toNodeId": 35,
+      "properties": {}
+    },
+    {
+      "id": 86,
+      "relType": "VERSION_OF",
+      "fromNodeId": 142,
+      "toNodeId": 36,
+      "properties": {}
+    },
+    {
+      "id": 87,
+      "relType": "VERSION_OF",
+      "fromNodeId": 143,
+      "toNodeId": 29,
+      "properties": {}
+    },
+    {
+      "id": 88,
+      "relType": "VERSION_OF",
+      "fromNodeId": 144,
+      "toNodeId": 33,
+      "properties": {}
+    },
+    {
+      "id": 89,
+      "relType": "VERSION_OF",
+      "fromNodeId": 145,
+      "toNodeId": 34,
+      "properties": {}
+    },
+    {
+      "id": 90,
+      "relType": "VERSION_OF",
+      "fromNodeId": 146,
+      "toNodeId": 30,
+      "properties": {}
+    },
+    {
+      "id": 91,
+      "relType": "VERSION_OF",
+      "fromNodeId": 147,
+      "toNodeId": 32,
+      "properties": {}
+    },
+    {
+      "id": 92,
+      "relType": "VERSION_OF",
+      "fromNodeId": 148,
+      "toNodeId": 37,
+      "properties": {}
+    },
+    {
+      "id": 93,
+      "relType": "VERSION_OF",
+      "fromNodeId": 149,
+      "toNodeId": 41,
+      "properties": {}
+    },
+    {
+      "id": 94,
+      "relType": "VERSION_OF",
+      "fromNodeId": 150,
+      "toNodeId": 38,
+      "properties": {}
+    },
+    {
+      "id": 95,
+      "relType": "VERSION_OF",
+      "fromNodeId": 151,
+      "toNodeId": 40,
+      "properties": {}
+    },
+    {
+      "id": 96,
+      "relType": "VERSION_OF",
+      "fromNodeId": 152,
+      "toNodeId": 39,
+      "properties": {}
+    },
+    {
+      "id": 97,
+      "relType": "VERSION_OF",
+      "fromNodeId": 153,
+      "toNodeId": 47,
+      "properties": {}
+    },
+    {
+      "id": 98,
+      "relType": "VERSION_OF",
+      "fromNodeId": 154,
+      "toNodeId": 43,
+      "properties": {}
+    },
+    {
+      "id": 99,
+      "relType": "VERSION_OF",
+      "fromNodeId": 155,
+      "toNodeId": 46,
+      "properties": {}
+    },
+    {
+      "id": 100,
+      "relType": "VERSION_OF",
+      "fromNodeId": 156,
+      "toNodeId": 42,
+      "properties": {}
+    },
+    {
+      "id": 101,
+      "relType": "VERSION_OF",
+      "fromNodeId": 157,
+      "toNodeId": 45,
+      "properties": {}
+    },
+    {
+      "id": 102,
+      "relType": "VERSION_OF",
+      "fromNodeId": 158,
+      "toNodeId": 44,
+      "properties": {}
+    },
+    {
+      "id": 103,
+      "relType": "VERSION_OF",
+      "fromNodeId": 159,
+      "toNodeId": 48,
+      "properties": {}
+    },
+    {
+      "id": 104,
+      "relType": "VERSION_OF",
+      "fromNodeId": 160,
+      "toNodeId": 49,
+      "properties": {}
+    },
+    {
+      "id": 105,
+      "relType": "VERSION_OF",
+      "fromNodeId": 161,
+      "toNodeId": 50,
+      "properties": {}
+    },
+    {
+      "id": 106,
+      "relType": "VERSION_OF",
+      "fromNodeId": 162,
+      "toNodeId": 51,
+      "properties": {}
+    },
+    {
+      "id": 107,
+      "relType": "VERSION_OF",
+      "fromNodeId": 163,
+      "toNodeId": 39,
+      "properties": {}
+    },
+    {
+      "id": 108,
+      "relType": "VERSION_OF",
+      "fromNodeId": 164,
+      "toNodeId": 45,
+      "properties": {}
+    },
+    {
+      "id": 109,
+      "relType": "VERSION_OF",
+      "fromNodeId": 165,
+      "toNodeId": 23,
+      "properties": {}
+    },
+    {
+      "id": 110,
+      "relType": "VERSION_OF",
+      "fromNodeId": 166,
+      "toNodeId": 51,
+      "properties": {}
+    },
+    {
+      "id": 111,
+      "relType": "VERSION_OF",
+      "fromNodeId": 167,
+      "toNodeId": 42,
+      "properties": {}
+    },
+    {
+      "id": 112,
+      "relType": "VERSION_OF",
+      "fromNodeId": 168,
+      "toNodeId": 50,
+      "properties": {}
+    },
+    {
+      "id": 113,
+      "relType": "VERSION_OF",
+      "fromNodeId": 169,
+      "toNodeId": 42,
+      "properties": {}
+    },
+    {
+      "id": 114,
+      "relType": "VERSION_OF",
+      "fromNodeId": 170,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 115,
+      "relType": "VERSION_OF",
+      "fromNodeId": 171,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 116,
+      "relType": "VERSION_OF",
+      "fromNodeId": 172,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 117,
+      "relType": "VERSION_OF",
+      "fromNodeId": 173,
+      "toNodeId": 53,
+      "properties": {}
+    },
+    {
+      "id": 118,
+      "relType": "VERSION_OF",
+      "fromNodeId": 174,
+      "toNodeId": 54,
+      "properties": {}
+    },
+    {
+      "id": 119,
+      "relType": "VERSION_OF",
+      "fromNodeId": 175,
+      "toNodeId": 55,
+      "properties": {}
+    },
+    {
+      "id": 120,
+      "relType": "VERSION_OF",
+      "fromNodeId": 176,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 121,
+      "relType": "VERSION_OF",
+      "fromNodeId": 177,
+      "toNodeId": 53,
+      "properties": {}
+    },
+    {
+      "id": 122,
+      "relType": "VERSION_OF",
+      "fromNodeId": 178,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 123,
+      "relType": "VERSION_OF",
+      "fromNodeId": 179,
+      "toNodeId": 54,
+      "properties": {}
+    },
+    {
+      "id": 124,
+      "relType": "VERSION_OF",
+      "fromNodeId": 180,
+      "toNodeId": 52,
+      "properties": {}
+    },
+    {
+      "id": 125,
+      "relType": "RESOLVED",
+      "fromNodeId": 181,
+      "toNodeId": 58,
+      "properties": {
+        "resolved_at_ms": 1537521164000
+      }
+    },
+    {
+      "id": 126,
+      "relType": "RESOLVED",
+      "fromNodeId": 181,
+      "toNodeId": 59,
+      "properties": {
+        "resolved_at_ms": 1537521164000
+      }
+    },
+    {
+      "id": 127,
+      "relType": "RESOLVED",
+      "fromNodeId": 181,
+      "toNodeId": 56,
+      "properties": {
+        "resolved_at_ms": 1537521164000
+      }
+    },
+    {
+      "id": 128,
+      "relType": "RESOLVED",
+      "fromNodeId": 181,
+      "toNodeId": 57,
+      "properties": {
+        "resolved_at_ms": 1537521164000
+      }
+    },
+    {
+      "id": 129,
+      "relType": "RESOLVED",
+      "fromNodeId": 182,
+      "toNodeId": 60,
+      "properties": {
+        "resolved_at_ms": 1538489111000
+      }
+    },
+    {
+      "id": 130,
+      "relType": "RESOLVED",
+      "fromNodeId": 182,
+      "toNodeId": 56,
+      "properties": {
+        "resolved_at_ms": 1538489111000
+      }
+    },
+    {
+      "id": 131,
+      "relType": "RESOLVED",
+      "fromNodeId": 182,
+      "toNodeId": 57,
+      "properties": {
+        "resolved_at_ms": 1538489111000
+      }
+    },
+    {
+      "id": 132,
+      "relType": "RESOLVED",
+      "fromNodeId": 183,
+      "toNodeId": 60,
+      "properties": {
+        "resolved_at_ms": 1542613682000
+      }
+    },
+    {
+      "id": 133,
+      "relType": "RESOLVED",
+      "fromNodeId": 183,
+      "toNodeId": 56,
+      "properties": {
+        "resolved_at_ms": 1542613682000
+      }
+    },
+    {
+      "id": 134,
+      "relType": "RESOLVED",
+      "fromNodeId": 183,
+      "toNodeId": 57,
+      "properties": {
+        "resolved_at_ms": 1542613682000
+      }
+    },
+    {
+      "id": 135,
+      "relType": "RESOLVED",
+      "fromNodeId": 184,
+      "toNodeId": 59,
+      "properties": {
+        "resolved_at_ms": 1540898555000
+      }
+    },
+    {
+      "id": 136,
+      "relType": "RESOLVED",
+      "fromNodeId": 184,
+      "toNodeId": 56,
+      "properties": {
+        "resolved_at_ms": 1540898555000
+      }
+    },
+    {
+      "id": 137,
+      "relType": "RESOLVED",
+      "fromNodeId": 184,
+      "toNodeId": 57,
+      "properties": {
+        "resolved_at_ms": 1540898555000
+      }
+    },
+    {
+      "id": 138,
+      "relType": "RESOLVED",
+      "fromNodeId": 185,
+      "toNodeId": 61,
+      "properties": {
+        "resolved_at_ms": 1534240989000
+      }
+    },
+    {
+      "id": 139,
+      "relType": "RESOLVED",
+      "fromNodeId": 186,
+      "toNodeId": 62,
+      "properties": {
+        "resolved_at_ms": 1543423312000
+      }
+    },
+    {
+      "id": 140,
+      "relType": "RESOLVED",
+      "fromNodeId": 187,
+      "toNodeId": 63,
+      "properties": {
+        "resolved_at_ms": 1543310100000
+      }
+    },
+    {
+      "id": 141,
+      "relType": "RESOLVED",
+      "fromNodeId": 187,
+      "toNodeId": 61,
+      "properties": {
+        "resolved_at_ms": 1543310100000
+      }
+    },
+    {
+      "id": 142,
+      "relType": "RESOLVED",
+      "fromNodeId": 188,
+      "toNodeId": 65,
+      "properties": {
+        "resolved_at_ms": 1646697302000
+      }
+    },
+    {
+      "id": 143,
+      "relType": "RESOLVED",
+      "fromNodeId": 189,
+      "toNodeId": 68,
+      "properties": {
+        "resolved_at_ms": 1646832005000
+      }
+    },
+    {
+      "id": 144,
+      "relType": "RESOLVED",
+      "fromNodeId": 189,
+      "toNodeId": 66,
+      "properties": {
+        "resolved_at_ms": 1646832005000
+      }
+    },
+    {
+      "id": 145,
+      "relType": "RESOLVED",
+      "fromNodeId": 190,
+      "toNodeId": 71,
+      "properties": {
+        "resolved_at_ms": 1647335561000
+      }
+    },
+    {
+      "id": 146,
+      "relType": "RESOLVED",
+      "fromNodeId": 190,
+      "toNodeId": 72,
+      "properties": {
+        "resolved_at_ms": 1647335561000
+      }
+    },
+    {
+      "id": 147,
+      "relType": "RESOLVED",
+      "fromNodeId": 190,
+      "toNodeId": 70,
+      "properties": {
+        "resolved_at_ms": 1647335561000
+      }
+    },
+    {
+      "id": 148,
+      "relType": "RESOLVED",
+      "fromNodeId": 190,
+      "toNodeId": 67,
+      "properties": {
+        "resolved_at_ms": 1647335561000
+      }
+    },
+    {
+      "id": 149,
+      "relType": "RESOLVED",
+      "fromNodeId": 191,
+      "toNodeId": 73,
+      "properties": {
+        "resolved_at_ms": 1647426808000
+      }
+    },
+    {
+      "id": 150,
+      "relType": "RESOLVED",
+      "fromNodeId": 191,
+      "toNodeId": 74,
+      "properties": {
+        "resolved_at_ms": 1647426808000
+      }
+    },
+    {
+      "id": 151,
+      "relType": "RESOLVED",
+      "fromNodeId": 191,
+      "toNodeId": 70,
+      "properties": {
+        "resolved_at_ms": 1647426808000
+      }
+    },
+    {
+      "id": 152,
+      "relType": "RESOLVED",
+      "fromNodeId": 191,
+      "toNodeId": 67,
+      "properties": {
+        "resolved_at_ms": 1647426808000
+      }
+    },
+    {
+      "id": 153,
+      "relType": "RESOLVED",
+      "fromNodeId": 192,
+      "toNodeId": 75,
+      "properties": {
+        "resolved_at_ms": 1644830551000
+      }
+    },
+    {
+      "id": 154,
+      "relType": "RESOLVED",
+      "fromNodeId": 193,
+      "toNodeId": 76,
+      "properties": {
+        "resolved_at_ms": 1647506652000
+      }
+    },
+    {
+      "id": 155,
+      "relType": "RESOLVED",
+      "fromNodeId": 194,
+      "toNodeId": 77,
+      "properties": {
+        "resolved_at_ms": 1648033339000
+      }
+    },
+    {
+      "id": 156,
+      "relType": "RESOLVED",
+      "fromNodeId": 194,
+      "toNodeId": 78,
+      "properties": {
+        "resolved_at_ms": 1648033339000
+      }
+    },
+    {
+      "id": 157,
+      "relType": "RESOLVED",
+      "fromNodeId": 195,
+      "toNodeId": 120,
+      "properties": {
+        "resolved_at_ms": 1763984479000
+      }
+    },
+    {
+      "id": 158,
+      "relType": "RESOLVED",
+      "fromNodeId": 195,
+      "toNodeId": 111,
+      "properties": {
+        "resolved_at_ms": 1763984479000
+      }
+    },
+    {
+      "id": 159,
+      "relType": "RESOLVED",
+      "fromNodeId": 196,
+      "toNodeId": 163,
+      "properties": {
+        "resolved_at_ms": 1763985953000
+      }
+    },
+    {
+      "id": 160,
+      "relType": "RESOLVED",
+      "fromNodeId": 196,
+      "toNodeId": 162,
+      "properties": {
+        "resolved_at_ms": 1763985953000
+      }
+    },
+    {
+      "id": 161,
+      "relType": "RESOLVED",
+      "fromNodeId": 196,
+      "toNodeId": 156,
+      "properties": {
+        "resolved_at_ms": 1763985953000
+      }
+    },
+    {
+      "id": 162,
+      "relType": "RESOLVED",
+      "fromNodeId": 197,
+      "toNodeId": 164,
+      "properties": {
+        "resolved_at_ms": 1763994127000
+      }
+    },
+    {
+      "id": 163,
+      "relType": "RESOLVED",
+      "fromNodeId": 197,
+      "toNodeId": 161,
+      "properties": {
+        "resolved_at_ms": 1763994127000
+      }
+    },
+    {
+      "id": 164,
+      "relType": "RESOLVED",
+      "fromNodeId": 198,
+      "toNodeId": 165,
+      "properties": {
+        "resolved_at_ms": 1764013124000
+      }
+    },
+    {
+      "id": 165,
+      "relType": "RESOLVED",
+      "fromNodeId": 198,
+      "toNodeId": 138,
+      "properties": {
+        "resolved_at_ms": 1764013124000
+      }
+    },
+    {
+      "id": 166,
+      "relType": "RESOLVED",
+      "fromNodeId": 198,
+      "toNodeId": 79,
+      "properties": {
+        "resolved_at_ms": 1764013124000
+      }
+    },
+    {
+      "id": 167,
+      "relType": "RESOLVED",
+      "fromNodeId": 198,
+      "toNodeId": 80,
+      "properties": {
+        "resolved_at_ms": 1764013124000
+      }
+    },
+    {
+      "id": 168,
+      "relType": "RESOLVED",
+      "fromNodeId": 199,
+      "toNodeId": 155,
+      "properties": {
+        "resolved_at_ms": 1764021012000
+      }
+    },
+    {
+      "id": 169,
+      "relType": "RESOLVED",
+      "fromNodeId": 199,
+      "toNodeId": 159,
+      "properties": {
+        "resolved_at_ms": 1764021012000
+      }
+    },
+    {
+      "id": 170,
+      "relType": "RESOLVED",
+      "fromNodeId": 199,
+      "toNodeId": 162,
+      "properties": {
+        "resolved_at_ms": 1764021012000
+      }
+    },
+    {
+      "id": 171,
+      "relType": "RESOLVED",
+      "fromNodeId": 200,
+      "toNodeId": 166,
+      "properties": {
+        "resolved_at_ms": 1763716476000
+      }
+    },
+    {
+      "id": 172,
+      "relType": "RESOLVED",
+      "fromNodeId": 200,
+      "toNodeId": 167,
+      "properties": {
+        "resolved_at_ms": 1763716476000
+      }
+    },
+    {
+      "id": 173,
+      "relType": "RESOLVED",
+      "fromNodeId": 201,
+      "toNodeId": 168,
+      "properties": {
+        "resolved_at_ms": 1764079651000
+      }
+    },
+    {
+      "id": 174,
+      "relType": "RESOLVED",
+      "fromNodeId": 202,
+      "toNodeId": 169,
+      "properties": {
+        "resolved_at_ms": 1764152404000
+      }
+    },
+    {
+      "id": 175,
+      "relType": "RESOLVED",
+      "fromNodeId": 203,
+      "toNodeId": 173,
+      "properties": {
+        "resolved_at_ms": 1634906467000
+      }
+    },
+    {
+      "id": 176,
+      "relType": "RESOLVED",
+      "fromNodeId": 203,
+      "toNodeId": 170,
+      "properties": {
+        "resolved_at_ms": 1634906467000
+      }
+    },
+    {
+      "id": 177,
+      "relType": "RESOLVED",
+      "fromNodeId": 204,
+      "toNodeId": 174,
+      "properties": {
+        "resolved_at_ms": 1634907858000
+      }
+    },
+    {
+      "id": 178,
+      "relType": "RESOLVED",
+      "fromNodeId": 204,
+      "toNodeId": 170,
+      "properties": {
+        "resolved_at_ms": 1634907858000
+      }
+    },
+    {
+      "id": 179,
+      "relType": "RESOLVED",
+      "fromNodeId": 205,
+      "toNodeId": 175,
+      "properties": {
+        "resolved_at_ms": 1634911113000
+      }
+    },
+    {
+      "id": 180,
+      "relType": "RESOLVED",
+      "fromNodeId": 205,
+      "toNodeId": 170,
+      "properties": {
+        "resolved_at_ms": 1634911113000
+      }
+    },
+    {
+      "id": 181,
+      "relType": "RESOLVED",
+      "fromNodeId": 206,
+      "toNodeId": 171,
+      "properties": {
+        "resolved_at_ms": 1634915444000
+      }
+    },
+    {
+      "id": 182,
+      "relType": "RESOLVED",
+      "fromNodeId": 207,
+      "toNodeId": 172,
+      "properties": {
+        "resolved_at_ms": 1634918662000
+      }
+    },
+    {
+      "id": 183,
+      "relType": "RESOLVED",
+      "fromNodeId": 208,
+      "toNodeId": 176,
+      "properties": {
+        "resolved_at_ms": 1634635811000
+      }
+    },
+    {
+      "id": 184,
+      "relType": "RESOLVED",
+      "fromNodeId": 209,
+      "toNodeId": 177,
+      "properties": {
+        "resolved_at_ms": 1634972740000
+      }
+    },
+    {
+      "id": 185,
+      "relType": "RESOLVED",
+      "fromNodeId": 209,
+      "toNodeId": 178,
+      "properties": {
+        "resolved_at_ms": 1634972740000
+      }
+    },
+    {
+      "id": 186,
+      "relType": "RESOLVED",
+      "fromNodeId": 210,
+      "toNodeId": 179,
+      "properties": {
+        "resolved_at_ms": 1635322522000
+      }
+    },
+    {
+      "id": 187,
+      "relType": "RESOLVED",
+      "fromNodeId": 210,
+      "toNodeId": 180,
+      "properties": {
+        "resolved_at_ms": 1635322522000
+      }
+    },
+    {
+      "id": 188,
+      "relType": "AFFECTS",
+      "fromNodeId": 211,
+      "toNodeId": 0,
+      "properties": {
+        "introduced": "3.3.6",
+        "fixed": "4.0.0"
+      }
+    },
+    {
+      "id": 189,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 211,
+      "toNodeId": 56,
+      "properties": {}
+    },
+    {
+      "id": 190,
+      "relType": "AFFECTS",
+      "fromNodeId": 211,
+      "toNodeId": 1,
+      "properties": {
+        "introduced": "0",
+        "fixed": ""
+      }
+    },
+    {
+      "id": 191,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 211,
+      "toNodeId": 57,
+      "properties": {}
+    },
+    {
+      "id": 192,
+      "relType": "AFFECTS",
+      "fromNodeId": 212,
+      "toNodeId": 1,
+      "properties": {
+        "introduced": "0.1.1",
+        "fixed": ""
+      }
+    },
+    {
+      "id": 193,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 212,
+      "toNodeId": 57,
+      "properties": {}
+    },
+    {
+      "id": 194,
+      "relType": "AFFECTS",
+      "fromNodeId": 213,
+      "toNodeId": 5,
+      "properties": {
+        "introduced": "10.1.1",
+        "fixed": "10.1.3"
+      }
+    },
+    {
+      "id": 195,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 213,
+      "toNodeId": 64,
+      "properties": {}
+    },
+    {
+      "id": 196,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 213,
+      "toNodeId": 65,
+      "properties": {}
+    },
+    {
+      "id": 197,
+      "relType": "AFFECTS",
+      "fromNodeId": 214,
+      "toNodeId": 5,
+      "properties": {
+        "introduced": "9.2.2",
+        "fixed": ""
+      }
+    },
+    {
+      "id": 198,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 64,
+      "properties": {}
+    },
+    {
+      "id": 199,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 65,
+      "properties": {}
+    },
+    {
+      "id": 200,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 68,
+      "properties": {}
+    },
+    {
+      "id": 201,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 69,
+      "properties": {}
+    },
+    {
+      "id": 202,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 70,
+      "properties": {}
+    },
+    {
+      "id": 203,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 75,
+      "properties": {}
+    },
+    {
+      "id": 204,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 214,
+      "toNodeId": 76,
+      "properties": {}
+    },
+    {
+      "id": 205,
+      "relType": "AFFECTS",
+      "fromNodeId": 215,
+      "toNodeId": 5,
+      "properties": {
+        "introduced": "11.0.0",
+        "fixed": "12.0.0"
+      }
+    },
+    {
+      "id": 206,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 215,
+      "toNodeId": 68,
+      "properties": {}
+    },
+    {
+      "id": 207,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 215,
+      "toNodeId": 69,
+      "properties": {}
+    },
+    {
+      "id": 208,
+      "relType": "AFFECTS",
+      "fromNodeId": 216,
+      "toNodeId": 46,
+      "properties": {
+        "introduced": "2.15.60",
+        "fixed": "2.15.62"
+      }
+    },
+    {
+      "id": 209,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 216,
+      "toNodeId": 115,
+      "properties": {}
+    },
+    {
+      "id": 210,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 216,
+      "toNodeId": 155,
+      "properties": {}
+    },
+    {
+      "id": 211,
+      "relType": "AFFECTS",
+      "fromNodeId": 217,
+      "toNodeId": 18,
+      "properties": {
+        "introduced": "0.4.4",
+        "fixed": "0.4.6"
+      }
+    },
+    {
+      "id": 212,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 217,
+      "toNodeId": 87,
+      "properties": {}
+    },
+    {
+      "id": 213,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 217,
+      "toNodeId": 129,
+      "properties": {}
+    },
+    {
+      "id": 214,
+      "relType": "AFFECTS",
+      "fromNodeId": 218,
+      "toNodeId": 47,
+      "properties": {
+        "introduced": "3.28.58",
+        "fixed": "3.28.60"
+      }
+    },
+    {
+      "id": 215,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 218,
+      "toNodeId": 116,
+      "properties": {}
+    },
+    {
+      "id": 216,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 218,
+      "toNodeId": 153,
+      "properties": {}
+    },
+    {
+      "id": 217,
+      "relType": "AFFECTS",
+      "fromNodeId": 219,
+      "toNodeId": 36,
+      "properties": {
+        "introduced": "5.0.1",
+        "fixed": "5.0.3"
+      }
+    },
+    {
+      "id": 218,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 219,
+      "toNodeId": 105,
+      "properties": {}
+    },
+    {
+      "id": 219,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 219,
+      "toNodeId": 142,
+      "properties": {}
+    },
+    {
+      "id": 220,
+      "relType": "AFFECTS",
+      "fromNodeId": 220,
+      "toNodeId": 51,
+      "properties": {
+        "introduced": "2.136.2",
+        "fixed": "2.136.4"
+      }
+    },
+    {
+      "id": 221,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 220,
+      "toNodeId": 120,
+      "properties": {}
+    },
+    {
+      "id": 222,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 220,
+      "toNodeId": 162,
+      "properties": {}
+    },
+    {
+      "id": 223,
+      "relType": "AFFECTS",
+      "fromNodeId": 221,
+      "toNodeId": 24,
+      "properties": {
+        "introduced": "1.21.2",
+        "fixed": "1.21.4"
+      }
+    },
+    {
+      "id": 224,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 221,
+      "toNodeId": 93,
+      "properties": {}
+    },
+    {
+      "id": 225,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 221,
+      "toNodeId": 132,
+      "properties": {}
+    },
+    {
+      "id": 226,
+      "relType": "AFFECTS",
+      "fromNodeId": 222,
+      "toNodeId": 40,
+      "properties": {
+        "introduced": "2.14.58",
+        "fixed": "2.14.60"
+      }
+    },
+    {
+      "id": 227,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 222,
+      "toNodeId": 109,
+      "properties": {}
+    },
+    {
+      "id": 228,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 222,
+      "toNodeId": 151,
+      "properties": {}
+    },
+    {
+      "id": 229,
+      "relType": "AFFECTS",
+      "fromNodeId": 223,
+      "toNodeId": 25,
+      "properties": {
+        "introduced": "0.2.1",
+        "fixed": "0.2.3"
+      }
+    },
+    {
+      "id": 230,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 223,
+      "toNodeId": 94,
+      "properties": {}
+    },
+    {
+      "id": 231,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 223,
+      "toNodeId": 130,
+      "properties": {}
+    },
+    {
+      "id": 232,
+      "relType": "AFFECTS",
+      "fromNodeId": 224,
+      "toNodeId": 13,
+      "properties": {
+        "introduced": "2.6.1",
+        "fixed": "2.6.3"
+      }
+    },
+    {
+      "id": 233,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 224,
+      "toNodeId": 82,
+      "properties": {}
+    },
+    {
+      "id": 234,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 224,
+      "toNodeId": 127,
+      "properties": {}
+    },
+    {
+      "id": 235,
+      "relType": "AFFECTS",
+      "fromNodeId": 225,
+      "toNodeId": 42,
+      "properties": {
+        "introduced": "8.9.1",
+        "fixed": "8.9.3"
+      }
+    },
+    {
+      "id": 236,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 225,
+      "toNodeId": 111,
+      "properties": {}
+    },
+    {
+      "id": 237,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 225,
+      "toNodeId": 156,
+      "properties": {}
+    },
+    {
+      "id": 238,
+      "relType": "AFFECTS",
+      "fromNodeId": 226,
+      "toNodeId": 30,
+      "properties": {
+        "introduced": "1.8.11",
+        "fixed": "1.8.13"
+      }
+    },
+    {
+      "id": 239,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 226,
+      "toNodeId": 99,
+      "properties": {}
+    },
+    {
+      "id": 240,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 226,
+      "toNodeId": 146,
+      "properties": {}
+    },
+    {
+      "id": 241,
+      "relType": "AFFECTS",
+      "fromNodeId": 227,
+      "toNodeId": 50,
+      "properties": {
+        "introduced": "1.40.1",
+        "fixed": "1.40.3"
+      }
+    },
+    {
+      "id": 242,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 227,
+      "toNodeId": 119,
+      "properties": {}
+    },
+    {
+      "id": 243,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 227,
+      "toNodeId": 161,
+      "properties": {}
+    },
+    {
+      "id": 244,
+      "relType": "AFFECTS",
+      "fromNodeId": 228,
+      "toNodeId": 33,
+      "properties": {
+        "introduced": "0.3.2",
+        "fixed": "0.3.4"
+      }
+    },
+    {
+      "id": 245,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 228,
+      "toNodeId": 102,
+      "properties": {}
+    },
+    {
+      "id": 246,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 228,
+      "toNodeId": 144,
+      "properties": {}
+    },
+    {
+      "id": 247,
+      "relType": "AFFECTS",
+      "fromNodeId": 229,
+      "toNodeId": 23,
+      "properties": {
+        "introduced": "7.16.4",
+        "fixed": "7.16.6"
+      }
+    },
+    {
+      "id": 248,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 229,
+      "toNodeId": 92,
+      "properties": {}
+    },
+    {
+      "id": 249,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 229,
+      "toNodeId": 136,
+      "properties": {}
+    },
+    {
+      "id": 250,
+      "relType": "AFFECTS",
+      "fromNodeId": 230,
+      "toNodeId": 26,
+      "properties": {
+        "introduced": "1.6.1",
+        "fixed": "1.6.3"
+      }
+    },
+    {
+      "id": 251,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 230,
+      "toNodeId": 95,
+      "properties": {}
+    },
+    {
+      "id": 252,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 230,
+      "toNodeId": 138,
+      "properties": {}
+    },
+    {
+      "id": 253,
+      "relType": "AFFECTS",
+      "fromNodeId": 231,
+      "toNodeId": 38,
+      "properties": {
+        "introduced": "1.10.1",
+        "fixed": "1.10.3"
+      }
+    },
+    {
+      "id": 254,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 231,
+      "toNodeId": 107,
+      "properties": {}
+    },
+    {
+      "id": 255,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 231,
+      "toNodeId": 150,
+      "properties": {}
+    },
+    {
+      "id": 256,
+      "relType": "AFFECTS",
+      "fromNodeId": 232,
+      "toNodeId": 34,
+      "properties": {
+        "introduced": "1.11.1",
+        "fixed": "1.11.3"
+      }
+    },
+    {
+      "id": 257,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 232,
+      "toNodeId": 103,
+      "properties": {}
+    },
+    {
+      "id": 258,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 232,
+      "toNodeId": 145,
+      "properties": {}
+    },
+    {
+      "id": 259,
+      "relType": "AFFECTS",
+      "fromNodeId": 233,
+      "toNodeId": 39,
+      "properties": {
+        "introduced": "3.2.22",
+        "fixed": "3.2.24"
+      }
+    },
+    {
+      "id": 260,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 233,
+      "toNodeId": 108,
+      "properties": {}
+    },
+    {
+      "id": 261,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 233,
+      "toNodeId": 152,
+      "properties": {}
+    },
+    {
+      "id": 262,
+      "relType": "AFFECTS",
+      "fromNodeId": 234,
+      "toNodeId": 16,
+      "properties": {
+        "introduced": "1.4.3",
+        "fixed": "1.4.5"
+      }
+    },
+    {
+      "id": 263,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 234,
+      "toNodeId": 85,
+      "properties": {}
+    },
+    {
+      "id": 264,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 234,
+      "toNodeId": 122,
+      "properties": {}
+    },
+    {
+      "id": 265,
+      "relType": "AFFECTS",
+      "fromNodeId": 235,
+      "toNodeId": 43,
+      "properties": {
+        "introduced": "2.17.12",
+        "fixed": "2.17.14"
+      }
+    },
+    {
+      "id": 266,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 235,
+      "toNodeId": 112,
+      "properties": {}
+    },
+    {
+      "id": 267,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 235,
+      "toNodeId": 154,
+      "properties": {}
+    },
+    {
+      "id": 268,
+      "relType": "AFFECTS",
+      "fromNodeId": 236,
+      "toNodeId": 48,
+      "properties": {
+        "introduced": "2.21.12",
+        "fixed": "2.21.14"
+      }
+    },
+    {
+      "id": 269,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 236,
+      "toNodeId": 117,
+      "properties": {}
+    },
+    {
+      "id": 270,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 236,
+      "toNodeId": 159,
+      "properties": {}
+    },
+    {
+      "id": 271,
+      "relType": "AFFECTS",
+      "fromNodeId": 237,
+      "toNodeId": 12,
+      "properties": {
+        "introduced": "1.3.1",
+        "fixed": "1.3.3"
+      }
+    },
+    {
+      "id": 272,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 237,
+      "toNodeId": 81,
+      "properties": {}
+    },
+    {
+      "id": 273,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 237,
+      "toNodeId": 121,
+      "properties": {}
+    },
+    {
+      "id": 274,
+      "relType": "AFFECTS",
+      "fromNodeId": 238,
+      "toNodeId": 41,
+      "properties": {
+        "introduced": "2.4.2",
+        "fixed": "2.4.4"
+      }
+    },
+    {
+      "id": 275,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 238,
+      "toNodeId": 110,
+      "properties": {}
+    },
+    {
+      "id": 276,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 238,
+      "toNodeId": 149,
+      "properties": {}
+    },
+    {
+      "id": 277,
+      "relType": "AFFECTS",
+      "fromNodeId": 239,
+      "toNodeId": 21,
+      "properties": {
+        "introduced": "1.5.1",
+        "fixed": "1.5.3"
+      }
+    },
+    {
+      "id": 278,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 239,
+      "toNodeId": 90,
+      "properties": {}
+    },
+    {
+      "id": 279,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 239,
+      "toNodeId": 133,
+      "properties": {}
+    },
+    {
+      "id": 280,
+      "relType": "AFFECTS",
+      "fromNodeId": 240,
+      "toNodeId": 35,
+      "properties": {
+        "introduced": "0.5.2",
+        "fixed": "0.5.4"
+      }
+    },
+    {
+      "id": 281,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 240,
+      "toNodeId": 104,
+      "properties": {}
+    },
+    {
+      "id": 282,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 240,
+      "toNodeId": 141,
+      "properties": {}
+    },
+    {
+      "id": 283,
+      "relType": "AFFECTS",
+      "fromNodeId": 241,
+      "toNodeId": 19,
+      "properties": {
+        "introduced": "1.1.1",
+        "fixed": "1.1.3"
+      }
+    },
+    {
+      "id": 284,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 241,
+      "toNodeId": 88,
+      "properties": {}
+    },
+    {
+      "id": 285,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 241,
+      "toNodeId": 128,
+      "properties": {}
+    },
+    {
+      "id": 286,
+      "relType": "AFFECTS",
+      "fromNodeId": 242,
+      "toNodeId": 20,
+      "properties": {
+        "introduced": "3.2.2",
+        "fixed": "3.2.4"
+      }
+    },
+    {
+      "id": 287,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 242,
+      "toNodeId": 89,
+      "properties": {}
+    },
+    {
+      "id": 288,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 242,
+      "toNodeId": 139,
+      "properties": {}
+    },
+    {
+      "id": 289,
+      "relType": "AFFECTS",
+      "fromNodeId": 243,
+      "toNodeId": 37,
+      "properties": {
+        "introduced": "6.11.3",
+        "fixed": "6.11.5"
+      }
+    },
+    {
+      "id": 290,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 243,
+      "toNodeId": 106,
+      "properties": {}
+    },
+    {
+      "id": 291,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 243,
+      "toNodeId": 148,
+      "properties": {}
+    },
+    {
+      "id": 292,
+      "relType": "AFFECTS",
+      "fromNodeId": 244,
+      "toNodeId": 27,
+      "properties": {
+        "introduced": "4.4.1",
+        "fixed": "4.4.3"
+      }
+    },
+    {
+      "id": 293,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 244,
+      "toNodeId": 96,
+      "properties": {}
+    },
+    {
+      "id": 294,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 244,
+      "toNodeId": 137,
+      "properties": {}
+    },
+    {
+      "id": 295,
+      "relType": "AFFECTS",
+      "fromNodeId": 245,
+      "toNodeId": 10,
+      "properties": {
+        "introduced": "1.10.1",
+        "fixed": "1.10.3"
+      }
+    },
+    {
+      "id": 296,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 245,
+      "toNodeId": 79,
+      "properties": {}
+    },
+    {
+      "id": 297,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 245,
+      "toNodeId": 124,
+      "properties": {}
+    },
+    {
+      "id": 298,
+      "relType": "AFFECTS",
+      "fromNodeId": 246,
+      "toNodeId": 49,
+      "properties": {
+        "introduced": "1.65.3",
+        "fixed": "2.1.0"
+      }
+    },
+    {
+      "id": 299,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 246,
+      "toNodeId": 118,
+      "properties": {}
+    },
+    {
+      "id": 300,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 246,
+      "toNodeId": 160,
+      "properties": {}
+    },
+    {
+      "id": 301,
+      "relType": "AFFECTS",
+      "fromNodeId": 247,
+      "toNodeId": 44,
+      "properties": {
+        "introduced": "1.29.1",
+        "fixed": "1.29.3"
+      }
+    },
+    {
+      "id": 302,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 247,
+      "toNodeId": 113,
+      "properties": {}
+    },
+    {
+      "id": 303,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 247,
+      "toNodeId": 158,
+      "properties": {}
+    },
+    {
+      "id": 304,
+      "relType": "AFFECTS",
+      "fromNodeId": 248,
+      "toNodeId": 32,
+      "properties": {
+        "introduced": "1.17.2",
+        "fixed": "1.17.4"
+      }
+    },
+    {
+      "id": 305,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 248,
+      "toNodeId": 101,
+      "properties": {}
+    },
+    {
+      "id": 306,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 248,
+      "toNodeId": 147,
+      "properties": {}
+    },
+    {
+      "id": 307,
+      "relType": "AFFECTS",
+      "fromNodeId": 249,
+      "toNodeId": 45,
+      "properties": {
+        "introduced": "1.43.1",
+        "fixed": "1.43.3"
+      }
+    },
+    {
+      "id": 308,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 249,
+      "toNodeId": 114,
+      "properties": {}
+    },
+    {
+      "id": 309,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 249,
+      "toNodeId": 157,
+      "properties": {}
+    },
+    {
+      "id": 310,
+      "relType": "AFFECTS",
+      "fromNodeId": 250,
+      "toNodeId": 22,
+      "properties": {
+        "introduced": "1.4.1",
+        "fixed": "1.4.3"
+      }
+    },
+    {
+      "id": 311,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 250,
+      "toNodeId": 91,
+      "properties": {}
+    },
+    {
+      "id": 312,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 250,
+      "toNodeId": 125,
+      "properties": {}
+    },
+    {
+      "id": 313,
+      "relType": "AFFECTS",
+      "fromNodeId": 251,
+      "toNodeId": 17,
+      "properties": {
+        "introduced": "2.1.7",
+        "fixed": "2.1.9"
+      }
+    },
+    {
+      "id": 314,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 251,
+      "toNodeId": 86,
+      "properties": {}
+    },
+    {
+      "id": 315,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 251,
+      "toNodeId": 134,
+      "properties": {}
+    },
+    {
+      "id": 316,
+      "relType": "AFFECTS",
+      "fromNodeId": 252,
+      "toNodeId": 29,
+      "properties": {
+        "introduced": "1.7.3",
+        "fixed": "1.7.5"
+      }
+    },
+    {
+      "id": 317,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 252,
+      "toNodeId": 98,
+      "properties": {}
+    },
+    {
+      "id": 318,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 252,
+      "toNodeId": 143,
+      "properties": {}
+    },
+    {
+      "id": 319,
+      "relType": "AFFECTS",
+      "fromNodeId": 253,
+      "toNodeId": 28,
+      "properties": {
+        "introduced": "2.3.2",
+        "fixed": "2.3.4"
+      }
+    },
+    {
+      "id": 320,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 253,
+      "toNodeId": 97,
+      "properties": {}
+    },
+    {
+      "id": 321,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 253,
+      "toNodeId": 135,
+      "properties": {}
+    },
+    {
+      "id": 322,
+      "relType": "AFFECTS",
+      "fromNodeId": 254,
+      "toNodeId": 14,
+      "properties": {
+        "introduced": "1.2.2",
+        "fixed": "1.2.4"
+      }
+    },
+    {
+      "id": 323,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 254,
+      "toNodeId": 83,
+      "properties": {}
+    },
+    {
+      "id": 324,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 254,
+      "toNodeId": 131,
+      "properties": {}
+    },
+    {
+      "id": 325,
+      "relType": "AFFECTS",
+      "fromNodeId": 255,
+      "toNodeId": 15,
+      "properties": {
+        "introduced": "1.1.1",
+        "fixed": "1.1.3"
+      }
+    },
+    {
+      "id": 326,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 255,
+      "toNodeId": 84,
+      "properties": {}
+    },
+    {
+      "id": 327,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 255,
+      "toNodeId": 123,
+      "properties": {}
+    },
+    {
+      "id": 328,
+      "relType": "AFFECTS",
+      "fromNodeId": 256,
+      "toNodeId": 31,
+      "properties": {
+        "introduced": "2.1.1",
+        "fixed": "2.1.3"
+      }
+    },
+    {
+      "id": 329,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 256,
+      "toNodeId": 100,
+      "properties": {}
+    },
+    {
+      "id": 330,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 256,
+      "toNodeId": 140,
+      "properties": {}
+    },
+    {
+      "id": 331,
+      "relType": "AFFECTS",
+      "fromNodeId": 257,
+      "toNodeId": 11,
+      "properties": {
+        "introduced": "1.12.1",
+        "fixed": "1.12.3"
+      }
+    },
+    {
+      "id": 332,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 257,
+      "toNodeId": 80,
+      "properties": {}
+    },
+    {
+      "id": 333,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 257,
+      "toNodeId": 126,
+      "properties": {}
+    },
+    {
+      "id": 334,
+      "relType": "AFFECTS",
+      "fromNodeId": 258,
+      "toNodeId": 52,
+      "properties": {
+        "introduced": "0.7.29",
+        "fixed": "0.7.30"
+      }
+    },
+    {
+      "id": 335,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 258,
+      "toNodeId": 170,
+      "properties": {}
+    },
+    {
+      "id": 336,
+      "relType": "AFFECTS",
+      "fromNodeId": 258,
+      "toNodeId": 52,
+      "properties": {
+        "introduced": "0.8.0",
+        "fixed": "0.8.1"
+      }
+    },
+    {
+      "id": 337,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 258,
+      "toNodeId": 171,
+      "properties": {}
+    },
+    {
+      "id": 338,
+      "relType": "AFFECTS",
+      "fromNodeId": 258,
+      "toNodeId": 52,
+      "properties": {
+        "introduced": "1.0.0",
+        "fixed": "1.0.1"
+      }
+    },
+    {
+      "id": 339,
+      "relType": "AFFECTS_VERSION",
+      "fromNodeId": 258,
+      "toNodeId": 172,
+      "properties": {}
+    }
+  ]
+}

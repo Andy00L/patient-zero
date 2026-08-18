@@ -1,0 +1,61 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+# ...except the template, which carries no value and is how a reader learns which
+# variables exist. .env* would swallow it, and a public repo whose setup file is
+# missing cannot be set up.
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# agent kit: travels by manual copy, never through git. CLAUDE.md is part of the kit:
+# it only imports AGENTS.md, which is committed, so nothing is lost by leaving it out.
+.claude/
+CLAUDE.md
+
+# throwaway probes and vendored upstream source read for reference
+.scratch/
+
+# raw registry response cache. Re-derivable by rerunning the ingest, and large.
+# The built graph snapshot under data/graph/ IS committed on purpose: it is the
+# dataset the app answers from when no HydraDB is reachable.
+data/harvest/
+
+# Claude Design loop working folder: prompts and returned artifacts
+ui-design/

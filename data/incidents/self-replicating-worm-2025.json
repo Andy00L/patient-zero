@@ -1,0 +1,1684 @@
+{
+  "slug": "self-replicating-worm-2025",
+  "title": "Self-replicating npm worm, 84 artifacts across 42 packages",
+  "ecosystem": "npm",
+  "dataOrigin": "modeled",
+  "summary": "Modeled pack: the 42 packages, their 84 malicious versions, every publish time and every advisory time below are real records from the second Shai-Hulud wave, selected because they land inside one real 118 second burst that matches the track brief's figure of 84 malicious artifacts across 42 packages within six minutes. Constructed, and never presented as reported fact: the eight services with their descriptions and lockfile resolution times, and the framing of this burst as a self-contained incident rather than one slice of a wave that ran from 23 to 27 November 2025.",
+  "windowStartMs": 1763942400000,
+  "windowEndMs": 1764288000000,
+  "compromisedVersions": [
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/prettier-config",
+      "version": "1.10.1",
+      "publishedAtMs": 1763983108459,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/prettier-config packument time map. Flagged by MAL-2025-191366. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/tsconfig",
+      "version": "1.12.1",
+      "publishedAtMs": 1763983109322,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/tsconfig packument time map. Flagged by MAL-2025-191379. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/husky-config",
+      "version": "1.3.1",
+      "publishedAtMs": 1763983109369,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/husky-config packument time map. Flagged by MAL-2025-191353. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/commitlint-config",
+      "version": "2.6.1",
+      "publishedAtMs": 1763983109428,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/commitlint-config packument time map. Flagged by MAL-2025-191339. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/storybook-config",
+      "version": "1.2.2",
+      "publishedAtMs": 1763983109675,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/storybook-config packument time map. Flagged by MAL-2025-191376. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/stylelint-config",
+      "version": "1.1.1",
+      "publishedAtMs": 1763983110291,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/stylelint-config packument time map. Flagged by MAL-2025-191377. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/git-branch-check",
+      "version": "1.4.3",
+      "publishedAtMs": 1763983112157,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/git-branch-check packument time map. Flagged by MAL-2025-191350. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/serverless-plugin-typescript",
+      "version": "2.1.7",
+      "publishedAtMs": 1763983113659,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/serverless-plugin-typescript packument time map. Flagged by MAL-2025-191373. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/anthropic",
+      "version": "0.4.4",
+      "publishedAtMs": 1763983113984,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/anthropic packument time map. Flagged by MAL-2025-191332. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/npm-package-json-lint-config",
+      "version": "1.1.1",
+      "publishedAtMs": 1763983114549,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/npm-package-json-lint-config packument time map. Flagged by MAL-2025-191362. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/openai",
+      "version": "3.2.2",
+      "publishedAtMs": 1763983114808,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/openai packument time map. Flagged by MAL-2025-191363. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/metrics",
+      "version": "1.5.1",
+      "publishedAtMs": 1763983114965,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/metrics packument time map. Flagged by MAL-2025-191355. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/semantic-release-config",
+      "version": "1.4.1",
+      "publishedAtMs": 1763983115415,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/semantic-release-config packument time map. Flagged by MAL-2025-191372. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/eslint-config",
+      "version": "7.16.4",
+      "publishedAtMs": 1763983116172,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/eslint-config packument time map. Flagged by MAL-2025-191345. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/body-parser",
+      "version": "1.21.2",
+      "publishedAtMs": 1763983116192,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/body-parser packument time map. Flagged by MAL-2025-191336. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/circleci-config-sdk-orb-import",
+      "version": "0.2.1",
+      "publishedAtMs": 1763983116264,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/circleci-config-sdk-orb-import packument time map. Flagged by MAL-2025-191338. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/eslint-plugin",
+      "version": "1.6.1",
+      "publishedAtMs": 1763983116352,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/eslint-plugin packument time map. Flagged by MAL-2025-191346. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/pino-pretty",
+      "version": "4.4.1",
+      "publishedAtMs": 1763983117135,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/pino-pretty packument time map. Flagged by MAL-2025-191365. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/stitches-react",
+      "version": "2.3.2",
+      "publishedAtMs": 1763983117484,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/stitches-react packument time map. Flagged by MAL-2025-191375. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/slate-serializer",
+      "version": "1.7.3",
+      "publishedAtMs": 1763983119939,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/slate-serializer packument time map. Flagged by MAL-2025-191374. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/dependency-cruiser-config",
+      "version": "1.8.11",
+      "publishedAtMs": 1763983120223,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/dependency-cruiser-config packument time map. Flagged by MAL-2025-191342. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/test-common",
+      "version": "2.1.1",
+      "publishedAtMs": 1763983120383,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/test-common packument time map. Flagged by MAL-2025-191378. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/runtime-client-js",
+      "version": "1.17.2",
+      "publishedAtMs": 1763983120790,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/runtime-client-js packument time map. Flagged by MAL-2025-191369. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/encryption",
+      "version": "0.3.2",
+      "publishedAtMs": 1763983120963,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/encryption packument time map. Flagged by MAL-2025-191344. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/fetch",
+      "version": "1.11.1",
+      "publishedAtMs": 1763983120968,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/fetch packument time map. Flagged by MAL-2025-191348. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/natural-language-commander",
+      "version": "0.5.2",
+      "publishedAtMs": 1763983121584,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/natural-language-commander packument time map. Flagged by MAL-2025-191356. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/backend-utils",
+      "version": "5.0.1",
+      "publishedAtMs": 1763983121805,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/backend-utils packument time map. Flagged by MAL-2025-191334. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/pino",
+      "version": "6.11.3",
+      "publishedAtMs": 1763983121952,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/pino packument time map. Flagged by MAL-2025-191364. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/exception",
+      "version": "1.10.1",
+      "publishedAtMs": 1763983123111,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/exception packument time map. Flagged by MAL-2025-191347. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/general-types",
+      "version": "3.2.22",
+      "publishedAtMs": 1763983123180,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/general-types packument time map. Flagged by MAL-2025-191349. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/chat-types",
+      "version": "2.14.58",
+      "publishedAtMs": 1763983123367,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/chat-types packument time map. Flagged by MAL-2025-191337. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/logger",
+      "version": "2.4.2",
+      "publishedAtMs": 1763983123438,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/logger packument time map. Flagged by MAL-2025-191354. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/common",
+      "version": "8.9.1",
+      "publishedAtMs": 1763983126413,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/common packument time map. Flagged by MAL-2025-191340. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/google-dfes-types",
+      "version": "2.17.12",
+      "publishedAtMs": 1763983126484,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/google-dfes-types packument time map. Flagged by MAL-2025-191351. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/runtime",
+      "version": "1.29.1",
+      "publishedAtMs": 1763983126667,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/runtime packument time map. Flagged by MAL-2025-191368. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/sdk-runtime",
+      "version": "1.43.1",
+      "publishedAtMs": 1763983127140,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/sdk-runtime packument time map. Flagged by MAL-2025-191370. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/alexa-types",
+      "version": "2.15.60",
+      "publishedAtMs": 1763983127300,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/alexa-types packument time map. Flagged by MAL-2025-191331. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/api-sdk",
+      "version": "3.28.58",
+      "publishedAtMs": 1763983127878,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/api-sdk packument time map. Flagged by MAL-2025-191333. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/google-types",
+      "version": "2.21.12",
+      "publishedAtMs": 1763983129712,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/google-types packument time map. Flagged by MAL-2025-191352. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/react-chat",
+      "version": "1.65.3",
+      "publishedAtMs": 1763983130560,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/react-chat packument time map. Flagged by MAL-2025-191367. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/dtos-interact",
+      "version": "1.40.1",
+      "publishedAtMs": 1763983130950,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/dtos-interact packument time map. Flagged by MAL-2025-191343. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/base-types",
+      "version": "2.136.2",
+      "publishedAtMs": 1763983131173,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/base-types packument time map. Flagged by MAL-2025-191335. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/husky-config",
+      "version": "1.3.2",
+      "publishedAtMs": 1763983202843,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/husky-config packument time map. Flagged by MAL-2025-191353. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/git-branch-check",
+      "version": "1.4.4",
+      "publishedAtMs": 1763983202878,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/git-branch-check packument time map. Flagged by MAL-2025-191350. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/stylelint-config",
+      "version": "1.1.2",
+      "publishedAtMs": 1763983204493,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/stylelint-config packument time map. Flagged by MAL-2025-191377. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/prettier-config",
+      "version": "1.10.2",
+      "publishedAtMs": 1763983204516,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/prettier-config packument time map. Flagged by MAL-2025-191366. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/semantic-release-config",
+      "version": "1.4.2",
+      "publishedAtMs": 1763983204606,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/semantic-release-config packument time map. Flagged by MAL-2025-191372. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/tsconfig",
+      "version": "1.12.2",
+      "publishedAtMs": 1763983204885,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/tsconfig packument time map. Flagged by MAL-2025-191379. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/commitlint-config",
+      "version": "2.6.2",
+      "publishedAtMs": 1763983205991,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/commitlint-config packument time map. Flagged by MAL-2025-191339. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/npm-package-json-lint-config",
+      "version": "1.1.2",
+      "publishedAtMs": 1763983206369,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/npm-package-json-lint-config packument time map. Flagged by MAL-2025-191362. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/anthropic",
+      "version": "0.4.5",
+      "publishedAtMs": 1763983207777,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/anthropic packument time map. Flagged by MAL-2025-191332. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/circleci-config-sdk-orb-import",
+      "version": "0.2.2",
+      "publishedAtMs": 1763983207931,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/circleci-config-sdk-orb-import packument time map. Flagged by MAL-2025-191338. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/storybook-config",
+      "version": "1.2.3",
+      "publishedAtMs": 1763983208867,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/storybook-config packument time map. Flagged by MAL-2025-191376. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/body-parser",
+      "version": "1.21.3",
+      "publishedAtMs": 1763983209329,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/body-parser packument time map. Flagged by MAL-2025-191336. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/metrics",
+      "version": "1.5.2",
+      "publishedAtMs": 1763983209513,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/metrics packument time map. Flagged by MAL-2025-191355. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/serverless-plugin-typescript",
+      "version": "2.1.8",
+      "publishedAtMs": 1763983209515,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/serverless-plugin-typescript packument time map. Flagged by MAL-2025-191373. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/stitches-react",
+      "version": "2.3.3",
+      "publishedAtMs": 1763983209522,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/stitches-react packument time map. Flagged by MAL-2025-191375. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/eslint-config",
+      "version": "7.16.5",
+      "publishedAtMs": 1763983209528,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/eslint-config packument time map. Flagged by MAL-2025-191345. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/pino-pretty",
+      "version": "4.4.2",
+      "publishedAtMs": 1763983210211,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/pino-pretty packument time map. Flagged by MAL-2025-191365. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/eslint-plugin",
+      "version": "1.6.2",
+      "publishedAtMs": 1763983210925,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/eslint-plugin packument time map. Flagged by MAL-2025-191346. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/openai",
+      "version": "3.2.3",
+      "publishedAtMs": 1763983211655,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/openai packument time map. Flagged by MAL-2025-191363. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/test-common",
+      "version": "2.1.2",
+      "publishedAtMs": 1763983212783,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/test-common packument time map. Flagged by MAL-2025-191378. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/natural-language-commander",
+      "version": "0.5.3",
+      "publishedAtMs": 1763983212868,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/natural-language-commander packument time map. Flagged by MAL-2025-191356. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/backend-utils",
+      "version": "5.0.2",
+      "publishedAtMs": 1763983213112,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/backend-utils packument time map. Flagged by MAL-2025-191334. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/slate-serializer",
+      "version": "1.7.4",
+      "publishedAtMs": 1763983213762,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/slate-serializer packument time map. Flagged by MAL-2025-191374. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/encryption",
+      "version": "0.3.3",
+      "publishedAtMs": 1763983214440,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/encryption packument time map. Flagged by MAL-2025-191344. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/fetch",
+      "version": "1.11.2",
+      "publishedAtMs": 1763983214555,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/fetch packument time map. Flagged by MAL-2025-191348. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/dependency-cruiser-config",
+      "version": "1.8.12",
+      "publishedAtMs": 1763983214634,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/dependency-cruiser-config packument time map. Flagged by MAL-2025-191342. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/runtime-client-js",
+      "version": "1.17.3",
+      "publishedAtMs": 1763983214895,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/runtime-client-js packument time map. Flagged by MAL-2025-191369. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/pino",
+      "version": "6.11.4",
+      "publishedAtMs": 1763983215809,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/pino packument time map. Flagged by MAL-2025-191364. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/logger",
+      "version": "2.4.3",
+      "publishedAtMs": 1763983216133,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/logger packument time map. Flagged by MAL-2025-191354. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/exception",
+      "version": "1.10.2",
+      "publishedAtMs": 1763983216867,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/exception packument time map. Flagged by MAL-2025-191347. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/chat-types",
+      "version": "2.14.59",
+      "publishedAtMs": 1763983217066,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/chat-types packument time map. Flagged by MAL-2025-191337. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/general-types",
+      "version": "3.2.23",
+      "publishedAtMs": 1763983217336,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/general-types packument time map. Flagged by MAL-2025-191349. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/api-sdk",
+      "version": "3.28.59",
+      "publishedAtMs": 1763983219467,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/api-sdk packument time map. Flagged by MAL-2025-191333. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/google-dfes-types",
+      "version": "2.17.13",
+      "publishedAtMs": 1763983219675,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/google-dfes-types packument time map. Flagged by MAL-2025-191351. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/alexa-types",
+      "version": "2.15.61",
+      "publishedAtMs": 1763983220244,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/alexa-types packument time map. Flagged by MAL-2025-191331. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/common",
+      "version": "8.9.2",
+      "publishedAtMs": 1763983220923,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/common packument time map. Flagged by MAL-2025-191340. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/sdk-runtime",
+      "version": "1.43.2",
+      "publishedAtMs": 1763983221234,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/sdk-runtime packument time map. Flagged by MAL-2025-191370. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/runtime",
+      "version": "1.29.2",
+      "publishedAtMs": 1763983221586,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/runtime packument time map. Flagged by MAL-2025-191368. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/google-types",
+      "version": "2.21.13",
+      "publishedAtMs": 1763983222753,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/google-types packument time map. Flagged by MAL-2025-191352. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/react-chat",
+      "version": "1.65.4",
+      "publishedAtMs": 1763983224402,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/react-chat packument time map. Flagged by MAL-2025-191367. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/dtos-interact",
+      "version": "1.40.2",
+      "publishedAtMs": 1763983224435,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/dtos-interact packument time map. Flagged by MAL-2025-191343. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "@voiceflow/base-types",
+      "version": "2.136.3",
+      "publishedAtMs": 1763983226039,
+      "hasInstallScript": true,
+      "note": "Publish time from the @voiceflow/base-types packument time map. Flagged by MAL-2025-191335. hasInstallScript is taken from the second wave writeups, which describe a preinstall hook that ran a setup_bun.js dropper, and is not read first hand: npm removed the version, so its manifest no longer answers."
+    }
+  ],
+  "advisories": [
+    {
+      "advisoryId": "GHSA-56wg-3462-8w3r",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764596837538,
+      "summary": "Malicious code in @voiceflow/alexa-types (npm). Versions 2.15.60 and 2.15.61 were removed from the registry and 2.15.62 was republished clean. OSV record MAL-2025-191331.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/alexa-types",
+          "introduced": "2.15.60",
+          "fixed": "2.15.62"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191332",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564064421,
+      "summary": "Malicious code in @voiceflow/anthropic (npm). Versions 0.4.4 and 0.4.5 were removed from the registry and 0.4.6 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/anthropic",
+          "introduced": "0.4.4",
+          "fixed": "0.4.6"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-w6mp-8jg5-f9g7",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564064652,
+      "summary": "Malicious code in @voiceflow/api-sdk (npm). Versions 3.28.58 and 3.28.59 were removed from the registry and 3.28.60 was republished clean. OSV record MAL-2025-191333.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/api-sdk",
+          "introduced": "3.28.58",
+          "fixed": "3.28.60"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-rxrh-wp76-98jm",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564065355,
+      "summary": "Malicious code in @voiceflow/backend-utils (npm). Versions 5.0.1 and 5.0.2 were removed from the registry and 5.0.3 was republished clean. OSV record MAL-2025-191334.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/backend-utils",
+          "introduced": "5.0.1",
+          "fixed": "5.0.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-qh85-xh2g-7fph",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564064450,
+      "summary": "Malicious code in @voiceflow/base-types (npm). Versions 2.136.2 and 2.136.3 were removed from the registry and 2.136.4 was republished clean. OSV record MAL-2025-191335.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/base-types",
+          "introduced": "2.136.2",
+          "fixed": "2.136.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-c89h-mw7j-hh48",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564067001,
+      "summary": "Malicious code in @voiceflow/body-parser (npm). Versions 1.21.2 and 1.21.3 were removed from the registry and 1.21.4 was republished clean. OSV record MAL-2025-191336.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/body-parser",
+          "introduced": "1.21.2",
+          "fixed": "1.21.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-8j92-6vpr-72v7",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564068286,
+      "summary": "Malicious code in @voiceflow/chat-types (npm). Versions 2.14.58 and 2.14.59 were removed from the registry and 2.14.60 was republished clean. OSV record MAL-2025-191337.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/chat-types",
+          "introduced": "2.14.58",
+          "fixed": "2.14.60"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191338",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563857967,
+      "summary": "Malicious code in @voiceflow/circleci-config-sdk-orb-import (npm). Versions 0.2.1 and 0.2.2 were removed from the registry and 0.2.3 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/circleci-config-sdk-orb-import",
+          "introduced": "0.2.1",
+          "fixed": "0.2.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-r464-qjp3-q96h",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563858874,
+      "summary": "Malicious code in @voiceflow/commitlint-config (npm). Versions 2.6.1 and 2.6.2 were removed from the registry and 2.6.3 was republished clean. OSV record MAL-2025-191339.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/commitlint-config",
+          "introduced": "2.6.1",
+          "fixed": "2.6.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-9gp9-qjxp-vv82",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563859408,
+      "summary": "Malicious code in @voiceflow/common (npm). Versions 8.9.1 and 8.9.2 were removed from the registry and 8.9.3 was republished clean. OSV record MAL-2025-191340.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/common",
+          "introduced": "8.9.1",
+          "fixed": "8.9.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-qr77-hmp6-8qwv",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564068328,
+      "summary": "Malicious code in @voiceflow/dependency-cruiser-config (npm). Versions 1.8.11 and 1.8.12 were removed from the registry and 1.8.13 was republished clean. OSV record MAL-2025-191342.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/dependency-cruiser-config",
+          "introduced": "1.8.11",
+          "fixed": "1.8.13"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-69fv-v5hx-vg3h",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564068938,
+      "summary": "Malicious code in @voiceflow/dtos-interact (npm). Versions 1.40.1 and 1.40.2 were removed from the registry and 1.40.3 was republished clean. OSV record MAL-2025-191343.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/dtos-interact",
+          "introduced": "1.40.1",
+          "fixed": "1.40.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-wq75-fgvh-2wcg",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1766505313876,
+      "summary": "Malicious code in @voiceflow/encryption (npm). Versions 0.3.2 and 0.3.3 were removed from the registry and 0.3.4 was republished clean. OSV record MAL-2025-191344.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/encryption",
+          "introduced": "0.3.2",
+          "fixed": "0.3.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-8624-gc9h-3mfj",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764596835256,
+      "summary": "Malicious code in @voiceflow/eslint-config (npm). Versions 7.16.4 and 7.16.5 were removed from the registry and 7.16.6 was republished clean. OSV record MAL-2025-191345.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/eslint-config",
+          "introduced": "7.16.4",
+          "fixed": "7.16.6"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-8qwv-8v32-9x47",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564071444,
+      "summary": "Malicious code in @voiceflow/eslint-plugin (npm). Versions 1.6.1 and 1.6.2 were removed from the registry and 1.6.3 was republished clean. OSV record MAL-2025-191346.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/eslint-plugin",
+          "introduced": "1.6.1",
+          "fixed": "1.6.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-q7cp-f4mj-8m39",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564072454,
+      "summary": "Malicious code in @voiceflow/exception (npm). Versions 1.10.1 and 1.10.2 were removed from the registry and 1.10.3 was republished clean. OSV record MAL-2025-191347.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/exception",
+          "introduced": "1.10.1",
+          "fixed": "1.10.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-h72r-3grf-6mvr",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564072778,
+      "summary": "Malicious code in @voiceflow/fetch (npm). Versions 1.11.1 and 1.11.2 were removed from the registry and 1.11.3 was republished clean. OSV record MAL-2025-191348.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/fetch",
+          "introduced": "1.11.1",
+          "fixed": "1.11.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-xxr5-4rpj-p266",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564074563,
+      "summary": "Malicious code in @voiceflow/general-types (npm). Versions 3.2.22 and 3.2.23 were removed from the registry and 3.2.24 was republished clean. OSV record MAL-2025-191349.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/general-types",
+          "introduced": "3.2.22",
+          "fixed": "3.2.24"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-hhxh-3pg7-v6rm",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564074733,
+      "summary": "Malicious code in @voiceflow/git-branch-check (npm). Versions 1.4.3 and 1.4.4 were removed from the registry and 1.4.5 was republished clean. OSV record MAL-2025-191350.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/git-branch-check",
+          "introduced": "1.4.3",
+          "fixed": "1.4.5"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-3gc8-xqj9-q2gv",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563866741,
+      "summary": "Malicious code in @voiceflow/google-dfes-types (npm). Versions 2.17.12 and 2.17.13 were removed from the registry and 2.17.14 was republished clean. OSV record MAL-2025-191351.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/google-dfes-types",
+          "introduced": "2.17.12",
+          "fixed": "2.17.14"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-hq26-8vww-cmm8",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563867041,
+      "summary": "Malicious code in @voiceflow/google-types (npm). Versions 2.21.12 and 2.21.13 were removed from the registry and 2.21.14 was republished clean. OSV record MAL-2025-191352.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/google-types",
+          "introduced": "2.21.12",
+          "fixed": "2.21.14"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-7744-xv9c-x2h3",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564075316,
+      "summary": "Malicious code in @voiceflow/husky-config (npm). Versions 1.3.1 and 1.3.2 were removed from the registry and 1.3.3 was republished clean. OSV record MAL-2025-191353.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/husky-config",
+          "introduced": "1.3.1",
+          "fixed": "1.3.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-c8h8-j498-cv9w",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564075908,
+      "summary": "Malicious code in @voiceflow/logger (npm). Versions 2.4.2 and 2.4.3 were removed from the registry and 2.4.4 was republished clean. OSV record MAL-2025-191354.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/logger",
+          "introduced": "2.4.2",
+          "fixed": "2.4.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-xxjx-ccwm-wm65",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563873732,
+      "summary": "Malicious code in @voiceflow/metrics (npm). Versions 1.5.1 and 1.5.2 were removed from the registry and 1.5.3 was republished clean. OSV record MAL-2025-191355.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/metrics",
+          "introduced": "1.5.1",
+          "fixed": "1.5.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-4xjf-wwjc-fmhv",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563871893,
+      "summary": "Malicious code in @voiceflow/natural-language-commander (npm). Versions 0.5.2 and 0.5.3 were removed from the registry and 0.5.4 was republished clean. OSV record MAL-2025-191356.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/natural-language-commander",
+          "introduced": "0.5.2",
+          "fixed": "0.5.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191362",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564077964,
+      "summary": "Malicious code in @voiceflow/npm-package-json-lint-config (npm). Versions 1.1.1 and 1.1.2 were removed from the registry and 1.1.3 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/npm-package-json-lint-config",
+          "introduced": "1.1.1",
+          "fixed": "1.1.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191363",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564080520,
+      "summary": "Malicious code in @voiceflow/openai (npm). Versions 3.2.2 and 3.2.3 were removed from the registry and 3.2.4 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/openai",
+          "introduced": "3.2.2",
+          "fixed": "3.2.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191364",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564076931,
+      "summary": "Malicious code in @voiceflow/pino (npm). Versions 6.11.3 and 6.11.4 were removed from the registry and 6.11.5 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/pino",
+          "introduced": "6.11.3",
+          "fixed": "6.11.5"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191365",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564078514,
+      "summary": "Malicious code in @voiceflow/pino-pretty (npm). Versions 4.4.1 and 4.4.2 were removed from the registry and 4.4.3 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/pino-pretty",
+          "introduced": "4.4.1",
+          "fixed": "4.4.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-mjm4-9rx8-2f3w",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563879107,
+      "summary": "Malicious code in @voiceflow/prettier-config (npm). Versions 1.10.1 and 1.10.2 were removed from the registry and 1.10.3 was republished clean. OSV record MAL-2025-191366.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/prettier-config",
+          "introduced": "1.10.1",
+          "fixed": "1.10.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-r7m3-3p95-v4rc",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564080627,
+      "summary": "Malicious code in @voiceflow/react-chat (npm). Versions 1.65.3 and 1.65.4 were removed from the registry and 2.1.0 was republished clean. OSV record MAL-2025-191367.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/react-chat",
+          "introduced": "1.65.3",
+          "fixed": "2.1.0"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-59v7-979j-g8cq",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563880258,
+      "summary": "Malicious code in @voiceflow/runtime (npm). Versions 1.29.1 and 1.29.2 were removed from the registry and 1.29.3 was republished clean. OSV record MAL-2025-191368.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/runtime",
+          "introduced": "1.29.1",
+          "fixed": "1.29.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191369",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563880141,
+      "summary": "Malicious code in @voiceflow/runtime-client-js (npm). Versions 1.17.2 and 1.17.3 were removed from the registry and 1.17.4 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/runtime-client-js",
+          "introduced": "1.17.2",
+          "fixed": "1.17.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-443c-69pp-ccw3",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563881388,
+      "summary": "Malicious code in @voiceflow/sdk-runtime (npm). Versions 1.43.1 and 1.43.2 were removed from the registry and 1.43.3 was republished clean. OSV record MAL-2025-191370.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/sdk-runtime",
+          "introduced": "1.43.1",
+          "fixed": "1.43.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-97w9-v7w9-jc93",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564082725,
+      "summary": "Malicious code in @voiceflow/semantic-release-config (npm). Versions 1.4.1 and 1.4.2 were removed from the registry and 1.4.3 was republished clean. OSV record MAL-2025-191372.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/semantic-release-config",
+          "introduced": "1.4.1",
+          "fixed": "1.4.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191373",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563885583,
+      "summary": "Malicious code in @voiceflow/serverless-plugin-typescript (npm). Versions 2.1.7 and 2.1.8 were removed from the registry and 2.1.9 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/serverless-plugin-typescript",
+          "introduced": "2.1.7",
+          "fixed": "2.1.9"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-vh49-8mp2-7r75",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563886228,
+      "summary": "Malicious code in @voiceflow/slate-serializer (npm). Versions 1.7.3 and 1.7.4 were removed from the registry and 1.7.5 was republished clean. OSV record MAL-2025-191374.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/slate-serializer",
+          "introduced": "1.7.3",
+          "fixed": "1.7.5"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-69v5-rhjr-mxf9",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764563887321,
+      "summary": "Malicious code in @voiceflow/stitches-react (npm). Versions 2.3.2 and 2.3.3 were removed from the registry and 2.3.4 was republished clean. OSV record MAL-2025-191375.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/stitches-react",
+          "introduced": "2.3.2",
+          "fixed": "2.3.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "MAL-2025-191376",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564085488,
+      "summary": "Malicious code in @voiceflow/storybook-config (npm). Versions 1.2.2 and 1.2.3 were removed from the registry and 1.2.4 was republished clean.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/storybook-config",
+          "introduced": "1.2.2",
+          "fixed": "1.2.4"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-5qm4-x7j8-95q7",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564082610,
+      "summary": "Malicious code in @voiceflow/stylelint-config (npm). Versions 1.1.1 and 1.1.2 were removed from the registry and 1.1.3 was republished clean. OSV record MAL-2025-191377.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/stylelint-config",
+          "introduced": "1.1.1",
+          "fixed": "1.1.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-574j-2rmr-3gv5",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564085729,
+      "summary": "Malicious code in @voiceflow/test-common (npm). Versions 2.1.1 and 2.1.2 were removed from the registry and 2.1.3 was republished clean. OSV record MAL-2025-191378.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/test-common",
+          "introduced": "2.1.1",
+          "fixed": "2.1.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-2p99-x643-gvfv",
+      "publishedAtMs": 1764029809000,
+      "modifiedAtMs": 1764564087953,
+      "summary": "Malicious code in @voiceflow/tsconfig (npm). Versions 1.12.1 and 1.12.2 were removed from the registry and 1.12.3 was republished clean. OSV record MAL-2025-191379.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/tsconfig",
+          "introduced": "1.12.1",
+          "fixed": "1.12.3"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "key": "svc:intent-etl",
+      "name": "intent-etl",
+      "description": "Nightly pipeline that flattens conversation transcripts into an intent warehouse.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/base-types",
+          "version": "2.136.2",
+          "resolvedAtMs": 1763984479000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/common",
+          "version": "8.9.1",
+          "resolvedAtMs": 1763984479000
+        }
+      ]
+    },
+    {
+      "key": "svc:conversation-api",
+      "name": "conversation-api",
+      "description": "Dialogue API that reaches the malicious base-types through the ^2.8.0 range in @voiceflow/general-types 3.2.21.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/general-types",
+          "version": "3.2.21",
+          "resolvedAtMs": 1763985953000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/base-types",
+          "version": "2.136.3",
+          "resolvedAtMs": 1763985953000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/common",
+          "version": "8.9.2",
+          "resolvedAtMs": 1763985953000
+        }
+      ]
+    },
+    {
+      "key": "svc:support-chat-web",
+      "name": "support-chat-web",
+      "description": "Support chat frontend that reaches the malicious dtos-interact through the ^1 peer range in @voiceflow/sdk-runtime 1.43.0.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/sdk-runtime",
+          "version": "1.43.0",
+          "resolvedAtMs": 1763994127000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/dtos-interact",
+          "version": "1.40.2",
+          "resolvedAtMs": 1763994127000
+        }
+      ]
+    },
+    {
+      "key": "svc:ci-lint-runner",
+      "name": "ci-lint-runner",
+      "description": "Lint and format job that installs the shared config packages on every pipeline run.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/eslint-config",
+          "version": "7.16.3",
+          "resolvedAtMs": 1764013124000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/eslint-plugin",
+          "version": "1.6.2",
+          "resolvedAtMs": 1764013124000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/prettier-config",
+          "version": "1.10.1",
+          "resolvedAtMs": 1764013124000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/tsconfig",
+          "version": "1.12.1",
+          "resolvedAtMs": 1764013124000
+        }
+      ]
+    },
+    {
+      "key": "svc:voice-gateway",
+      "name": "voice-gateway",
+      "description": "Voice channel gateway, refreshed five minutes before the maintainer started republishing clean versions.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/alexa-types",
+          "version": "2.15.61",
+          "resolvedAtMs": 1764021012000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/google-types",
+          "version": "2.21.13",
+          "resolvedAtMs": 1764021012000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/base-types",
+          "version": "2.136.3",
+          "resolvedAtMs": 1764021012000
+        }
+      ]
+    },
+    {
+      "key": "svc:transcript-archive",
+      "name": "transcript-archive",
+      "description": "Cold storage writer whose lockfile was last touched three days before the burst.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/base-types",
+          "version": "2.136.1",
+          "resolvedAtMs": 1763716476000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/common",
+          "version": "8.9.0",
+          "resolvedAtMs": 1763716476000
+        }
+      ]
+    },
+    {
+      "key": "svc:billing-api",
+      "name": "billing-api",
+      "description": "Usage billing API refreshed after the advisories landed, onto the republished line.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/dtos-interact",
+          "version": "1.40.3",
+          "resolvedAtMs": 1764079651000
+        }
+      ]
+    },
+    {
+      "key": "svc:analytics-collector",
+      "name": "analytics-collector",
+      "description": "Metrics collector rebuilt two days later, well after the clean republish.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@voiceflow/common",
+          "version": "8.9.3",
+          "resolvedAtMs": 1764152404000
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "atMs": 1763983108459,
+      "kind": "published",
+      "label": "2025-11-24T11:18:28.459Z first of 84 malicious versions published: @voiceflow/prettier-config 1.10.1",
+      "sourceUrl": "https://registry.npmjs.org/@voiceflow%2Fprettier-config"
+    },
+    {
+      "atMs": 1763984479000,
+      "kind": "resolved",
+      "label": "2025-11-24T11:41:19.000Z demo service intent-etl locks @voiceflow/base-types 2.136.2 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1763983226039,
+      "kind": "published",
+      "label": "2025-11-24T11:20:26.039Z last of the 84 published: @voiceflow/base-types 2.136.3, 117.6 seconds after the first",
+      "sourceUrl": "https://registry.npmjs.org/@voiceflow%2Fbase-types"
+    },
+    {
+      "atMs": 1763985953000,
+      "kind": "resolved",
+      "label": "2025-11-24T12:05:53.000Z demo service conversation-api locks @voiceflow/base-types 2.136.3 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1763984006000,
+      "kind": "disclosed",
+      "label": "2025-11-24T11:33:26Z MAL-2025-190643 published for @asyncapi/specs, 13 minutes after the burst and the earliest advisory of this wave found in the scanned OSV id range",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190643"
+    },
+    {
+      "atMs": 1763987513000,
+      "kind": "disclosed",
+      "label": "2025-11-24T12:31:53Z MAL-2025-190691 published for @zapier/secret-scrubber",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190691"
+    },
+    {
+      "atMs": 1763987647000,
+      "kind": "disclosed",
+      "label": "2025-11-24T12:34:07Z MAL-2025-190704 published for zapier-platform-core",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190704"
+    },
+    {
+      "atMs": 1763987781000,
+      "kind": "disclosed",
+      "label": "2025-11-24T12:36:21Z MAL-2025-190666 published for @ensdomains/content-hash",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190666"
+    },
+    {
+      "atMs": 1763988287000,
+      "kind": "disclosed",
+      "label": "2025-11-24T12:44:47Z MAL-2025-190653 published for @asyncapi/cli",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190653"
+    },
+    {
+      "atMs": 1763994127000,
+      "kind": "resolved",
+      "label": "2025-11-24T14:22:07.000Z demo service support-chat-web locks @voiceflow/dtos-interact 1.40.2 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1764001907000,
+      "kind": "disclosed",
+      "label": "2025-11-24T16:31:47Z MAL-2025-190925 published for posthog-node",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190925"
+    },
+    {
+      "atMs": 1764004107000,
+      "kind": "disclosed",
+      "label": "2025-11-24T17:08:27Z MAL-2025-190933 published for @ensdomains/ensjs",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-190933"
+    },
+    {
+      "atMs": 1764013124000,
+      "kind": "resolved",
+      "label": "2025-11-24T19:38:44.000Z demo service ci-lint-runner locks four malicious @voiceflow config packages (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1764021012000,
+      "kind": "resolved",
+      "label": "2025-11-24T21:50:12.000Z demo service voice-gateway locks @voiceflow/alexa-types 2.15.61 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1764021351822,
+      "kind": "patched",
+      "label": "2025-11-24T21:55:51.822Z @voiceflow/eslint-config 7.16.6 published, the first of the 42 clean republishes",
+      "sourceUrl": "https://registry.npmjs.org/@voiceflow%2Feslint-config"
+    },
+    {
+      "atMs": 1764022030529,
+      "kind": "patched",
+      "label": "2025-11-24T22:07:10.529Z @voiceflow/eslint-plugin 1.6.3 published, the last of the 42 clean republishes, all of them more than two hours before any advisory named these packages",
+      "sourceUrl": "https://registry.npmjs.org/@voiceflow%2Feslint-plugin"
+    },
+    {
+      "atMs": 1764029809000,
+      "kind": "disclosed",
+      "label": "2025-11-25T00:16:49Z MAL-2025-191331 through MAL-2025-191379 published, covering all 42 packages, 12 hours 58 minutes after the burst",
+      "sourceUrl": "https://api.osv.dev/v1/vulns/MAL-2025-191335"
+    },
+    {
+      "atMs": 1764079651000,
+      "kind": "resolved",
+      "label": "2025-11-25T14:07:31.000Z demo service billing-api refreshes onto @voiceflow/dtos-interact 1.40.3 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1764152404000,
+      "kind": "resolved",
+      "label": "2025-11-26T10:20:04.000Z demo service analytics-collector refreshes onto @voiceflow/common 8.9.3 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    }
+  ],
+  "sources": [
+    "https://api.osv.dev/v1/vulns/MAL-2025-190643",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190653",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190666",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190691",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190704",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190925",
+    "https://api.osv.dev/v1/vulns/MAL-2025-190933",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191331",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191332",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191333",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191334",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191335",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191336",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191337",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191338",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191339",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191340",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191342",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191343",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191344",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191345",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191346",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191347",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191348",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191349",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191350",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191351",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191352",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191353",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191354",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191355",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191356",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191362",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191363",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191364",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191365",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191366",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191367",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191368",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191369",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191370",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191372",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191373",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191374",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191375",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191376",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191377",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191378",
+    "https://api.osv.dev/v1/vulns/MAL-2025-191379",
+    "https://github.com/advisories/GHSA-2p99-x643-gvfv",
+    "https://github.com/advisories/GHSA-3gc8-xqj9-q2gv",
+    "https://github.com/advisories/GHSA-443c-69pp-ccw3",
+    "https://github.com/advisories/GHSA-4xjf-wwjc-fmhv",
+    "https://github.com/advisories/GHSA-56wg-3462-8w3r",
+    "https://github.com/advisories/GHSA-574j-2rmr-3gv5",
+    "https://github.com/advisories/GHSA-59v7-979j-g8cq",
+    "https://github.com/advisories/GHSA-5qm4-x7j8-95q7",
+    "https://github.com/advisories/GHSA-69fv-v5hx-vg3h",
+    "https://github.com/advisories/GHSA-69v5-rhjr-mxf9",
+    "https://github.com/advisories/GHSA-7744-xv9c-x2h3",
+    "https://github.com/advisories/GHSA-8624-gc9h-3mfj",
+    "https://github.com/advisories/GHSA-8j92-6vpr-72v7",
+    "https://github.com/advisories/GHSA-8qwv-8v32-9x47",
+    "https://github.com/advisories/GHSA-97w9-v7w9-jc93",
+    "https://github.com/advisories/GHSA-9gp9-qjxp-vv82",
+    "https://github.com/advisories/GHSA-c89h-mw7j-hh48",
+    "https://github.com/advisories/GHSA-c8h8-j498-cv9w",
+    "https://github.com/advisories/GHSA-h72r-3grf-6mvr",
+    "https://github.com/advisories/GHSA-hhxh-3pg7-v6rm",
+    "https://github.com/advisories/GHSA-hq26-8vww-cmm8",
+    "https://github.com/advisories/GHSA-mjm4-9rx8-2f3w",
+    "https://github.com/advisories/GHSA-q7cp-f4mj-8m39",
+    "https://github.com/advisories/GHSA-qh85-xh2g-7fph",
+    "https://github.com/advisories/GHSA-qr77-hmp6-8qwv",
+    "https://github.com/advisories/GHSA-r464-qjp3-q96h",
+    "https://github.com/advisories/GHSA-r7m3-3p95-v4rc",
+    "https://github.com/advisories/GHSA-rxrh-wp76-98jm",
+    "https://github.com/advisories/GHSA-vh49-8mp2-7r75",
+    "https://github.com/advisories/GHSA-w6mp-8jg5-f9g7",
+    "https://github.com/advisories/GHSA-wq75-fgvh-2wcg",
+    "https://github.com/advisories/GHSA-xxjx-ccwm-wm65",
+    "https://github.com/advisories/GHSA-xxr5-4rpj-p266",
+    "https://registry.npmjs.org/@voiceflow%2Falexa-types",
+    "https://registry.npmjs.org/@voiceflow%2Fanthropic",
+    "https://registry.npmjs.org/@voiceflow%2Fapi-sdk",
+    "https://registry.npmjs.org/@voiceflow%2Fbackend-utils",
+    "https://registry.npmjs.org/@voiceflow%2Fbase-types",
+    "https://registry.npmjs.org/@voiceflow%2Fbody-parser",
+    "https://registry.npmjs.org/@voiceflow%2Fchat-types",
+    "https://registry.npmjs.org/@voiceflow%2Fcircleci-config-sdk-orb-import",
+    "https://registry.npmjs.org/@voiceflow%2Fcommitlint-config",
+    "https://registry.npmjs.org/@voiceflow%2Fcommon",
+    "https://registry.npmjs.org/@voiceflow%2Fdependency-cruiser-config",
+    "https://registry.npmjs.org/@voiceflow%2Fdtos-interact",
+    "https://registry.npmjs.org/@voiceflow%2Fencryption",
+    "https://registry.npmjs.org/@voiceflow%2Feslint-config",
+    "https://registry.npmjs.org/@voiceflow%2Feslint-plugin",
+    "https://registry.npmjs.org/@voiceflow%2Fexception",
+    "https://registry.npmjs.org/@voiceflow%2Ffetch",
+    "https://registry.npmjs.org/@voiceflow%2Fgeneral-types",
+    "https://registry.npmjs.org/@voiceflow%2Fgit-branch-check",
+    "https://registry.npmjs.org/@voiceflow%2Fgoogle-dfes-types",
+    "https://registry.npmjs.org/@voiceflow%2Fgoogle-types",
+    "https://registry.npmjs.org/@voiceflow%2Fhusky-config",
+    "https://registry.npmjs.org/@voiceflow%2Flogger",
+    "https://registry.npmjs.org/@voiceflow%2Fmetrics",
+    "https://registry.npmjs.org/@voiceflow%2Fnatural-language-commander",
+    "https://registry.npmjs.org/@voiceflow%2Fnpm-package-json-lint-config",
+    "https://registry.npmjs.org/@voiceflow%2Fopenai",
+    "https://registry.npmjs.org/@voiceflow%2Fpino",
+    "https://registry.npmjs.org/@voiceflow%2Fpino-pretty",
+    "https://registry.npmjs.org/@voiceflow%2Fprettier-config",
+    "https://registry.npmjs.org/@voiceflow%2Freact-chat",
+    "https://registry.npmjs.org/@voiceflow%2Fruntime",
+    "https://registry.npmjs.org/@voiceflow%2Fruntime-client-js",
+    "https://registry.npmjs.org/@voiceflow%2Fsdk-runtime",
+    "https://registry.npmjs.org/@voiceflow%2Fsemantic-release-config",
+    "https://registry.npmjs.org/@voiceflow%2Fserverless-plugin-typescript",
+    "https://registry.npmjs.org/@voiceflow%2Fslate-serializer",
+    "https://registry.npmjs.org/@voiceflow%2Fstitches-react",
+    "https://registry.npmjs.org/@voiceflow%2Fstorybook-config",
+    "https://registry.npmjs.org/@voiceflow%2Fstylelint-config",
+    "https://registry.npmjs.org/@voiceflow%2Ftest-common",
+    "https://registry.npmjs.org/@voiceflow%2Ftsconfig",
+    "https://www.aikido.dev/blog/shai-hulud-strikes-again-hitting-zapier-ensdomains",
+    "https://www.stepsecurity.io/blog/sha1-hulud-the-second-coming-zapier-ens-domains-and-other-prominent-npm-packages-compromised",
+    "https://www.wiz.io/blog/shai-hulud-2-0-ongoing-supply-chain-attack"
+  ]
+}

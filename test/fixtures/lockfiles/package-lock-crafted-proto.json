@@ -1,0 +1,22 @@
+{
+  "name": "crafted",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": { "name": "crafted", "version": "1.0.0" },
+    "__proto__": { "version": "9.9.9", "polluted": true },
+    "constructor": { "version": "9.9.9", "polluted": true },
+    "node_modules/__proto__": { "version": "1.0.0" },
+    "node_modules/constructor": { "version": "1.0.0" },
+    "node_modules/chalk": {
+      "version": "5.3.1",
+      "__proto__": { "polluted": true, "isDevOnly": true },
+      "dev": false
+    },
+    "node_modules/evil": {
+      "version": "1.0.0",
+      "constructor": { "prototype": { "polluted": true } }
+    }
+  }
+}

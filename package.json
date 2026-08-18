@@ -1,0 +1,52 @@
+{
+  "name": "patient-zero",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Incident radar for the npm and PyPI supply chain, built on the HydraDB graph database.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "hydra:health": "bun run scripts/hydra-health.ts",
+    "hydra:measure": "bun run scripts/measure-traversal.ts",
+    "seed": "bun run scripts/seed-incidents.ts",
+    "ingest": "bun run scripts/ingest-slice.ts",
+    "graph:demo": "bun run scripts/build-demo-graph.ts",
+    "harvest:lockfiles": "bun run scripts/harvest-lockfile-history.ts",
+    "scan:local": "bun run scripts/scan-local.ts",
+    "verify": "bun run typecheck && bun test && bun run lint"
+  },
+  "dependencies": {
+    "neo4j-driver": "6.2.0",
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "semver": "7.8.5",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bun": "^1.3.14",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/semver": "7.8.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "packageManager": "bun@1.3.14",
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}

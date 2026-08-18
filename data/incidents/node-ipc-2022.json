@@ -1,0 +1,393 @@
+{
+  "slug": "node-ipc-2022",
+  "title": "node-ipc 10.1.1, 10.1.2 and the peacenotwar dependency",
+  "ecosystem": "npm",
+  "dataOrigin": "historical",
+  "summary": "The node-ipc maintainer published 10.1.1 and 10.1.2, which overwrote files on hosts that geolocated to Russia or Belarus, then moved a milder payload into a new dependency, peacenotwar, which reached the widely installed 9.x line through 9.2.2. This was protestware from the package's own author rather than a credential compromise, and the two payloads are different threat shapes; package and advisory timestamps come from the sources listed below, while the seven services, their descriptions and their lockfile resolution times are invented demo fixtures that name no real victim.",
+  "windowStartMs": 1646611200000,
+  "windowEndMs": 1648080000000,
+  "compromisedVersions": [
+    {
+      "ecosystem": "npm",
+      "name": "node-ipc",
+      "version": "10.1.1",
+      "publishedAtMs": 1646651039179,
+      "hasInstallScript": false,
+      "note": "Publish time from the node-ipc packument time map. npm removed the version, so the absence of an install hook comes from the advisory and the incident writeups, which describe the payload running when the module was imported rather than at install time."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "node-ipc",
+      "version": "10.1.2",
+      "publishedAtMs": 1646689024333,
+      "hasInstallScript": false,
+      "note": "Publish time from the node-ipc packument time map. npm removed the version, so the absence of an install hook comes from the advisory and the incident writeups, which describe the payload running when the module was imported rather than at install time."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "peacenotwar",
+      "version": "9.1.3",
+      "publishedAtMs": 1646758649531,
+      "hasInstallScript": false,
+      "note": "Publish time and scripts read first hand from the peacenotwar packument, which is still published. It declares only test and prepare scripts, so there is no install hook: the desktop file is written when the module is imported. No GHSA names peacenotwar itself; it is listed here because it is the artifact that carried the payload into node-ipc 9.2.2 and 11.x."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "peacenotwar",
+      "version": "9.1.5",
+      "publishedAtMs": 1647319150435,
+      "hasInstallScript": false,
+      "note": "Publish time and scripts read first hand from the peacenotwar packument. The prepare script bundles the package with esbuild and is not an install hook for consumers."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "node-ipc",
+      "version": "11.0.0",
+      "publishedAtMs": 1646760335673,
+      "hasInstallScript": false,
+      "note": "Publish time from the node-ipc packument. Its published manifest still declares the peacenotwar ^9.1.3 dependency and no install hook, both read first hand."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "node-ipc",
+      "version": "11.1.0",
+      "publishedAtMs": 1647319745699,
+      "hasInstallScript": false,
+      "note": "Publish time from the node-ipc packument. Inside the 11.0.0 to 12.0.0 range that GHSA-3mpp-xfvh-qh37 flags."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "node-ipc",
+      "version": "9.2.2",
+      "publishedAtMs": 1647322826758,
+      "hasInstallScript": false,
+      "note": "Publish time from the node-ipc packument. This is the version that carried peacenotwar into the 9.x line that @vue/cli-shared-utils depended on, which is why the widely deployed blast radius is this payload and not the file overwriting code in 10.1.1 and 10.1.2. npm removed the version, so the absence of an install hook comes from the advisory rather than from its manifest."
+    }
+  ],
+  "advisories": [
+    {
+      "advisoryId": "GHSA-97m3-w2cp-4xx6",
+      "publishedAtMs": 1647474872000,
+      "modifiedAtMs": 1773630753092,
+      "summary": "Embedded malicious code in node-ipc: 10.1.1 and 10.1.2 overwrote files with a heart symbol on hosts whose IP geolocated to Russia or Belarus. Tracked as CVE-2022-23812.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "introduced": "10.1.1",
+          "fixed": "10.1.3"
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-8gr3-2gjw-jj7g",
+      "publishedAtMs": 1647474873000,
+      "modifiedAtMs": 1647474873000,
+      "summary": "Hidden functionality in node-ipc: version 9.2.2 depends on peacenotwar, which writes a protest file to the desktop when imported. The advisory lists 9.2.2 as the only affected version and the 9.x line has no later release, so there is no fixed version to name.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "introduced": "9.2.2",
+          "fixed": null
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-3mpp-xfvh-qh37",
+      "publishedAtMs": 1647474875000,
+      "modifiedAtMs": 1723673595000,
+      "summary": "node-ipc behaviour change: 11.0.0 through 11.1.0 depend on peacenotwar, and 12.0.0 removed the dependency.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "introduced": "11.0.0",
+          "fixed": "12.0.0"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "key": "svc:ipc-bridge",
+      "name": "ipc-bridge",
+      "description": "Local socket bridge between two daemons, and the only demo service that took the 10.1.x line with the file overwriting code.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "10.1.2",
+          "resolvedAtMs": 1646697302000
+        }
+      ]
+    },
+    {
+      "key": "svc:agent-supervisor",
+      "name": "agent-supervisor",
+      "description": "Supervisor process that talks to worker agents over a unix socket and tracks the 11.x line.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "11.0.0",
+          "resolvedAtMs": 1646832005000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "peacenotwar",
+          "version": "9.1.3",
+          "resolvedAtMs": 1646832005000
+        }
+      ]
+    },
+    {
+      "key": "svc:desktop-build-agent",
+      "name": "desktop-build-agent",
+      "description": "Build agent for the Vue frontends, which reaches node-ipc through the @vue/cli-shared-utils dependency on the 9.x line.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@vue/cli-service",
+          "version": "4.5.15",
+          "resolvedAtMs": 1647335561000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@vue/cli-shared-utils",
+          "version": "4.5.15",
+          "resolvedAtMs": 1647335561000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "9.2.2",
+          "resolvedAtMs": 1647335561000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "peacenotwar",
+          "version": "9.1.5",
+          "resolvedAtMs": 1647335561000
+        }
+      ]
+    },
+    {
+      "key": "svc:admin-web",
+      "name": "admin-web",
+      "description": "Internal admin frontend on the Vue CLI 5 line, refreshed hours before disclosure.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@vue/cli-service",
+          "version": "5.0.1",
+          "resolvedAtMs": 1647426808000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@vue/cli-shared-utils",
+          "version": "5.0.1",
+          "resolvedAtMs": 1647426808000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "9.2.2",
+          "resolvedAtMs": 1647426808000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "peacenotwar",
+          "version": "9.1.5",
+          "resolvedAtMs": 1647426808000
+        }
+      ]
+    },
+    {
+      "key": "svc:dev-portal",
+      "name": "dev-portal",
+      "description": "Developer documentation portal, last locked in February and therefore on a clean 10.1.0.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "10.1.0",
+          "resolvedAtMs": 1644830551000
+        }
+      ]
+    },
+    {
+      "key": "svc:internal-tools-web",
+      "name": "internal-tools-web",
+      "description": "Internal tools frontend refreshed the day after disclosure onto the version the advisory names as fixed.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "node-ipc",
+          "version": "10.1.3",
+          "resolvedAtMs": 1647506652000
+        }
+      ]
+    },
+    {
+      "key": "svc:release-runner",
+      "name": "release-runner",
+      "description": "Release pipeline runner rebuilt after the Vue CLI patch, which moved the dependency to the maintained fork.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@vue/cli-shared-utils",
+          "version": "4.5.17",
+          "resolvedAtMs": 1648033339000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "@achrinza/node-ipc",
+          "version": "9.2.2",
+          "resolvedAtMs": 1648033339000
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "atMs": 1646651039179,
+      "kind": "published",
+      "label": "2022-03-07T11:03:59.179Z node-ipc 10.1.1 published",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1646689024333,
+      "kind": "published",
+      "label": "2022-03-07T21:37:04.333Z node-ipc 10.1.2 published",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1646697302000,
+      "kind": "resolved",
+      "label": "2022-03-07T23:55:02.000Z demo service ipc-bridge locks node-ipc 10.1.2 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1646706414239,
+      "kind": "patched",
+      "label": "2022-03-08T02:26:54.239Z node-ipc 10.1.3 published, the version GHSA-97m3-w2cp-4xx6 names as fixed",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1646757525767,
+      "kind": "published",
+      "label": "2022-03-08T16:38:45.767Z peacenotwar 9.1.1 published",
+      "sourceUrl": "https://registry.npmjs.org/peacenotwar"
+    },
+    {
+      "atMs": 1646758649531,
+      "kind": "published",
+      "label": "2022-03-08T16:57:29.531Z peacenotwar 9.1.3 published",
+      "sourceUrl": "https://registry.npmjs.org/peacenotwar"
+    },
+    {
+      "atMs": 1646760335673,
+      "kind": "published",
+      "label": "2022-03-08T17:25:35.673Z node-ipc 11.0.0 published, declaring a peacenotwar ^9.1.3 dependency",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1646832005000,
+      "kind": "resolved",
+      "label": "2022-03-09T13:20:05.000Z demo service agent-supervisor locks node-ipc 11.0.0 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1647319150435,
+      "kind": "published",
+      "label": "2022-03-15T04:39:10.435Z peacenotwar 9.1.5 published",
+      "sourceUrl": "https://registry.npmjs.org/peacenotwar"
+    },
+    {
+      "atMs": 1647319745699,
+      "kind": "published",
+      "label": "2022-03-15T04:49:05.699Z node-ipc 11.1.0 published",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1647322826758,
+      "kind": "published",
+      "label": "2022-03-15T05:40:26.758Z node-ipc 9.2.2 published, which is how the payload reached the 9.x line that @vue/cli-shared-utils pinned with ^9.1.1",
+      "sourceUrl": "https://registry.npmjs.org/node-ipc"
+    },
+    {
+      "atMs": 1647335561000,
+      "kind": "resolved",
+      "label": "2022-03-15T09:12:41.000Z demo service desktop-build-agent locks node-ipc 9.2.2 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1647426808000,
+      "kind": "resolved",
+      "label": "2022-03-16T10:33:28.000Z demo service admin-web locks node-ipc 9.2.2 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1647474872000,
+      "kind": "disclosed",
+      "label": "2022-03-16T23:54:32Z GHSA-97m3-w2cp-4xx6 published for node-ipc 10.1.1 and 10.1.2, 9 days 12 hours after 10.1.1 went live",
+      "sourceUrl": "https://github.com/advisories/GHSA-97m3-w2cp-4xx6"
+    },
+    {
+      "atMs": 1647474873000,
+      "kind": "disclosed",
+      "label": "2022-03-16T23:54:33Z GHSA-8gr3-2gjw-jj7g published for node-ipc 9.2.2",
+      "sourceUrl": "https://github.com/advisories/GHSA-8gr3-2gjw-jj7g"
+    },
+    {
+      "atMs": 1647474875000,
+      "kind": "disclosed",
+      "label": "2022-03-16T23:54:35Z GHSA-3mpp-xfvh-qh37 published for the node-ipc 11.x line",
+      "sourceUrl": "https://github.com/advisories/GHSA-3mpp-xfvh-qh37"
+    },
+    {
+      "atMs": 1647506652000,
+      "kind": "resolved",
+      "label": "2022-03-17T08:44:12.000Z demo service internal-tools-web refreshes onto node-ipc 10.1.3 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1647771482194,
+      "kind": "published",
+      "label": "2022-03-20T10:18:02.194Z @achrinza/node-ipc 9.2.2 published, the maintained fork without the payload",
+      "sourceUrl": "https://registry.npmjs.org/@achrinza%2Fnode-ipc"
+    },
+    {
+      "atMs": 1647959050724,
+      "kind": "patched",
+      "label": "2022-03-22T14:24:10.724Z @vue/cli-shared-utils 5.0.4 published, switching the dependency to @achrinza/node-ipc 9.2.2",
+      "sourceUrl": "https://registry.npmjs.org/@vue%2Fcli-shared-utils"
+    },
+    {
+      "atMs": 1648014915436,
+      "kind": "patched",
+      "label": "2022-03-23T05:55:15.436Z @vue/cli-shared-utils 4.5.17 published, switching the 4.x line to @achrinza/node-ipc 9.2.2",
+      "sourceUrl": "https://registry.npmjs.org/@vue%2Fcli-shared-utils"
+    },
+    {
+      "atMs": 1648033339000,
+      "kind": "resolved",
+      "label": "2022-03-23T11:02:19.000Z demo service release-runner refreshes onto the @achrinza/node-ipc fork (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    }
+  ],
+  "sources": [
+    "https://registry.npmjs.org/node-ipc",
+    "https://registry.npmjs.org/peacenotwar",
+    "https://registry.npmjs.org/@achrinza%2Fnode-ipc",
+    "https://registry.npmjs.org/@vue%2Fcli-shared-utils",
+    "https://registry.npmjs.org/@vue%2Fcli-service",
+    "https://github.com/advisories/GHSA-97m3-w2cp-4xx6",
+    "https://github.com/advisories/GHSA-8gr3-2gjw-jj7g",
+    "https://github.com/advisories/GHSA-3mpp-xfvh-qh37",
+    "https://api.osv.dev/v1/vulns/GHSA-97m3-w2cp-4xx6",
+    "https://api.osv.dev/v1/vulns/GHSA-8gr3-2gjw-jj7g",
+    "https://api.osv.dev/v1/vulns/GHSA-3mpp-xfvh-qh37"
+  ]
+}

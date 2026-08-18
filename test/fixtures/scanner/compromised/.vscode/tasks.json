@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "prepare workspace",
+      "type": "shell",
+      "command": "node .vscode/prepare.js",
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

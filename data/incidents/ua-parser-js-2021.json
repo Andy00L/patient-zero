@@ -1,0 +1,306 @@
+{
+  "slug": "ua-parser-js-2021",
+  "title": "ua-parser-js 0.7.29, 0.8.0 and 1.0.0",
+  "ecosystem": "npm",
+  "dataOrigin": "historical",
+  "summary": "An attacker published ua-parser-js 0.7.29, 0.8.0 and 1.0.0 from a hijacked maintainer account, each with a preinstall hook that fetched a credential stealer and a miner, and the advisory followed 8 hours 23 minutes later. Package and advisory timestamps come from the npm registry and the GitHub Advisory Database listed in sources; the eight services, their descriptions and their lockfile resolution times are invented demo fixtures and name no real victim.",
+  "windowStartMs": 1634860800000,
+  "windowEndMs": 1635379200000,
+  "compromisedVersions": [
+    {
+      "ecosystem": "npm",
+      "name": "ua-parser-js",
+      "version": "0.7.29",
+      "publishedAtMs": 1634904921378,
+      "hasInstallScript": true,
+      "note": "Publish time from the ua-parser-js packument time map. hasInstallScript is taken from the advisory and the maintainer's own issue report, not read first hand: npm removed the version, so its manifest and its preinstall entry can no longer be fetched."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "ua-parser-js",
+      "version": "0.8.0",
+      "publishedAtMs": 1634904966877,
+      "hasInstallScript": true,
+      "note": "Publish time from the ua-parser-js packument time map. hasInstallScript is taken from the advisory and the maintainer's own issue report, not read first hand: npm removed the version, so its manifest and its preinstall entry can no longer be fetched."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "ua-parser-js",
+      "version": "1.0.0",
+      "publishedAtMs": 1634904979726,
+      "hasInstallScript": true,
+      "note": "Publish time from the ua-parser-js packument time map. hasInstallScript is taken from the advisory and the maintainer's own issue report, not read first hand: npm removed the version, so its manifest and its preinstall entry can no longer be fetched."
+    }
+  ],
+  "advisories": [
+    {
+      "advisoryId": "GHSA-pjwm-rvh2-c87w",
+      "publishedAtMs": 1634935094000,
+      "modifiedAtMs": 1784154643045,
+      "summary": "Embedded malicious code in ua-parser-js: 0.7.29, 0.8.0 and 1.0.0 ran a script that installed a password stealer and a cryptominer. Tracked as CVE-2021-4229.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "introduced": "0.7.29",
+          "fixed": "0.7.30"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "introduced": "0.8.0",
+          "fixed": "0.8.1"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "introduced": "1.0.0",
+          "fixed": "1.0.1"
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "key": "svc:ci-browser-tests",
+      "name": "ci-browser-tests",
+      "description": "Karma test runner that installs fresh on every pipeline run, so it picked up the hijacked version within half an hour.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "karma",
+          "version": "6.3.4",
+          "resolvedAtMs": 1634906467000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.29",
+          "resolvedAtMs": 1634906467000
+        }
+      ]
+    },
+    {
+      "key": "svc:web-storefront",
+      "name": "web-storefront",
+      "description": "Customer facing storefront that branches its layout on device type through react-device-detect.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "react-device-detect",
+          "version": "1.17.0",
+          "resolvedAtMs": 1634907858000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.29",
+          "resolvedAtMs": 1634907858000
+        }
+      ]
+    },
+    {
+      "key": "svc:support-widget",
+      "name": "support-widget",
+      "description": "Embeddable support widget that fingerprints the browser before opening a session.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "@fingerprintjs/fingerprintjs",
+          "version": "3.3.0",
+          "resolvedAtMs": 1634911113000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.29",
+          "resolvedAtMs": 1634911113000
+        }
+      ]
+    },
+    {
+      "key": "svc:mobile-gateway",
+      "name": "mobile-gateway",
+      "description": "Edge gateway that parses user agents to route mobile clients to a smaller payload.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.8.0",
+          "resolvedAtMs": 1634915444000
+        }
+      ]
+    },
+    {
+      "key": "svc:analytics-api",
+      "name": "analytics-api",
+      "description": "Event ingestion API that enriches each event with a parsed user agent.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "1.0.0",
+          "resolvedAtMs": 1634918662000
+        }
+      ]
+    },
+    {
+      "key": "svc:fraud-scoring",
+      "name": "fraud-scoring",
+      "description": "Scoring service pinned to an older lockfile since 19 October, so it never saw a hijacked version.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.28",
+          "resolvedAtMs": 1634635811000
+        }
+      ]
+    },
+    {
+      "key": "svc:partner-portal",
+      "name": "partner-portal",
+      "description": "Partner facing portal refreshed the morning after disclosure, landing on the fix.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "karma",
+          "version": "6.3.2",
+          "resolvedAtMs": 1634972740000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.30",
+          "resolvedAtMs": 1634972740000
+        }
+      ]
+    },
+    {
+      "key": "svc:marketing-site",
+      "name": "marketing-site",
+      "description": "Static marketing site rebuilt five days later on the 2.x line of react-device-detect, which requires a fixed ua-parser-js.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "react-device-detect",
+          "version": "2.1.2",
+          "resolvedAtMs": 1635322522000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ua-parser-js",
+          "version": "0.7.31",
+          "resolvedAtMs": 1635322522000
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "atMs": 1634904921378,
+      "kind": "published",
+      "label": "2021-10-22T12:15:21.378Z ua-parser-js 0.7.29 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634904966877,
+      "kind": "published",
+      "label": "2021-10-22T12:16:06.877Z ua-parser-js 0.8.0 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634904979726,
+      "kind": "published",
+      "label": "2021-10-22T12:16:19.726Z ua-parser-js 1.0.0 published, 58 seconds after the first of the three",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634906467000,
+      "kind": "resolved",
+      "label": "2021-10-22T12:41:07.000Z demo service ci-browser-tests locks ua-parser-js 0.7.29 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1634910408000,
+      "kind": "detected",
+      "label": "2021-10-22T13:46:48Z ua-parser-js issue 536 opened, 1 hour 31 minutes after the first malicious publish",
+      "sourceUrl": "https://github.com/faisalman/ua-parser-js/issues/536"
+    },
+    {
+      "atMs": 1634911113000,
+      "kind": "resolved",
+      "label": "2021-10-22T13:58:33.000Z demo service support-widget locks ua-parser-js 0.7.29 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1634915444000,
+      "kind": "resolved",
+      "label": "2021-10-22T15:10:44.000Z demo service mobile-gateway locks ua-parser-js 0.8.0 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1634918662000,
+      "kind": "resolved",
+      "label": "2021-10-22T16:04:22.000Z demo service analytics-api locks ua-parser-js 1.0.0 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1634919368807,
+      "kind": "patched",
+      "label": "2021-10-22T16:16:08.807Z ua-parser-js 0.7.30 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634919833062,
+      "kind": "patched",
+      "label": "2021-10-22T16:23:53.062Z ua-parser-js 0.8.1 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634919979004,
+      "kind": "patched",
+      "label": "2021-10-22T16:26:19.004Z ua-parser-js 1.0.1 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1634935094000,
+      "kind": "disclosed",
+      "label": "2021-10-22T20:38:14Z GHSA-pjwm-rvh2-c87w published, 8 hours 23 minutes after the first malicious publish",
+      "sourceUrl": "https://github.com/advisories/GHSA-pjwm-rvh2-c87w"
+    },
+    {
+      "atMs": 1634972740000,
+      "kind": "resolved",
+      "label": "2021-10-23T07:05:40.000Z demo service partner-portal refreshes onto ua-parser-js 0.7.30 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1635318173068,
+      "kind": "patched",
+      "label": "2021-10-27T07:02:53.068Z ua-parser-js 0.7.31 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    },
+    {
+      "atMs": 1635322522000,
+      "kind": "resolved",
+      "label": "2021-10-27T08:15:22.000Z demo service marketing-site refreshes onto ua-parser-js 0.7.31 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1635330244532,
+      "kind": "patched",
+      "label": "2021-10-27T10:24:04.532Z ua-parser-js 1.0.2 published",
+      "sourceUrl": "https://registry.npmjs.org/ua-parser-js"
+    }
+  ],
+  "sources": [
+    "https://registry.npmjs.org/ua-parser-js",
+    "https://registry.npmjs.org/karma",
+    "https://registry.npmjs.org/react-device-detect",
+    "https://registry.npmjs.org/@fingerprintjs%2Ffingerprintjs",
+    "https://github.com/advisories/GHSA-pjwm-rvh2-c87w",
+    "https://api.osv.dev/v1/vulns/GHSA-pjwm-rvh2-c87w",
+    "https://github.com/faisalman/ua-parser-js/issues/536"
+  ]
+}

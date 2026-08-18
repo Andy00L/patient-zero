@@ -1,0 +1,238 @@
+# HydraDB for Patient Zero: one graph node plus its indexer.
+#
+# What a judge runs, from a clean checkout:
+#
+#   cp .env.example .env
+#   # then put a generated token in HYDRA_AUTH_TOKEN, see .env.example
+#   docker compose up
+#   bun run hydra:health
+#
+# Every value below was read from the vendored HydraDB sources under
+# .scratch/hydradb-src (Dockerfile, scripts/runtime_smoke.sh,
+# charts/hydradb/templates/configmap.yaml, src/bin/graph_node/config.rs,
+# src/bin/graph-indexer.rs). docs/HYDRADB.md section 9 records the same facts with
+# their references; docs/RUNNING.md explains what each failure mode means.
+
+name: patient-zero
+
+# The image is pinned by digest, not by tag alone. Upstream force-pushes `main`, so
+# the 0.1.1 tag can be rebuilt and point at different bytes; a digest cannot move.
+# Verified against ghcr.io on 2026-08-17: ghcr.io/hydra-db/hydradb:0.1.1 resolves to
+# this digest, an OCI image index covering linux/amd64 and linux/arm64.
+x-hydradb-image: &hydradb-image
+  ghcr.io/hydra-db/hydradb:0.1.1@sha256:db78309a233be54662db29744047e985a39b51c45a270d1a1f47c31a62cdb709
+
+# The object store. Both roles read and write the same store and coordinate through
+# it and nothing else: the node writes canonical data, the indexer compiles index
+# generations back into the same store, and the node picks those generations up on
+# its next discovery pass. Same values on both services, so they live in one anchor.
+x-object-store-env: &object-store-env
+  # Filesystem-backed local object store. `local` is the verified value and needs
+  # LOCAL_PATH; parsing itself lives in the SlateDB dependency (docs/HYDRADB.md
+  # section 11).
+  CLOUD_PROVIDER: local
+  LOCAL_PATH: /data/store
+  # Key prefix inside the store. Node and indexer must agree on it, otherwise the
+  # indexer compiles generations the node never looks for.
+  GRAPH_DATA_PATH: data
+  GRAPH_NAMESPACE: default
+  GRAPH_ID: default
+  GRAPH_CELLS: cell-0
+  # Not set by the image (ENV in the Dockerfile is RUST_LOG only) and not set by the
+  # Helm chart's configmap either, despite being mandated upstream. Without it the
+  # node builds, serves /readyz, and then aborts with a stack overflow on the FIRST
+  # query, which reads as a crash out of nowhere rather than as a missing setting.
+  # 32 MiB, the value scripts/runtime_smoke.sh exports before starting the node.
+  RUST_MIN_STACK: "33554432"
+
+services:
+  # One-shot setup. Three things have to be true before graph-node starts, and the
+  # image can do none of them itself:
+  #
+  #   1. LOCAL_PATH must already exist. Local object-store mode does not create it,
+  #      which is why the upstream smoke script mkdir -p's the store before start.
+  #   2. A fresh named volume mounted at a path the image does not contain is created
+  #      root-owned, and graph-node runs as 10001:10001 (Dockerfile USER), so it
+  #      could not create /data/store itself.
+  #   3. The auth token has to reach GRAPH_AUTH_TOKEN_FILE without ever being baked
+  #      into the image or committed. It arrives here in HYDRA_AUTH_TOKEN, from .env,
+  #      and is written into the shared volume as a file only 10001 can read.
+  #
+  # This is the init service rather than an entrypoint wrapper because a wrapper
+  # would need a script mounted from the host, and a host mount is exactly what the
+  # UID 10001 image makes awkward. It reuses the HydraDB image, so `docker compose
+  # up` still pulls one image, and it runs as root only long enough to chown.
+  hydra-init:
+    image: *hydradb-image
+    user: "0:0"
+    entrypoint: ["/bin/bash", "-euo", "pipefail", "-c"]
+    command:
+      - |
+        token="$${HYDRA_AUTH_TOKEN:-}"
+        if [ "$${#token}" -lt 32 ]; then
+          echo "[hydra-init] HYDRA_AUTH_TOKEN is $${#token} characters. HydraDB refuses to start under 32. See .env.example for the generator command." >&2
+          exit 1
+        fi
+        case "$${token}" in
+          *change-me*)
+            echo "[hydra-init] HYDRA_AUTH_TOKEN still contains change-me, which HydraDB rejects whatever the length. See .env.example." >&2
+            exit 1
+            ;;
+        esac
+        mkdir -p /data/store /data/cache
+        # Removed first so a rerun rewrites the token even though the file it wrote
+        # last time is mode 0400.
+        rm -f /data/auth-token
+        printf '%s' "$${token}" > /data/auth-token
+        # Not recursive on purpose: everything under /data/store was created by the
+        # node as uid 10001 already, and a recursive pass over a grown store would
+        # cost minutes on every `docker compose up`.
+        chown 10001:10001 /data /data/store /data/cache /data/auth-token
+        chmod 0400 /data/auth-token
+        echo "[hydra-init] /data/store, /data/cache and /data/auth-token are ready for uid 10001"
+    environment:
+      # Compose fails the whole command with this message when the variable is
+      # missing, which is a better first run than a node that exits on a short token.
+      HYDRA_AUTH_TOKEN: ${HYDRA_AUTH_TOKEN:?set HYDRA_AUTH_TOKEN in .env first, see .env.example for the command that generates one}
+    volumes:
+      - hydra-store:/data
+    restart: "no"
+
+  # The query node: Bolt, the HTTP query API, and the admin endpoints.
+  graph-node:
+    image: *hydradb-image
+    # Default entrypoint, /usr/local/bin/graph-node (Dockerfile ENTRYPOINT).
+    depends_on:
+      hydra-init:
+        condition: service_completed_successfully
+    environment:
+      <<: *object-store-env
+      GRAPH_NODE_ID: node-0
+      # Must be one of GRAPH_CELLS, and is the cell_id every HTTP request body
+      # carries. Matches HYDRA_CELL_ID on the client side.
+      GRAPH_CELL_ID: cell-0
+      # Bolt session database name. Matches HYDRA_DATABASE on the client side.
+      GRAPH_DATABASE: default
+      # Block cache on local disk, 64 MiB. Inside the volume, so it survives a
+      # restart and does not fill the container's writable layer.
+      GRAPH_DATA_CACHE_DIR: /data/cache
+      GRAPH_DATA_CACHE_BYTES: "67108864"
+      GRAPH_BOLT_ADDR: 0.0.0.0:7687
+      GRAPH_HTTP_ADDR: 0.0.0.0:8443
+      GRAPH_ADMIN_ADDR: 0.0.0.0:9090
+      # Where the node tells a Bolt driver to reconnect, so it has to be the address
+      # the CLIENT can reach, not the container's own bind address. The published
+      # port makes 127.0.0.1:7687 correct for a host client.
+      GRAPH_ADVERTISED_BOLT_ADDR: 127.0.0.1:7687
+      # Routing table for the cluster, as comma-separated `node-id=host:port` pairs.
+      # One node here, and its id has to match GRAPH_NODE_ID.
+      GRAPH_BOLT_NODE_ADDRESSES: node-0=127.0.0.1:7687
+      # Read from a file, never from an environment variable, so the token does not
+      # show up in `docker inspect` output for this service. hydra-init wrote it.
+      GRAPH_AUTH_TOKEN_FILE: /data/auth-token
+      # Serve Bolt and HTTP without TLS. Required to be exactly "true", otherwise the
+      # node demands GRAPH_TLS_CERTIFICATE and GRAPH_TLS_PRIVATE_KEY. Acceptable only
+      # because both listeners are bound to a loopback-published port on one machine.
+      GRAPH_ALLOW_PLAINTEXT: "true"
+    ports:
+      # Bolt. Used when HYDRA_TRANSPORT=bolt, and by the --bolt leg of the health
+      # check. Must stay 7687 on the host side to match GRAPH_ADVERTISED_BOLT_ADDR.
+      - "127.0.0.1:7687:7687"
+      # The HTTP query API, POST /v1/graphs/{graph_id}/query. The app's default
+      # transport. The port number is the image's convention, not a TLS promise:
+      # GRAPH_ALLOW_PLAINTEXT above means plain HTTP, which is why HYDRA_HTTP_URL
+      # starts with http://.
+      - "127.0.0.1:8443:8443"
+      # Admin: /readyz, /livez, /metrics. Published because the health script polls
+      # readiness from the host before it writes anything.
+      - "127.0.0.1:9090:9090"
+    healthcheck:
+      # Readiness lives on the ADMIN port, not on the query port. The query listener
+      # accepts connections before the node is willing to serve, so a probe against
+      # 8443 goes green early and the first query then fails; /readyz answers 200 only
+      # once the node may serve and 503 until then.
+      #
+      # Probed with bash's /dev/tcp rather than curl because the runtime image is
+      # ubuntu:24.04 with ca-certificates, libcypher-parser-dev and libgraphblas-dev
+      # and nothing else: it has no curl and no wget. Docker runs a healthcheck
+      # without the entrypoint, so this is a plain command, not a wrapper.
+      test:
+        - CMD
+        - bash
+        - -c
+        - 'exec 3<>/dev/tcp/127.0.0.1/9090 && printf "GET /readyz HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n" >&3 && head -n 1 <&3 | grep -q " 200 "'
+      interval: 5s
+      timeout: 3s
+      # 5s of grace plus 24 tries at 5s: about two minutes before compose calls it
+      # unhealthy, which covers a cold start that has to create the store layout.
+      start_period: 5s
+      retries: 24
+    restart: unless-stopped
+
+  # The indexer compiles index generations from canonical storage and writes them
+  # back to the shared object store. It matters for traversal, not for correctness:
+  # the path procedures use a compiled generation when one is present, and otherwise
+  # fall back to bounded canonical reads that spend the scan budget and come back as
+  # 429 resource_exhausted with native_path_edges on a graph of any size.
+  graph-indexer:
+    image: *hydradb-image
+    # The default entrypoint is graph-node, so the second binary is selected here.
+    # Path verified in the Dockerfile (both binaries land in /usr/local/bin) and in
+    # the chart's indexer deployment, which sets the same command.
+    entrypoint: ["/usr/local/bin/graph-indexer"]
+    depends_on:
+      # Waits for a node that can actually serve, so the first indexing cycle does
+      # not race the store layout being created.
+      graph-node:
+        condition: service_healthy
+    environment:
+      <<: *object-store-env
+      # No GRAPH_CELL_ID, no auth token, no TLS: this binary reads the object store
+      # directly and serves only its own admin endpoints. No GRAPH_DATA_CACHE_DIR
+      # either, because it opens the graph with default cache options and would
+      # ignore the value.
+      GRAPH_INDEXER_ADMIN_ADDR: 0.0.0.0:9091
+      # One cycle every 5s, the chart's own default. Short enough that a demo ingest
+      # is index-backed within seconds of finishing.
+      GRAPH_INDEXER_INTERVAL_MS: "5000"
+      # Full rebuild per dirty edge type, the upstream default. `incremental` patches
+      # the previous generation from the WAL tail; left off because this slice
+      # re-ingests from empty rather than trickling updates.
+      GRAPH_INDEXER_BUILD_MODE: full
+      GRAPH_INDEXER_RETAIN_PREVIOUS_GENERATIONS: "1"
+    healthcheck:
+      # Same /dev/tcp probe as the node, against the indexer's own admin port. Not
+      # published: nothing outside the compose network reads it.
+      test:
+        - CMD
+        - bash
+        - -c
+        - 'exec 3<>/dev/tcp/127.0.0.1/9091 && printf "GET /readyz HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n" >&3 && head -n 1 <&3 | grep -q " 200 "'
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 6
+    restart: unless-stopped
+
+volumes:
+  # A named volume, not a bind mount. The image runs as 10001:10001, and a bind
+  # mount would inherit the host directory's ownership, so the node would fail to
+  # write the store unless the human chowned a directory to a uid they do not have.
+  # A named volume is chowned once, by hydra-init, inside Docker.
+  #
+  # Shared by both services on purpose: the object store is the only channel the two
+  # roles coordinate through, so they must see the same bytes.
+  hydra-store:
+
+# Two things this file deliberately does not run:
+#
+#   - No Next.js service. The app is a Bun project run on the host with `bun run
+#     dev`, and it reaches HydraDB over the published ports. Containerising it would
+#     add a second toolchain to keep in sync with bun.lock for no gain, and hot
+#     reload through a bind mount is the part most likely to break on a judge's
+#     machine.
+#   - No MinIO. CLOUD_PROVIDER=local is a filesystem-backed object store living in
+#     the shared volume, which is all the coordination between node and indexer
+#     needs. An S3 gateway would add a service, a credential pair, and a bucket
+#     bootstrap step, and would exercise a code path (CLOUD_PROVIDER=aws) this
+#     project has not verified.

@@ -1,0 +1,320 @@
+{
+  "slug": "event-stream-2018",
+  "title": "event-stream 3.3.6 and flatmap-stream 0.1.1",
+  "ecosystem": "npm",
+  "dataOrigin": "historical",
+  "summary": "A new maintainer took over event-stream and published 3.3.6 with a dependency on flatmap-stream 0.1.1, whose payload targeted Copay wallet builds and stayed installable for more than 78 days before any advisory existed. Package and advisory timestamps come from the npm registry and the GitHub Advisory Database listed in sources; the seven services, their descriptions and their lockfile resolution times are invented demo fixtures and name no real victim.",
+  "windowStartMs": 1536451200000,
+  "windowEndMs": 1543536000000,
+  "compromisedVersions": [
+    {
+      "ecosystem": "npm",
+      "name": "event-stream",
+      "version": "3.3.6",
+      "publishedAtMs": 1536481739503,
+      "hasInstallScript": false,
+      "note": "Publish time from the event-stream packument time map. No install hook: the payload ran when flatmap-stream was required, which is why an install script scanner would have seen nothing."
+    },
+    {
+      "ecosystem": "npm",
+      "name": "flatmap-stream",
+      "version": "0.1.1",
+      "publishedAtMs": 1536481739503,
+      "hasInstallScript": false,
+      "note": "Publish time is derived, not measured. npm removed 0.1.1 and the flatmap-stream packument keeps no time entry for it, so this uses the publish instant of event-stream 3.3.6, the version that first depended on it, as the earliest instant any build could install it. The npm postmortem states the dependency was added on 9 September 2018 in version 3.3.6."
+    }
+  ],
+  "advisories": [
+    {
+      "advisoryId": "GHSA-mh6f-8j2x-4483",
+      "publishedAtMs": 1543276701000,
+      "modifiedAtMs": 1631736506000,
+      "summary": "Embedded malicious code in event-stream: version 3.3.6 added a dependency on flatmap-stream, which carried code targeting Copay wallet builds.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "introduced": "3.3.6",
+          "fixed": "4.0.0"
+        },
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "introduced": "0",
+          "fixed": null
+        }
+      ]
+    },
+    {
+      "advisoryId": "GHSA-9x64-5r7x-2q53",
+      "publishedAtMs": 1598995292000,
+      "modifiedAtMs": 1633095004000,
+      "summary": "Embedded malicious code in flatmap-stream 0.1.1. Published nearly two years after the event-stream advisory, which is itself a known-time fact worth replaying.",
+      "affects": [
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "introduced": "0.1.1",
+          "fixed": null
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "key": "svc:jobs-runner",
+      "name": "jobs-runner",
+      "description": "Background job worker that watches child process trees, so it carries nodemon and ps-tree into production.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "nodemon",
+          "version": "1.13.0",
+          "resolvedAtMs": 1537521164000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "ps-tree",
+          "version": "1.1.0",
+          "resolvedAtMs": 1537521164000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.6",
+          "resolvedAtMs": 1537521164000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "version": "0.1.1",
+          "resolvedAtMs": 1537521164000
+        }
+      ]
+    },
+    {
+      "key": "svc:build-agent",
+      "name": "build-agent",
+      "description": "Shared build machine that runs the gulp task graph for every frontend in the org.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "gulp-livereload",
+          "version": "3.8.1",
+          "resolvedAtMs": 1538489111000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.6",
+          "resolvedAtMs": 1538489111000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "version": "0.1.1",
+          "resolvedAtMs": 1538489111000
+        }
+      ]
+    },
+    {
+      "key": "svc:asset-pipeline",
+      "name": "asset-pipeline",
+      "description": "Image and bundle pipeline whose lockfile was last refreshed the day before the compromise was noticed in public.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "gulp-livereload",
+          "version": "3.8.1",
+          "resolvedAtMs": 1542613682000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.6",
+          "resolvedAtMs": 1542613682000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "version": "0.1.1",
+          "resolvedAtMs": 1542613682000
+        }
+      ]
+    },
+    {
+      "key": "svc:search-indexer",
+      "name": "search-indexer",
+      "description": "Batch indexer that forks worker processes and reaps their trees on shutdown.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "ps-tree",
+          "version": "1.1.0",
+          "resolvedAtMs": 1540898555000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.6",
+          "resolvedAtMs": 1540898555000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "flatmap-stream",
+          "version": "0.1.1",
+          "resolvedAtMs": 1540898555000
+        }
+      ]
+    },
+    {
+      "key": "svc:checkout-web",
+      "name": "checkout-web",
+      "description": "Storefront checkout, frozen on an older lockfile since August and therefore never exposed.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.4",
+          "resolvedAtMs": 1534240989000
+        }
+      ]
+    },
+    {
+      "key": "svc:ledger-api",
+      "name": "ledger-api",
+      "description": "Ledger service whose dependencies were refreshed two days after disclosure, landing on the fixed 4.x line.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "4.0.1",
+          "resolvedAtMs": 1543423312000
+        }
+      ]
+    },
+    {
+      "key": "svc:notification-worker",
+      "name": "notification-worker",
+      "description": "Outbound email and push worker, refreshed the morning after the advisory and so on the pinned ps-tree fix.",
+      "resolved": [
+        {
+          "ecosystem": "npm",
+          "name": "ps-tree",
+          "version": "1.2.0",
+          "resolvedAtMs": 1543310100000
+        },
+        {
+          "ecosystem": "npm",
+          "name": "event-stream",
+          "version": "3.3.4",
+          "resolvedAtMs": 1543310100000
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "atMs": 1536481739503,
+      "kind": "published",
+      "label": "2018-09-09T08:28:59.503Z event-stream 3.3.6 published, adding the flatmap-stream dependency",
+      "sourceUrl": "https://registry.npmjs.org/event-stream"
+    },
+    {
+      "atMs": 1536481739503,
+      "kind": "published",
+      "label": "2018-09-09T08:28:59.503Z earliest instant flatmap-stream 0.1.1 could be installed, derived from the event-stream 3.3.6 publish time because npm removed the version",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1537096820938,
+      "kind": "published",
+      "label": "2018-09-16T11:20:20.938Z event-stream 4.0.0 published without the dependency, the version the advisory would later name as the fix",
+      "sourceUrl": "https://registry.npmjs.org/event-stream"
+    },
+    {
+      "atMs": 1537521164000,
+      "kind": "resolved",
+      "label": "2018-09-21T09:12:44.000Z demo service jobs-runner locks event-stream 3.3.6 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1538204149107,
+      "kind": "published",
+      "label": "2018-09-29T06:55:49.107Z event-stream 4.0.1 published",
+      "sourceUrl": "https://registry.npmjs.org/event-stream"
+    },
+    {
+      "atMs": 1538489111000,
+      "kind": "resolved",
+      "label": "2018-10-02T14:05:11.000Z demo service build-agent locks event-stream 3.3.6 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1540898555000,
+      "kind": "resolved",
+      "label": "2018-10-30T11:22:35.000Z demo service search-indexer locks event-stream 3.3.6 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1542613682000,
+      "kind": "resolved",
+      "label": "2018-11-19T07:48:02.000Z demo service asset-pipeline locks event-stream 3.3.6, one day before the public report (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1542749161000,
+      "kind": "detected",
+      "label": "2018-11-20T21:26:01Z event-stream issue 116 opened, the first public report of the flatmap-stream payload",
+      "sourceUrl": "https://github.com/dominictarr/event-stream/issues/116"
+    },
+    {
+      "atMs": 1543256146843,
+      "kind": "patched",
+      "label": "2018-11-26T18:15:46.843Z ps-tree 1.1.1 published, pinning event-stream to 3.3.4",
+      "sourceUrl": "https://registry.npmjs.org/ps-tree"
+    },
+    {
+      "atMs": 1543261164956,
+      "kind": "patched",
+      "label": "2018-11-26T19:39:24.956Z ps-tree 1.2.0 published",
+      "sourceUrl": "https://registry.npmjs.org/ps-tree"
+    },
+    {
+      "atMs": 1543276701000,
+      "kind": "disclosed",
+      "label": "2018-11-26T23:58:21Z GHSA-mh6f-8j2x-4483 published, which is the instant every scanner could start answering correctly",
+      "sourceUrl": "https://github.com/advisories/GHSA-mh6f-8j2x-4483"
+    },
+    {
+      "atMs": 1543310100000,
+      "kind": "resolved",
+      "label": "2018-11-27T09:15:00.000Z demo service notification-worker refreshes onto ps-tree 1.2.0 after disclosure (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1543423312000,
+      "kind": "resolved",
+      "label": "2018-11-28T16:41:52.000Z demo service ledger-api refreshes onto event-stream 4.0.1 (invented demo fixture, not a reported event)",
+      "sourceUrl": null
+    },
+    {
+      "atMs": 1543510562864,
+      "kind": "unpublished",
+      "label": "2018-11-29T16:56:02.864Z flatmap-stream 0.0.1-security placeholder created, the registry record of the package removal",
+      "sourceUrl": "https://registry.npmjs.org/flatmap-stream"
+    }
+  ],
+  "sources": [
+    "https://registry.npmjs.org/event-stream",
+    "https://registry.npmjs.org/flatmap-stream",
+    "https://registry.npmjs.org/ps-tree",
+    "https://registry.npmjs.org/nodemon",
+    "https://registry.npmjs.org/gulp-livereload",
+    "https://github.com/advisories/GHSA-mh6f-8j2x-4483",
+    "https://github.com/advisories/GHSA-9x64-5r7x-2q53",
+    "https://api.osv.dev/v1/vulns/GHSA-mh6f-8j2x-4483",
+    "https://github.com/dominictarr/event-stream/issues/116",
+    "https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident"
+  ]
+}

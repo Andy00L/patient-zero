@@ -1,0 +1,58 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@babel/core':
+        specifier: ^7.24.0
+        version: 7.24.0
+      chalk:
+        specifier: ^5.3.1
+        version: 5.3.1
+    devDependencies:
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
+packages:
+
+  '@babel/core@7.24.0':
+    resolution: {integrity: sha512-fixtureBabelCore==}
+    engines: {node: '>=6.9.0'}
+
+  chalk@5.3.1:
+    resolution: {integrity: sha512-fixtureChalk==}
+    engines: {node: ^12.17.0 || ^14.13 || '>=16.0.0'}
+
+  react-dom@18.2.0:
+    resolution: {integrity: sha512-fixtureReactDom==}
+    peerDependencies:
+      react: ^18.2.0
+
+  react@18.2.0:
+    resolution: {integrity: sha512-fixtureReact==}
+    engines: {node: '>=0.10.0'}
+
+  typescript@5.4.5:
+    resolution: {integrity: sha512-fixtureTypescript==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+snapshots:
+
+  '@babel/core@7.24.0': {}
+
+  chalk@5.3.1: {}
+
+  react-dom@18.2.0(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+
+  react@18.2.0: {}
+
+  typescript@5.4.5: {}
