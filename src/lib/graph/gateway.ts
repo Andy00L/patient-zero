@@ -1,4 +1,5 @@
-import type { NodeLabel, RelType } from "@/lib/graph/model";
+import { NODE_LABELS, type NodeLabel, REL_TYPES, type RelType } from "@/lib/graph/model";
+import type { SliceCounts } from "@/lib/graph/slice-manifest";
 import { type Failure, type Result, succeed } from "@/lib/result";
 
 /**
@@ -64,6 +65,16 @@ export type GraphGateway = {
 
   /** Counts nodes carrying a label. Used by the health check and the README numbers. */
   countNodes(label: NodeLabel): Promise<Result<number, Failure>>;
+
+  /**
+   * Counts relationships of one type.
+   *
+   * Exists because the slice manifest states a resolution edge count, and a live graph is
+   * the only thing that knows how many it holds: two scripts push into the same engine and
+   * neither can compute the union from its own half. A count read back from the graph is
+   * what keeps that claim from describing a different graph than the one answering.
+   */
+  countEdges(relType: RelType): Promise<Result<number, Failure>>;
 
   /** A log-safe description of where this gateway reads from. Never holds a secret. */
   describe(): string;
@@ -257,4 +268,48 @@ export async function isGraphEmpty(gateway: GraphGateway): Promise<Result<boolea
   const count = await gateway.countNodes("Version");
   if (!count.ok) return count;
   return succeed(count.value === 0);
+}
+
+/**
+ * Counts everything a slice manifest states, by asking the graph.
+ *
+ * Two callers, reaching the same problem from opposite ends. The live seed writes the coverage
+ * record after pushing, and cannot compute the counts itself because a registry ingest wrote
+ * into the same engine first. The loader reads that record back beside a live engine, and cannot
+ * trust its counts for the same reason: they were written by whichever script ran last. Both
+ * need the number the graph itself holds, so the sequence lives here, once, next to the contract
+ * it is expressed in.
+ *
+ * `resolutionEdges` sums RESOLVES_TO and RESOLVED because that is what a resolution edge means
+ * everywhere else the count is produced: a pin, whether a lockfile wrote it or a dependency
+ * range resolved to it. sourceRef: src/lib/graph/merge-snapshots.ts countMergedSlice.
+ *
+ * The first failure stops the read and is returned whole. A count set with six real numbers and
+ * one guess would be worse than none, because nothing downstream could tell which is the guess.
+ */
+export async function readGraphCounts(gateway: GraphGateway): Promise<Result<SliceCounts, Failure>> {
+  const packages = await gateway.countNodes(NODE_LABELS.package);
+  if (!packages.ok) return packages;
+  const versions = await gateway.countNodes(NODE_LABELS.version);
+  if (!versions.ok) return versions;
+  const maintainers = await gateway.countNodes(NODE_LABELS.maintainer);
+  if (!maintainers.ok) return maintainers;
+  const services = await gateway.countNodes(NODE_LABELS.service);
+  if (!services.ok) return services;
+  const advisories = await gateway.countNodes(NODE_LABELS.advisory);
+  if (!advisories.ok) return advisories;
+
+  const resolvesTo = await gateway.countEdges(REL_TYPES.resolvesTo);
+  if (!resolvesTo.ok) return resolvesTo;
+  const resolved = await gateway.countEdges(REL_TYPES.resolved);
+  if (!resolved.ok) return resolved;
+
+  return succeed({
+    packages: packages.value,
+    versions: versions.value,
+    maintainers: maintainers.value,
+    services: services.value,
+    advisories: advisories.value,
+    resolutionEdges: resolvesTo.value + resolved.value,
+  });
 }

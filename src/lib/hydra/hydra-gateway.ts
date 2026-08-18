@@ -19,15 +19,18 @@ import {
   REL_PROPERTY_NAMES,
   SELECTOR_PROPERTY,
   type NodeLabel,
+  type RelType,
 } from "@/lib/graph/model";
 import {
   buildCountStatement,
+  buildEdgeCountStatement,
   buildIdListStatement,
   buildMultiSourcePathStatement,
   buildNeighborStatement,
   buildReadNodesStatement,
   buildResolveKeysStatement,
   buildSingleSourcePathStatement,
+  packStatements,
 } from "@/lib/hydra/cypher";
 import { MAX_QUERY_RESULT_VERTICES } from "@/lib/hydra/config";
 import type { GraphTransport } from "@/lib/hydra/transport";
@@ -52,27 +55,19 @@ import { type Failure, type Result, fail, succeed } from "@/lib/result";
  *      is applied client side. That costs nothing, because the engine hydrates each
  *      path node's complete label set on the way out.
  *
- *   3. Selector values and id lists become query text or parameters that have to fit
- *      inside a 1 MiB request body, and selector scans are metered against
- *      max_query_index_candidates. Both are chunked here, and results are merged.
+ *   3. Selector values and id lists become query TEXT, and the engine accepts at most
+ *      1,024 bytes of it. Neither read is therefore issued as one statement: both are
+ *      packed into as many statements as their text needs, by packStatements, and the
+ *      results are merged. The chunk size is measured off the built text rather than
+ *      chosen, because the same item count produces very different text lengths across
+ *      the five labels. sourceRef: src/lib/hydra/config.ts MAX_QUERY_TEXT_BYTES.
+ *
+ *      The byte budget also settles the two budgets that used to bound these chunks. A
+ *      statement under 1,024 bytes cannot name enough selector values to approach the
+ *      250,000 candidate ceiling, and cannot carry a request body near 1 MiB unless its
+ *      parameters do, which only the batch writers' `$rows` does.
  */
 export class HydraGateway implements GraphGateway {
-  /**
-   * Natural keys per algo.MSpaths call. Each key is inlined as a string literal, so
-   * this bounds query text length; it also keeps one call well inside the engine's
-   * 250,000 selector candidate budget.
-   */
-  private static readonly SELECTOR_CHUNK_SIZE = 256;
-
-  /**
-   * Node ids per read. The many-id form is an OR chain post-filtering a label scan, so
-   * a larger chunk buys fewer round trips but a longer predicate. The parser is
-   * libcypher-parser, whose recursion depth this project cannot read (the engine sets
-   * RUST_MIN_STACK precisely because of it), so the chunk stays in the low hundreds
-   * rather than the thousands. sourceRef: docs/HYDRADB.md sections 2.3 and 11.
-   */
-  private static readonly READ_CHUNK_SIZE = 256;
-
   constructor(private readonly transport: GraphTransport) {}
 
   async pathsFromSource(request: PathRequest): Promise<Result<GraphPath[], Failure>> {
@@ -94,13 +89,11 @@ export class HydraGateway implements GraphGateway {
   async pathsFromSources(request: MultiSourcePathRequest): Promise<Result<GraphPath[], Failure>> {
     if (request.sourceKeys.length === 0) return succeed([]);
 
-    const paths: GraphPath[] = [];
-
-    for (const chunk of chunkArray(request.sourceKeys, HydraGateway.SELECTOR_CHUNK_SIZE)) {
-      // Each chunk gets the full path budget rather than a share of it: the caller's
-      // pathCount is a per-request cap, and splitting it across chunks would make the
-      // answer depend on how the keys happened to be grouped.
-      const built = buildMultiSourcePathStatement({
+    // Each statement gets the full path budget rather than a share of it: the caller's
+    // pathCount is a per-request cap, and splitting it across statements would make the
+    // answer depend on how the keys happened to be grouped.
+    const packed = packStatements("HydraGateway.pathsFromSources", request.sourceKeys, (chunk) =>
+      buildMultiSourcePathStatement({
         sourceLabel: request.sourceLabel,
         sourceProperty: SELECTOR_PROPERTY,
         sourceValues: chunk,
@@ -108,10 +101,14 @@ export class HydraGateway implements GraphGateway {
         direction: request.direction,
         maxLength: request.maxLength,
         pathCount: request.pathCount,
-      });
-      if (!built.ok) return built;
+      }),
+    );
+    if (!packed.ok) return packed;
 
-      const rows = await this.transport.run(built.value);
+    const paths: GraphPath[] = [];
+
+    for (const statement of packed.value) {
+      const rows = await this.transport.run(statement);
       if (!rows.ok) return rows;
 
       const decoded = decodePathRows(rows.value, request.targetLabel);
@@ -135,13 +132,15 @@ export class HydraGateway implements GraphGateway {
     if (request.nodeIds.length === 0) return succeed([]);
 
     const propertyNames = NODE_PROPERTY_NAMES[request.label];
+    const packed = packStatements("HydraGateway.readNodes", request.nodeIds, (chunk) =>
+      buildReadNodesStatement(request.label, propertyNames, chunk),
+    );
+    if (!packed.ok) return packed;
+
     const records: GraphNodeRecord[] = [];
 
-    for (const chunk of chunkArray(request.nodeIds, HydraGateway.READ_CHUNK_SIZE)) {
-      const built = buildReadNodesStatement(request.label, propertyNames, chunk);
-      if (!built.ok) return built;
-
-      const rows = await this.transport.run(built.value);
+    for (const statement of packed.value) {
+      const rows = await this.transport.run(statement);
       if (!rows.ok) return rows;
 
       for (const row of rows.value) {
@@ -279,6 +278,32 @@ export class HydraGateway implements GraphGateway {
     return succeed(idRows.value.length);
   }
 
+  /**
+   * Counts relationships of one type.
+   *
+   * No fallback, unlike `countNodes`: an edge id cannot be projected in this subset, so
+   * there is no id list to count client side and a rejected aggregate is the answer. The
+   * caller gets the transport's own failure, which names whether the engine refused the
+   * statement or never answered.
+   */
+  async countEdges(relType: RelType): Promise<Result<number, Failure>> {
+    const aggregate = buildEdgeCountStatement(relType);
+    if (!aggregate.ok) return aggregate;
+
+    const rows = await this.transport.run(aggregate.value);
+    if (!rows.ok) return rows;
+
+    const total = rows.value[0]?.total;
+    if (typeof total !== "number") {
+      return fail(
+        "graph_rejected",
+        `[HydraGateway.countEdges] the ${relType} count returned no numeric total`,
+        { context: { relType, rowCount: rows.value.length } },
+      );
+    }
+    return succeed(total);
+  }
+
   describe(): string {
     return this.transport.describe();
   }
@@ -361,12 +386,4 @@ function asScalar(value: DecodedValue): GraphPropertyValue | null {
   return kind === "string" || kind === "number" || kind === "boolean"
     ? (value as GraphPropertyValue)
     : null;
-}
-
-function chunkArray<TItem>(items: readonly TItem[], chunkSize: number): TItem[][] {
-  const chunks: TItem[][] = [];
-  for (let start = 0; start < items.length; start += chunkSize) {
-    chunks.push(items.slice(start, start + chunkSize));
-  }
-  return chunks;
 }

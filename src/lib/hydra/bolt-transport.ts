@@ -1,7 +1,11 @@
 import neo4j, { type Driver } from "neo4j-driver";
 
 import type { HydraConfig } from "@/lib/hydra/config";
-import type { GraphStatement, GraphTransport } from "@/lib/hydra/transport";
+import {
+  type GraphStatement,
+  type GraphTransport,
+  refuseOversizedStatement,
+} from "@/lib/hydra/transport";
 import type {
   DecodedPath,
   DecodedPathNode,
@@ -34,6 +38,13 @@ export class BoltTransport implements GraphTransport {
   constructor(private readonly config: HydraConfig) {}
 
   async run(statement: GraphStatement): Promise<Result<DecodedRow[], Failure>> {
+    // Guarded here too, on the measured HTTP limit. Whether Bolt shares it was never
+    // measured, so this is the conservative side of that gap: an unmeasured cap costs
+    // large reads extra round trips, and skipping the check would leave a second path
+    // on which a statement is silently truncated instead of refused.
+    const oversized = refuseOversizedStatement("BoltTransport.run", statement);
+    if (oversized !== null) return { ok: false, failure: oversized };
+
     const driver = this.ensureDriver();
     if (!driver.ok) return driver;
 

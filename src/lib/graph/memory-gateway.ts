@@ -158,6 +158,12 @@ export class MemoryGraph implements GraphGateway {
     return succeed(count);
   }
 
+  async countEdges(relType: RelType): Promise<Result<number, Failure>> {
+    let count = 0;
+    for (const edge of this.edgesById.values()) if (edge.relType === relType) count += 1;
+    return succeed(count);
+  }
+
   describe(): string {
     return `memory ${this.nodesById.size} nodes ${this.edgesById.size} edges`;
   }

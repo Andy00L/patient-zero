@@ -271,13 +271,17 @@ test("a package in both inputs becomes one node that carries both sides' edges",
   expect(merged.report.addedEdges).toBe(6);
   expect(merged.snapshot.edges.length).toBe(9);
 
+  // Two resolution edges, not one: the count sums RESOLVED and RESOLVES_TO, and the two
+  // assertions above already proved the merge kept exactly one of each. A merged graph that
+  // reported one would be hiding half of what a lockfile contributes.
+  // sourceRef: src/lib/graph/merge-snapshots.ts (countMergedSlice)
   expect(merged.snapshot.manifest.counts).toEqual({
     packages: 2,
     versions: 2,
     maintainers: 1,
     services: 1,
     advisories: 1,
-    resolutionEdges: 1,
+    resolutionEdges: 2,
   });
 });
 

@@ -1,5 +1,9 @@
-import { MAX_TRAVERSAL_HOPS } from "@/lib/hydra/config";
-import type { GraphStatement, StatementParameterValue } from "@/lib/hydra/transport";
+import { MAX_QUERY_TEXT_BYTES, MAX_TRAVERSAL_HOPS } from "@/lib/hydra/config";
+import {
+  type GraphStatement,
+  type StatementParameterValue,
+  measureQueryTextBytes,
+} from "@/lib/hydra/transport";
 import type { TraversalDirection } from "@/lib/graph/gateway";
 import { SELECTOR_PROPERTY, type NodeLabel, type RelType } from "@/lib/graph/model";
 import { type Failure, type Result, fail, succeed } from "@/lib/result";
@@ -384,6 +388,28 @@ export function buildCountStatement(label: NodeLabel): Result<GraphStatement, Fa
   });
 }
 
+/**
+ * Counts relationships of one type.
+ *
+ * Both endpoints are anonymous, because the count is over the type and constraining the
+ * endpoints would answer a narrower question than the manifest asks. The engine accepts the
+ * anonymous form: `MATCH ()-[r:RESOLVED]->() RETURN count(*) AS total` and the labelled form
+ * both return the same number against the seeded graph, measured in docs/MEASUREMENTS.md.
+ *
+ * There is no client-side fallback the way `buildCountStatement` has one. A relationship
+ * binding cannot project an id (`edge.id` is rejected outright by the row lowering), so an
+ * id list of edges is not expressible in this subset and a failed aggregate is a failure.
+ * sourceRef: docs/HYDRADB.md (relationship bindings project no id).
+ */
+export function buildEdgeCountStatement(relType: RelType): Result<GraphStatement, Failure> {
+  const validated = validateRelType(relType);
+  if (!validated.ok) return validated;
+  return succeed({
+    text: `MATCH ()-[r:${validated.value}]->() RETURN count(*) AS total`,
+    parameters: {},
+  });
+}
+
 /** The fallback for buildCountStatement: ids only, counted client side. */
 export function buildIdListStatement(
   label: NodeLabel,
@@ -518,6 +544,92 @@ export function buildMultiSourcePathStatement(
       `pathCount: ${bounds.value.pathCount}}) YIELD path RETURN path`,
     parameters: {},
   });
+}
+
+/**
+ * Splits an input list into as many statements as its query text needs.
+ *
+ * Three builders in this file grow with their input: the many-id read, the many-key
+ * resolve, and the multi-source traversal. All three cross the engine's query text
+ * limit somewhere between 25 and 68 items depending on which one it is and how long the
+ * names in it are, and over that limit the engine parses the statement truncated rather
+ * than refusing it. sourceRef: src/lib/hydra/config.ts MAX_QUERY_TEXT_BYTES.
+ *
+ * So the chunk size is not a constant any caller can pick correctly. It is derived here,
+ * from the text the builder actually emits: `build` is called on a candidate slice and
+ * the result is measured, which is the only way the arithmetic cannot drift from the
+ * builders. A per-builder estimate of "bytes per item" would be a second copy of each
+ * statement's shape, and the copy would go stale the first time a projection list gained
+ * a property.
+ *
+ * The search is a doubling probe followed by a bisect rather than one item at a time,
+ * because a list of a few thousand ids would otherwise cost a few thousand string builds
+ * to pack. Both steps rely on one property of the builders: each item contributes one
+ * more term to the text, so a slice that does not fit cannot start fitting when another
+ * item is appended to it.
+ *
+ * A build failure is returned as it stands rather than treated as "does not fit": the
+ * builders reject a bad label or an unsafe literal, and neither gets better in a smaller
+ * chunk. A single item whose statement is already too long is also a Failure, because the
+ * alternative is an infinite loop that never closes a chunk.
+ */
+export function packStatements<TItem>(
+  origin: string,
+  items: readonly TItem[],
+  build: (chunk: TItem[]) => Result<GraphStatement, Failure>,
+): Result<GraphStatement[], Failure> {
+  const statements: GraphStatement[] = [];
+  let start = 0;
+
+  while (start < items.length) {
+    const remaining = items.length - start;
+    // `fittingCount` is the largest count known to fit, `overflowCount` the smallest known
+    // not to. Zero means nothing is known yet on that side.
+    let fitting: GraphStatement | null = null;
+    let fittingCount = 0;
+    let overflowCount = 0;
+
+    for (let probe = 1; probe <= remaining; probe = Math.min(probe * 2, remaining)) {
+      const built = build(items.slice(start, start + probe));
+      if (!built.ok) return built;
+
+      if (measureQueryTextBytes(built.value.text) > MAX_QUERY_TEXT_BYTES) {
+        overflowCount = probe;
+        break;
+      }
+
+      fitting = built.value;
+      fittingCount = probe;
+      if (probe === remaining) break;
+    }
+
+    while (overflowCount - fittingCount > 1) {
+      const middle = fittingCount + Math.floor((overflowCount - fittingCount) / 2);
+      const built = build(items.slice(start, start + middle));
+      if (!built.ok) return built;
+
+      if (measureQueryTextBytes(built.value.text) > MAX_QUERY_TEXT_BYTES) {
+        overflowCount = middle;
+        continue;
+      }
+      fitting = built.value;
+      fittingCount = middle;
+    }
+
+    if (fitting === null) {
+      return fail(
+        "query_budget_exceeded",
+        `[${origin}] item ${start} alone builds a statement over the ` +
+          `${MAX_QUERY_TEXT_BYTES} byte query text limit, so this list cannot be packed`,
+        { context: { itemIndex: start, itemCount: items.length } },
+      );
+    }
+
+    statements.push(fitting);
+    start += fittingCount;
+  }
+
+  return succeed(statements);
 }
 
 /**

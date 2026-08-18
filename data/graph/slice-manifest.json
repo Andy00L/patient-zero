@@ -130,11 +130,11 @@
   "closedServiceKeys": [],
   "counts": {
     "packages": 402,
-    "versions": 689,
+    "versions": 721,
     "maintainers": 117,
-    "services": 0,
+    "services": 30,
     "advisories": 77,
-    "resolutionEdges": 443
+    "resolutionEdges": 506
   },
   "notes": [
     "332 versions were referenced but never fetched, so they are stubs and every package that reaches one is marked partial",
@@ -146,6 +146,7 @@
     "expansion follows dependency edges only: no public API lists a package's dependents by name, so dependent coverage is exactly the seed set and a dependents answer over any other package is unknown",
     "the package budget of 120 was reached, so reachable packages are missing from this slice",
     "at least one package has more versions than the per-package budget of 3, so its version history is incomplete",
-    "the expansion depth budget of 1 was reached, so the deepest level of this slice resolves into stubs"
+    "the expansion depth budget of 1 was reached, so the deepest level of this slice resolves into stubs",
+    "Counts in this record were read back from the graph, so they describe every run that has written to it rather than the run that wrote this file."
   ]
 }

@@ -38,9 +38,11 @@ const MAX_RECORDED_OPERATIONS = 200;
 /**
  * How much statement text is kept.
  *
- * A chunked read inlines up to 256 keys in one OR chain, which is thousands of characters of
- * repetition that says nothing the first two clauses did not. The tail is dropped with a
- * marker so the reader knows the query was longer than what they see.
+ * Set just above the 1,024 bytes the engine itself accepts (MAX_QUERY_TEXT_BYTES in
+ * src/lib/hydra/config.ts), so a statement that ran is printed whole and a statement that was
+ * refused for being too long is printed far enough to show why. Not read from that constant,
+ * because this record also describes in-process operations that no engine ever saw, and a
+ * display cap that imports an engine limit would make the provenance panel Hydra-specific.
  */
 const MAX_STATEMENT_LENGTH = 1200;
 

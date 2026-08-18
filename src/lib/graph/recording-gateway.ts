@@ -10,7 +10,7 @@ import type {
   ReadNodesRequest,
   ResolveNodeIdsRequest,
 } from "@/lib/graph/gateway";
-import type { NodeLabel } from "@/lib/graph/model";
+import type { NodeLabel, RelType } from "@/lib/graph/model";
 import { isRecording, recordOperation } from "@/lib/graph/statements";
 import type { Failure, Result } from "@/lib/result";
 
@@ -97,6 +97,15 @@ export class RecordingGateway implements GraphGateway {
       () => `${label} nodes`,
       () => this.inner.countNodes(label),
       // One aggregate row. The count itself is the answer, not the size of the result.
+      () => 1,
+    );
+  }
+
+  countEdges(relType: RelType): Promise<Result<number, Failure>> {
+    return this.observe(
+      "countEdges",
+      () => `${relType} relationships`,
+      () => this.inner.countEdges(relType),
       () => 1,
     );
   }

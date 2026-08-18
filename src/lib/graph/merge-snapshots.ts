@@ -8,10 +8,10 @@ import {
   UNKNOWN_NUMERIC_VALUE,
 } from "@/lib/graph/model";
 import {
-  type Coverage,
   SLICE_MANIFEST_VERSION,
   type SliceCounts,
   type SliceManifest,
+  mergeSliceCoverage,
 } from "@/lib/graph/slice-manifest";
 import {
   buildGraphSnapshot,
@@ -57,12 +57,6 @@ import { type Failure, fail, type Result, succeed } from "@/lib/result";
  * Pure by construction: no clock, no filesystem, no logging. The caller states the instant
  * and the source, and `scripts/build-demo-graph.ts` does the input and output.
  */
-
-/**
- * Coverage claims ordered weakest first, so merging two claims is an index comparison.
- * sourceRef: src/lib/graph/slice-manifest.ts Coverage.
- */
-const COVERAGE_WEAKEST_FIRST: readonly Coverage[] = ["absent", "partial", "closed"];
 
 /** Separator inside the "label + key" identity used to unify nodes. */
 const IDENTITY_SEPARATOR = " ";
@@ -428,35 +422,15 @@ type MergeManifestsInput = {
  * Counts are recomputed from the merged graph rather than added up, because a package both
  * snapshots hold is one node and a summed count would overstate the slice.
  *
- * Coverage takes the weaker of the two claims. "absent" is not a claim, it is what a
- * manifest says about every key it never heard of, so a subject only one side describes
- * keeps that side's claim; a subject both sides describe takes the weaker of the two, which
- * is what makes "partial on one side, closed on the other" resolve to partial. Overstating
- * coverage would turn an empty traversal into a clean `not_exposed` over a graph that never
- * held the dependents.
+ * Coverage is merged by the shared weaker-wins rule, which the live seed applies to the same
+ * problem over an engine instead of over two files.
+ * sourceRef: src/lib/graph/slice-manifest.ts mergeSliceCoverage.
  */
 function mergeManifests(input: MergeManifestsInput): SliceManifest {
   const firstManifest = input.first.manifest;
   const secondManifest = input.second.manifest;
 
-  const packageCoverage = mergeCoverageClaims(
-    readPackageClaims(firstManifest),
-    readPackageClaims(secondManifest),
-  );
-
-  const closedPackageKeys: string[] = [];
-  const partialPackageKeys: string[] = [];
-  for (const [packageKeyValue, coverage] of [...packageCoverage].sort(compareByKey)) {
-    if (coverage === "closed") closedPackageKeys.push(packageKeyValue);
-    else if (coverage === "partial") partialPackageKeys.push(packageKeyValue);
-  }
-
-  // A service manifest has one list, so the only claim it can make is "closed" and the
-  // weaker-wins rule has nothing to weaken: the merged list is the union of the two.
-  const closedServiceKeys = dedupe([
-    ...firstManifest.closedServiceKeys,
-    ...secondManifest.closedServiceKeys,
-  ]).sort();
+  const coverage = mergeSliceCoverage(firstManifest, secondManifest);
 
   const notes = dedupe([...firstManifest.notes, ...secondManifest.notes]);
   notes.push(
@@ -473,52 +447,10 @@ function mergeManifests(input: MergeManifestsInput): SliceManifest {
   return {
     version: SLICE_MANIFEST_VERSION,
     generatedAtMs: input.generatedAtMs,
-    ecosystems: dedupe([...firstManifest.ecosystems, ...secondManifest.ecosystems]),
-    closedPackageKeys,
-    partialPackageKeys,
-    closedServiceKeys,
+    ...coverage,
     counts: countMergedSlice(input.graph),
     notes,
   };
-}
-
-/** The coverage each manifest claims per package key. Keys it never names are absent. */
-function readPackageClaims(manifest: SliceManifest): Map<string, Coverage> {
-  const claims = new Map<string, Coverage>();
-
-  for (const packageKeyValue of manifest.closedPackageKeys) claims.set(packageKeyValue, "closed");
-  for (const packageKeyValue of manifest.partialPackageKeys) {
-    const stated = claims.get(packageKeyValue);
-    // A manifest that lists one key as both closed and partial is claiming two things at
-    // once, so the weaker claim is what this graph can defend.
-    const merged = stated === undefined ? "partial" : weakerCoverage(stated, "partial");
-    claims.set(packageKeyValue, merged);
-  }
-
-  return claims;
-}
-
-function mergeCoverageClaims(
-  firstClaims: ReadonlyMap<string, Coverage>,
-  secondClaims: ReadonlyMap<string, Coverage>,
-): Map<string, Coverage> {
-  const merged = new Map<string, Coverage>(firstClaims);
-
-  for (const [subject, secondCoverage] of secondClaims) {
-    const firstCoverage = merged.get(subject);
-    merged.set(
-      subject,
-      firstCoverage === undefined ? secondCoverage : weakerCoverage(firstCoverage, secondCoverage),
-    );
-  }
-
-  return merged;
-}
-
-function weakerCoverage(left: Coverage, right: Coverage): Coverage {
-  return COVERAGE_WEAKEST_FIRST.indexOf(left) <= COVERAGE_WEAKEST_FIRST.indexOf(right)
-    ? left
-    : right;
 }
 
 /** Node and edge counts of the merged graph, in the shape the manifest declares. */
@@ -553,13 +485,6 @@ function countMergedSlice(graph: MemoryGraph): SliceCounts {
     advisories: countByLabel.get(NODE_LABELS.advisory) ?? 0,
     resolutionEdges,
   };
-}
-
-function compareByKey(
-  left: readonly [string, Coverage],
-  right: readonly [string, Coverage],
-): number {
-  return left[0].localeCompare(right[0]);
 }
 
 /** Keeps the first occurrence of every value, so the merged order stays deterministic. */

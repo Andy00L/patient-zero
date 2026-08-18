@@ -37,9 +37,10 @@ import { readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import { partitionVersionsByAffected } from "@/lib/analysis/semver-facts";
+import { type CoverageRecord, recordLiveGraphCoverage } from "@/lib/graph/coverage-record";
 import { MemoryGraph } from "@/lib/graph/memory-gateway";
 import { type Ecosystem, UNKNOWN_NUMERIC_VALUE, packageKey, versionKey } from "@/lib/graph/model";
-import { DEFAULT_SLICE_MANIFEST_PATH, type SliceManifest } from "@/lib/graph/slice-manifest";
+import type { SliceManifest } from "@/lib/graph/slice-manifest";
 import {
   DEFAULT_GRAPH_SNAPSHOT_PATH,
   buildGraphSnapshot,
@@ -48,6 +49,7 @@ import {
 import { BoltTransport } from "@/lib/hydra/bolt-transport";
 import { type HydraConfig, describeTokenForLog, readHydraConfigFromEnv } from "@/lib/hydra/config";
 import { HttpTransport } from "@/lib/hydra/http-transport";
+import { HydraGateway } from "@/lib/hydra/hydra-gateway";
 import { DEFAULT_ID_MAP_PATHS, IdMap } from "@/lib/hydra/id-map";
 import type { GraphTransport } from "@/lib/hydra/transport";
 import {
@@ -81,6 +83,15 @@ const EXIT_NOT_SEEDED = 1;
  * Non-zero so a run that silently seeded three incidents out of four is visible.
  */
 const EXIT_SEEDED_INCOMPLETE = 2;
+
+/**
+ * The live graph was written but its coverage record was not.
+ *
+ * Non-zero because the record is not bookkeeping: without it the app reads the previous
+ * ingest's manifest as a description of a graph that has since grown, and reports counts
+ * for a graph that is not the one answering.
+ */
+const EXIT_SEEDED_NO_COVERAGE = 3;
 
 /** Which writer produced a snapshot, recorded in the file. Log safe: never a path. */
 const SNAPSHOT_SOURCE = "seed-incidents";
@@ -183,8 +194,11 @@ async function runSeed(argumentValues: readonly string[]): Promise<number> {
     edgesWritten: seeded.value.edgesWritten,
     notes: [...mapped.notes, ...seeded.value.notes],
     snapshotPath: seeded.value.snapshotPath,
-    coverageLocation: describeCoverageLocation(seeded.value.snapshotPath),
+    coverageLocation: seeded.value.coverage.location,
   });
+
+  const coverageFailure = seeded.value.coverage.failure;
+  if (coverageFailure !== null) reportFailure("coverage record", coverageFailure);
 
   const failedCount = outcomes.length - loadedPacks.length;
   if (failedCount > 0) {
@@ -192,7 +206,18 @@ async function runSeed(argumentValues: readonly string[]): Promise<number> {
       `[runSeed] seeded ${loadedPacks.length} of ${outcomes.length} pack(s): ${failedCount} failed ` +
         "validation and is absent from the graph",
     );
+    // Ordered before the coverage code because a pack that never loaded is the upstream problem:
+    // the record can only describe the graph once the graph holds what it was meant to hold.
+    // Both diagnostics are already printed, so neither is hidden by the code that is returned.
     return EXIT_SEEDED_INCOMPLETE;
+  }
+
+  if (coverageFailure !== null) {
+    console.error(
+      "[runSeed] the graph was written but nothing on disk describes it, so the app will read the " +
+        "previous record as a description of this graph",
+    );
+    return EXIT_SEEDED_NO_COVERAGE;
   }
 
   console.log(`[runSeed] seeded ${loadedPacks.length} incident pack(s)`);
@@ -312,21 +337,6 @@ async function loadPacks(
 
 function isLoadedOutcome(outcome: PackOutcome): outcome is Extract<PackOutcome, { isLoaded: true }> {
   return outcome.isLoaded;
-}
-
-/**
- * Where the coverage record for the graph this run wrote lives.
- *
- * A snapshot embeds its own slice manifest, so the two cannot be separated or version
- * skewed. A live run writes no manifest at all: `DEFAULT_SLICE_MANIFEST_PATH` is the
- * ingest export's record of the whole slice, and overwriting it with the incident
- * packs alone would tell the app that everything the ingest covered is now absent.
- * An out-of-date record can only make an answer abstain, never make it read clean.
- */
-function describeCoverageLocation(snapshotPath: string | null): string {
-  return snapshotPath === null
-    ? `not written, ${DEFAULT_SLICE_MANIFEST_PATH} stays the ingest export's record`
-    : "embedded in the snapshot";
 }
 
 // ---------------------------------------------------------------------------
@@ -610,6 +620,12 @@ type SeedOutcome = {
   edgesWritten: number;
   notes: string[];
   snapshotPath: string | null;
+  /**
+   * What became of the coverage record. Carried out of the sink rather than derived from the
+   * outcome, because only the sink knows: a snapshot embeds its manifest and cannot be separated
+   * from it, while a live seed has to read the engine back and write a file.
+   */
+  coverage: CoverageRecord;
 };
 
 /**
@@ -648,15 +664,21 @@ async function seedSnapshot(
     edgesWritten: written.value.edgesWritten,
     notes: written.value.notes,
     snapshotPath: saved.value.path,
+    coverage: { location: "embedded in the snapshot", failure: null },
   });
 }
 
 /**
- * Builds the graph in a running HydraDB.
+ * Builds the graph in a running HydraDB, then writes the coverage record that describes it.
  *
  * The id map is loaded from disk first and persisted on flush, because reassigning ids
  * for keys the graph already holds would write a second node for the same package rather
  * than updating the first one.
+ *
+ * Two scripts push into one engine: the registry ingest and this one. Neither can describe the
+ * result from its own half, so the record is read back out of the engine while the transport is
+ * still open, which is why the coverage record is written between the flush and the close.
+ * sourceRef: src/lib/graph/coverage-record.ts.
  */
 async function seedLiveGraph(slice: IngestSlice): Promise<Result<SeedOutcome, Failure>> {
   const config = readHydraConfigFromEnv();
@@ -679,6 +701,12 @@ async function seedLiveGraph(slice: IngestSlice): Promise<Result<SeedOutcome, Fa
   const written = await stageAndFlush(writer, slice);
   const destination = transport.describe();
 
+  // Only attempted when the write succeeded: a coverage record read after a failed flush would
+  // describe a half-written graph, and the run is about to be reported as not seeded anyway.
+  const coverage: CoverageRecord = written.ok
+    ? await recordLiveGraphCoverage(new HydraGateway(transport), written.value.manifest)
+    : { location: "not written, the graph write failed", failure: null };
+
   const closed = await closeTransport(transport);
   if (!closed.ok) console.warn(`[seedLiveGraph] ${closed.failure.message}`);
 
@@ -691,6 +719,7 @@ async function seedLiveGraph(slice: IngestSlice): Promise<Result<SeedOutcome, Fa
     edgesWritten: written.value.edgesWritten,
     notes: written.value.notes,
     snapshotPath: null,
+    coverage,
   });
 }
 

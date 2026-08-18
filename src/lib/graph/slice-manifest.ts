@@ -118,6 +118,96 @@ export class SliceCoverage {
   }
 }
 
+/** The coverage half of a manifest: which subjects it claims, and how completely. */
+export type SliceCoverageClaims = {
+  ecosystems: Ecosystem[];
+  closedPackageKeys: string[];
+  partialPackageKeys: string[];
+  closedServiceKeys: string[];
+};
+
+/**
+ * Merges the coverage claims of two manifests that describe one graph.
+ *
+ * Called from two places that both hold two records of the same graph: the snapshot merge,
+ * which unions two files, and the live seed, which unions what it just pushed with whatever
+ * the last ingest into that engine recorded. One implementation, because two copies of a
+ * rule about how strong a claim may be would eventually disagree about it.
+ *
+ * A subject only one side names keeps that side's claim: "absent" is not a claim, it is what
+ * a manifest says about every key it never heard of. A subject both sides name takes the
+ * WEAKER claim, so "partial here, closed there" resolves to partial. Never the stronger: a
+ * graph that reports a clean negative over data it never fully read is the one failure this
+ * project exists to prevent, and coverage is the only thing standing between an empty
+ * traversal and a false `not_exposed`.
+ *
+ * Services have one list, so the only claim expressible about them is "closed" and the
+ * weaker-wins rule has nothing to weaken. Their merged list is the union.
+ */
+export function mergeSliceCoverage(
+  first: SliceManifest,
+  second: SliceManifest,
+): SliceCoverageClaims {
+  const claims = readPackageClaims(first);
+  for (const [subject, secondCoverage] of readPackageClaims(second)) {
+    const firstCoverage = claims.get(subject);
+    claims.set(
+      subject,
+      firstCoverage === undefined ? secondCoverage : weakerCoverage(firstCoverage, secondCoverage),
+    );
+  }
+
+  const closedPackageKeys: string[] = [];
+  const partialPackageKeys: string[] = [];
+  for (const [subject, coverage] of [...claims].sort((left, right) =>
+    left[0].localeCompare(right[0]),
+  )) {
+    if (coverage === "closed") closedPackageKeys.push(subject);
+    else if (coverage === "partial") partialPackageKeys.push(subject);
+  }
+
+  return {
+    ecosystems: dedupe([...first.ecosystems, ...second.ecosystems]),
+    closedPackageKeys,
+    partialPackageKeys,
+    closedServiceKeys: dedupe([
+      ...first.closedServiceKeys,
+      ...second.closedServiceKeys,
+    ]).sort(),
+  };
+}
+
+/** The coverage each manifest claims per package key. Keys it never names are absent. */
+function readPackageClaims(manifest: SliceManifest): Map<string, Coverage> {
+  const claims = new Map<string, Coverage>();
+
+  for (const packageKeyValue of manifest.closedPackageKeys) claims.set(packageKeyValue, "closed");
+  for (const packageKeyValue of manifest.partialPackageKeys) {
+    const stated = claims.get(packageKeyValue);
+    // A manifest that lists one key as both closed and partial is claiming two things at
+    // once, so the weaker claim is what this graph can defend.
+    claims.set(packageKeyValue, stated === undefined ? "partial" : weakerCoverage(stated, "partial"));
+  }
+
+  return claims;
+}
+
+/**
+ * Coverage claims ordered weakest first, so merging two claims is an index comparison.
+ */
+const COVERAGE_WEAKEST_FIRST: readonly Coverage[] = ["absent", "partial", "closed"];
+
+function weakerCoverage(left: Coverage, right: Coverage): Coverage {
+  return COVERAGE_WEAKEST_FIRST.indexOf(left) <= COVERAGE_WEAKEST_FIRST.indexOf(right)
+    ? left
+    : right;
+}
+
+/** Keeps the first occurrence of every value, so a merged order stays deterministic. */
+function dedupe<TValue>(values: readonly TValue[]): TValue[] {
+  return [...new Set(values)];
+}
+
 /** A manifest describing an empty graph. Used before the first ingest runs. */
 export function buildEmptySliceManifest(generatedAtMs: number): SliceManifest {
   return {

@@ -1,5 +1,10 @@
 import { HTTP_MAX_BODY_BYTES, type HydraConfig } from "@/lib/hydra/config";
-import type { GraphStatement, GraphTransport, StatementParameterValue } from "@/lib/hydra/transport";
+import {
+  type GraphStatement,
+  type GraphTransport,
+  type StatementParameterValue,
+  refuseOversizedStatement,
+} from "@/lib/hydra/transport";
 import { type DecodedRow, decodeRow } from "@/lib/hydra/wire";
 import { type Failure, type FailureReason, type Result, fail, succeed } from "@/lib/result";
 
@@ -29,6 +34,11 @@ export class HttpTransport implements GraphTransport {
   constructor(private readonly config: HydraConfig) {}
 
   async run(statement: GraphStatement): Promise<Result<DecodedRow[], Failure>> {
+    // Checked once per statement, not once per page: the text is identical on every page
+    // of a cursor walk, and only the cursor changes between requests.
+    const oversized = refuseOversizedStatement("HttpTransport.run", statement);
+    if (oversized !== null) return { ok: false, failure: oversized };
+
     const rows: DecodedRow[] = [];
     let cursor: number | null = null;
     let queryId: string | null = null;

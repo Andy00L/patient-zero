@@ -1,3 +1,4 @@
+import { MAX_QUERY_TEXT_BYTES } from "@/lib/hydra/config";
 import type { DecodedRow } from "@/lib/hydra/wire";
 import type { Failure, Result } from "@/lib/result";
 
@@ -57,4 +58,51 @@ export function statement(text: string): GraphStatement {
 /** Builds a parameterised statement. */
 export function parameterised(text: string, parameters: StatementParameters): GraphStatement {
   return { text, parameters };
+}
+
+const QUERY_TEXT_ENCODER = new TextEncoder();
+
+/**
+ * Query text size in UTF-8 bytes, which is the unit the engine measures in.
+ *
+ * Every literal this project inlines is forced through an ASCII allowlist
+ * (encodeStringLiteral), so today this equals the string length. It is measured in bytes
+ * anyway, because the day a builder inlines a character outside that allowlist is
+ * exactly the day a length-based check would let an oversized statement through.
+ */
+export function measureQueryTextBytes(text: string): number {
+  return QUERY_TEXT_ENCODER.encode(text).length;
+}
+
+/**
+ * Refuses a statement the engine would parse truncated, before it is sent.
+ *
+ * Both transports call this on the way in, so no statement can reach a server over its
+ * text limit whichever protocol is configured, and a caller reads one message that names
+ * the real problem instead of a parse error from wherever the truncation landed.
+ * sourceRef: src/lib/hydra/config.ts MAX_QUERY_TEXT_BYTES records the measurement.
+ *
+ * The limit was measured over HTTP. Bolt is guarded by the same number without having
+ * been measured separately: if Bolt turns out to accept more, this costs it extra round
+ * trips on large reads, and if it turns out to accept the same, not guarding it would
+ * have left a second silent truncation path in the app.
+ *
+ * The statement text is not put in the message. It can carry package names from a
+ * registry, the message travels into a browser, and the byte count is what the caller
+ * has to act on.
+ */
+export function refuseOversizedStatement(
+  origin: string,
+  statement: GraphStatement,
+): Failure | null {
+  const bytes = measureQueryTextBytes(statement.text);
+  if (bytes <= MAX_QUERY_TEXT_BYTES) return null;
+
+  return {
+    reason: "query_budget_exceeded",
+    message:
+      `[${origin}] a statement of ${bytes} bytes exceeds the ${MAX_QUERY_TEXT_BYTES} byte query ` +
+      "text limit, so the engine would parse it truncated rather than refuse it",
+    context: { queryTextBytes: bytes, limitBytes: MAX_QUERY_TEXT_BYTES },
+  };
 }

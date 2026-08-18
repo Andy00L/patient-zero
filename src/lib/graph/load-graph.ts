@@ -23,9 +23,10 @@
  * down a second ago is retried on the next request.
  */
 
-import type { GraphGateway } from "@/lib/graph/gateway";
+import { type GraphGateway, readGraphCounts } from "@/lib/graph/gateway";
 import {
   SliceCoverage,
+  type SliceCounts,
   type SliceManifest,
   DEFAULT_SLICE_MANIFEST_PATH,
   loadSliceManifest,
@@ -171,10 +172,12 @@ async function openHydra(config: HydraConfig): Promise<Result<LoadedGraph, Failu
   // sourceRef: src/lib/graph/statements.ts.
   const gateway = new RecordingGateway(new HydraGateway(new RecordingTransport(transport.value)));
 
-  // One count before anything else. It is the cheapest question that separates a configured
-  // DSN from a graph that answers, and getting the failure here means a route never has to
-  // explain a transport error in the middle of a blast radius. The number is kept rather than
-  // discarded, because the manifest below is a claim about a graph and this is the graph.
+  // One count before anything else. It is the cheapest question that separates a configured DSN
+  // from a graph that answers, and getting the failure here means a route never has to explain a
+  // transport error in the middle of a blast radius. It stays a separate read from the counts
+  // below even though it asks for one of the same numbers: this one decides whether the live
+  // path is viable at all, and a failure here has to fall through to a snapshot, while a failure
+  // down there is disclosed and the graph still answers.
   const probe = await gateway.countNodes("Version");
   if (!probe.ok) {
     await closeQuietly(gateway);
@@ -193,15 +196,26 @@ async function openHydra(config: HydraConfig): Promise<Result<LoadedGraph, Failu
     );
   }
 
+  // Counts come from the graph, coverage claims come from the file. The two halves of a
+  // manifest have different authorities on a live engine: how much is in there is a question
+  // only the engine can answer, because two scripts push into it and neither sees the union,
+  // while how completely a subject was read is a claim only the ingest that read it can make.
+  // A count read back here cannot go stale between a seed and a page load.
+  // sourceRef: src/lib/graph/gateway.ts readGraphCounts.
+  const observed = await readGraphCounts(gateway);
+  const described: SliceManifest = observed.ok
+    ? { ...manifest.value, counts: observed.value }
+    : manifest.value;
+
   return succeed({
     gateway,
-    coverage: new SliceCoverage(manifest.value),
-    manifest: manifest.value,
+    coverage: new SliceCoverage(described),
+    manifest: described,
     source: {
       kind: "hydradb",
       detail: describeLiveTarget(config),
       generatedAtMs: manifest.value.generatedAtMs,
-      degradedReason: describeManifestSkew(manifest.value, probe.value),
+      degradedReason: describeManifestSkew(manifest.value, observed),
     },
   });
 }
@@ -211,28 +225,42 @@ async function openHydra(config: HydraConfig): Promise<Result<LoadedGraph, Failu
  *
  * On the snapshot path the manifest travels inside the file it describes, so the two cannot
  * disagree. A live engine has no such guarantee: the manifest is a separate file written by
- * whichever ingest ran last, and the engine holds whatever was pushed into it. The two drift in
- * both directions and only one of them is a fault.
+ * whichever script ran last, and the engine holds whatever was pushed into it. The counts above
+ * are read from the engine, so what is left to check is whether the record on disk still
+ * describes the same graph, which is what qualifies the coverage claims that record carries.
  *
- * More in the graph than the manifest claims is the expected shape, not a problem. A live run
- * seeds the incident packs on top of a registry ingest and deliberately leaves the manifest as
- * the ingest's record, because a coverage claim that is behind can only make an answer abstain,
- * never make it read clean. sourceRef: scripts/seed-incidents.ts (describeCoverageLocation).
+ * More in the graph than the record claims is the expected shape, not a problem. A live seed
+ * pushes the incident packs on top of a registry ingest, and a coverage claim that is behind can
+ * only make an answer abstain, never make it read clean.
+ * sourceRef: src/lib/graph/coverage-record.ts recordLiveGraphCoverage.
  *
  * Fewer is a fault, and it is the one that has already been hit in this repository: an engine
  * holding two Version nodes answered every surface from the near-empty path while the rail
- * reported the full ingest, because the rail reads the manifest and the manifest was describing
- * a graph that was no longer there. Reporting it as degraded is what separates "this slice is
+ * reported the full ingest, because the rail read the record and the record was describing a
+ * graph that was no longer there. Reporting it as degraded is what separates "this slice is
  * small" from "this claim is about a different graph".
+ *
+ * A graph that cannot be counted is disclosed too, because then the numbers on the rail are the
+ * record's own and nothing has checked them against the engine that is answering.
  *
  * Counts only. No host, no path, no token: this string is returned to a browser.
  */
-function describeManifestSkew(manifest: SliceManifest, observedVersionCount: number): string | null {
-  const claimed = manifest.counts.versions;
-  if (claimed <= observedVersionCount) return null;
+function describeManifestSkew(
+  recorded: SliceManifest,
+  observed: Result<SliceCounts, Failure>,
+): string | null {
+  if (!observed.ok) {
+    return (
+      "this graph could not be counted, so the sizes shown are the last ingest's record rather " +
+      `than a reading of the graph that is answering (${observed.failure.reason})`
+    );
+  }
+
+  const claimed = recorded.counts.versions;
+  if (claimed <= observed.value.versions) return null;
 
   return (
-    `the slice manifest claims ${claimed} versions but this graph holds ${observedVersionCount}, ` +
+    `the slice manifest claims ${claimed} versions but this graph holds ${observed.value.versions}, ` +
     "so its coverage claim describes a graph that is not the one answering"
   );
 }

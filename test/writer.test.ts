@@ -469,6 +469,29 @@ describe("write statistics", () => {
     expect(stats.notes).toEqual([]);
   });
 
+  test("the graph counts each relationship type separately", async () => {
+    const harness = buildHarness();
+    await stageSmallSlice(harness);
+    await flushOrUnreachable(harness.writer);
+
+    // The slice manifest states one resolution-edge count, and after a live seed that number is
+    // read back from the graph rather than summed from what each script pushed. This is that
+    // read, against the only implementation a test can run without an engine.
+    // sourceRef: src/lib/graph/gateway.ts readGraphCounts.
+    const resolved = await harness.graph.countEdges("RESOLVED");
+    const versionOf = await harness.graph.countEdges("VERSION_OF");
+    const resolvesTo = await harness.graph.countEdges("RESOLVES_TO");
+
+    expect(resolved.ok ? resolved.value : -1).toBe(1);
+    expect(versionOf.ok ? versionOf.value : -1).toBe(1);
+    // Zero, not a failure: a type the slice never wrote is a real count of none, and a
+    // manifest that abstained on it would report a graph nobody can describe.
+    expect(resolvesTo.ok ? resolvesTo.value : -1).toBe(0);
+
+    const perType = (resolved.ok ? resolved.value : 0) + (versionOf.ok ? versionOf.value : 0);
+    expect(perType).toBe(harness.graph.edgeCount);
+  });
+
   test("every node batch is written before any edge batch", async () => {
     const harness = buildHarness();
     await stageSmallSlice(harness);

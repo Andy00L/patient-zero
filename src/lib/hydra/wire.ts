@@ -11,13 +11,34 @@ import { type Failure, type Result, fail, succeed } from "@/lib/result";
  *   {"type": "string", "value": "npm:chalk"}
  *   {"type": "list", "value": [{"type": "integer", "value": 1}]}
  *
- * This module turns those into plain TypeScript values, and fails loudly on the
- * one case that matters: a u64 larger than Number.MAX_SAFE_INTEGER would lose
- * precision silently, and a silently wrong node id would attach a vulnerability to
- * the wrong package. Ids are assigned sequentially by the id-map so this cannot
- * happen with our own data, but a shared graph could hand us anything.
+ * A path cell carries a SECOND, different tagging inside it, and the difference is not
+ * cosmetic. The cell envelope above is a serde container attribute on the response type
+ * (`#[serde(tag = "type", content = "value", rename_all = "snake_case")]` on
+ * HttpQueryValue), but a path node's property map is a BTreeMap of VertexPropertyValue,
+ * which carries no such attribute and so serialises with serde's default external
+ * tagging: a one-key object whose key is the Rust variant name, in PascalCase, with no
+ * "value" field at all.
  *
- * sourceRef: HydraDB src/client/http.rs, HttpQueryValue and QueryPath.
+ *   "properties": {"ecosystem": {"String": "npm"}, "published_at_ms": {"Integer": 1536481739503}}
+ *
+ * Both taggings are decoded here, by two functions, because they are two formats that
+ * happen to both be objects. Reading a property value with the cell decoder gets an
+ * object with no "type" key and reports the property as unsupported, which is what this
+ * module used to do: every traversal against a live engine failed on the first property
+ * of the first node of the first path.
+ *
+ * The module also fails loudly on the one case that matters: a u64 larger than
+ * Number.MAX_SAFE_INTEGER would lose precision silently, and a silently wrong node id
+ * would attach a vulnerability to the wrong package. Ids are assigned sequentially by the
+ * id-map so this cannot happen with our own data, but a shared graph could hand us
+ * anything.
+ *
+ * Bolt does not come through here. It converts through the driver's own value types in
+ * bolt-transport.ts, so this module is the HTTP decoder specifically.
+ *
+ * sourceRef: HydraDB src/client/http.rs (HttpQueryValue), src/query/algebra.rs
+ * (QueryPath, QueryPathNode, QueryPathRelationship), src/core/model.rs
+ * (VertexPropertyValue).
  */
 
 /** The tag names the engine emits, as a closed set. */
@@ -68,9 +89,10 @@ export type DecodedPathRelationship = {
 export type DecodedRow = Record<string, DecodedValue>;
 
 export function decodeWireValue(raw: unknown, path: string): Result<DecodedValue, Failure> {
-  // A bare scalar. Result cells are always tagged, but a property value inside a
-  // path node can arrive untagged, so both forms are accepted here rather than
-  // duplicating the walk in two decoders.
+  // A bare scalar. Result cells are always tagged, so this is tolerance for a shape the
+  // engine does not currently emit rather than a case that arrives today. Property values
+  // inside a path are NOT decoded here: they use a different tagging and go through
+  // decodePropertyValue.
   if (raw === null || raw === undefined) return succeed(null);
   if (typeof raw === "boolean" || typeof raw === "string") return succeed(raw);
   if (typeof raw === "number") {
@@ -88,9 +110,6 @@ export function decodeWireValue(raw: unknown, path: string): Result<DecodedValue
   const record = raw as Record<string, unknown>;
   const tag = record.type;
   if (typeof tag !== "string") {
-    // Property maps are decoded by decodeProperties, which walks their values
-    // through here. A bare object reaching this point is therefore a property
-    // whose value is a nested object, which HydraDB does not store.
     return fail("graph_rejected", `[decodeWireValue] ${path} is an object with no type tag`);
   }
   if (!isWireTag(tag)) {
@@ -311,11 +330,78 @@ function decodeProperties(
 
   const properties: Record<string, DecodedValue> = {};
   for (const [name, value] of Object.entries(raw as Record<string, unknown>)) {
-    const decoded = decodeWireValue(value, `${path}.${name}`);
+    const decoded = decodePropertyValue(value, `${path}.${name}`);
     if (!decoded.ok) return decoded;
     properties[name] = decoded.value;
   }
   return succeed(properties);
+}
+
+/**
+ * One property value of a path node or relationship, externally tagged by variant name.
+ *
+ * Five variants, which is the whole of VertexPropertyValue: a graph property is a scalar
+ * and cannot be a list or a nested map. An unrecognised variant name is refused rather
+ * than passed through as an object, because a property that silently decodes to `{}`
+ * would reach a surface as a rendered value with no reading in it.
+ *
+ * A bare scalar is accepted as well, for the same reason decodeWireValue accepts one: it
+ * is unambiguous. An object is not, so it must name a variant this build knows.
+ */
+function decodePropertyValue(raw: unknown, path: string): Result<DecodedValue, Failure> {
+  if (raw === null || raw === undefined) return succeed(null);
+  if (typeof raw === "boolean" || typeof raw === "string") return succeed(raw);
+  if (typeof raw === "number") {
+    return Number.isFinite(raw)
+      ? succeed(raw)
+      : fail("graph_rejected", `[decodePropertyValue] ${path} is a non-finite number`);
+  }
+  if (typeof raw !== "object" || Array.isArray(raw)) {
+    return fail(
+      "graph_rejected",
+      `[decodePropertyValue] ${path} is a ${Array.isArray(raw) ? "list" : typeof raw}, which is not a property value`,
+    );
+  }
+
+  const entries = Object.entries(raw as Record<string, unknown>);
+  const [entry] = entries;
+  if (entries.length !== 1 || entry === undefined) {
+    return fail(
+      "graph_rejected",
+      `[decodePropertyValue] ${path} carries ${entries.length} keys, so it names no single variant`,
+    );
+  }
+
+  const [variant, payload] = entry;
+  switch (variant) {
+    case "String":
+      return typeof payload === "string"
+        ? succeed(payload)
+        : fail("graph_rejected", `[decodePropertyValue] ${path} String carries ${typeof payload}`);
+
+    case "Bool":
+      return typeof payload === "boolean"
+        ? succeed(payload)
+        : fail("graph_rejected", `[decodePropertyValue] ${path} Bool carries ${typeof payload}`);
+
+    case "Float":
+      return typeof payload === "number" && Number.isFinite(payload)
+        ? succeed(payload)
+        : fail(
+            "graph_rejected",
+            `[decodePropertyValue] ${path} Float carries ${String(payload)}`,
+          );
+
+    case "Integer":
+    case "SignedInteger":
+      return decodeInteger(payload, `${path}.${variant}`);
+
+    default:
+      return fail(
+        "graph_rejected",
+        `[decodePropertyValue] ${path} names variant "${variant}", which VertexPropertyValue does not have`,
+      );
+  }
 }
 
 /** Accepts a value that may or may not be wrapped in a {type, value} envelope. */

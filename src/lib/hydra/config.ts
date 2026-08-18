@@ -68,6 +68,34 @@ export const HTTP_MAX_BODY_BYTES = 1_048_576;
 export const HTTP_BATCH_BUDGET_BYTES = Math.floor(HTTP_MAX_BODY_BYTES * 0.9);
 
 /**
+ * Longest query text the running engine accepts, in UTF-8 bytes.
+ *
+ * This one is measured rather than read off a constant, because no constant upstream
+ * carries it: `max_query_bytes` defaults to 1 MiB and the HTTP body limit is 1 MiB, yet
+ * a 1,025 byte statement is rejected while a 1,024 byte statement answers. Bisected
+ * against the running node by padding one valid statement with trailing spaces, which
+ * changes nothing but its length: 1,024 answers 200, 1,025 answers 400.
+ *
+ * Over the limit the statement is not refused for being long. It is parsed truncated,
+ * so the engine complains about wherever the cut happened to land, and it lands
+ * somewhere different for every statement. All three of these came from the same cause:
+ *
+ *   OpenCypher parse error: Invalid input '(': expected ',', ORDER BY, SKIP, LIMIT
+ *   OpenCypher parse error: Invalid input at end of input: expected a label
+ *   row execution currently supports MATCH/WITH clauses followed by RETURN
+ *
+ * None of them says "too long", and the last one arrives on a statement that is
+ * MATCH followed by RETURN. That is why this is enforced client side, once, in
+ * cypher.ts: a builder that emits 1,025 bytes gets a Failure naming the byte count,
+ * instead of a caller three layers up trying to explain a parse error it did not cause.
+ *
+ * Applies to the query text only. Parameters travel in the JSON body beside it and are
+ * bounded by HTTP_MAX_BODY_BYTES, which is why the batch writers pass their rows as
+ * `$rows` and are unaffected by this at any batch size.
+ */
+export const MAX_QUERY_TEXT_BYTES = 1_024;
+
+/**
  * The engine rejects a traversal whose maxLen exceeds this, and silently defaults
  * to it when maxLen is omitted. Never omit maxLen: an unstated 16 hop traversal
  * over a dependency graph is not a query anyone intended.

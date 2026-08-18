@@ -49,6 +49,7 @@ import {
   resolveAffectedIntervals,
   sortVersionsAscending,
 } from "@/lib/analysis/semver-facts";
+import { type CoverageRecord, recordLiveGraphCoverage } from "@/lib/graph/coverage-record";
 import { MemoryGraph } from "@/lib/graph/memory-gateway";
 import { type Ecosystem, isEcosystem, packageKey, versionKey } from "@/lib/graph/model";
 import { buildGraphSnapshot, writeGraphSnapshot } from "@/lib/graph/snapshot";
@@ -60,6 +61,7 @@ import {
 import { BoltTransport } from "@/lib/hydra/bolt-transport";
 import { type HydraConfig, describeTokenForLog, readHydraConfigFromEnv } from "@/lib/hydra/config";
 import { HttpTransport } from "@/lib/hydra/http-transport";
+import { HydraGateway } from "@/lib/hydra/hydra-gateway";
 import { DEFAULT_ID_MAP_PATHS, IdMap } from "@/lib/hydra/id-map";
 import type { GraphTransport } from "@/lib/hydra/transport";
 import { loadAllIncidentPacks } from "@/lib/incidents/pack";
@@ -280,7 +282,7 @@ async function runIngest(argumentValues: readonly string[]): Promise<number> {
 
   const written =
     parsed.value.sink === "hydra"
-      ? await writeSliceToHydra(slice)
+      ? await writeSliceToHydra(slice, runNotes, parsed.value.manifestPath)
       : await writeSliceToMemory(slice);
   if (!written.ok) {
     reportFailure(`${parsed.value.sink} write`, written.failure);
@@ -291,9 +293,14 @@ async function runIngest(argumentValues: readonly string[]): Promise<number> {
     ...written.value.manifest,
     notes: [...written.value.manifest.notes, ...runNotes],
   };
-  const manifestSaved = await saveSliceManifest(manifest, parsed.value.manifestPath);
-  if (!manifestSaved.ok) {
-    reportFailure("manifest write", manifestSaved.failure);
+
+  // The hydra sink already wrote the record, beside the graph it describes and while it could
+  // still be counted. The memory sink writes it here, where the same manifest is also about to
+  // be embedded in the snapshot.
+  const coverage =
+    written.value.coverage ?? (await writeMemoryCoverage(manifest, parsed.value.manifestPath));
+  if (coverage.failure !== null) {
+    reportFailure("manifest write", coverage.failure);
     return EXIT_NOT_INGESTED;
   }
 
@@ -317,6 +324,7 @@ async function runIngest(argumentValues: readonly string[]): Promise<number> {
     budgetsHit,
     elapsedMs: elapsedMsSince(startedAtMs),
     notes: [...runNotes, ...written.value.notes],
+    coverage,
   });
 
   if (persisted !== null && !persisted.ok) {
@@ -1280,6 +1288,12 @@ type WriteOutcome = {
    * lives in the server and a second copy on disk would be a stale duplicate.
    */
   graph: MemoryGraph | null;
+  /**
+   * What became of the coverage record, on a sink that had to write it itself. null on the
+   * memory sink, where the caller writes it: an in-process build is the whole graph, so its
+   * own counts are exact and there is nothing to read back or merge with.
+   */
+  coverage: CoverageRecord | null;
 };
 
 /**
@@ -1304,6 +1318,9 @@ async function writeSliceToMemory(slice: IngestSlice): Promise<Result<WriteOutco
     edgesWritten: staged.value.edgesWritten,
     notes: staged.value.notes,
     graph,
+    // The caller writes the record for this sink: the snapshot it is about to export carries
+    // the same manifest, so the two cannot describe different graphs.
+    coverage: null,
   });
 }
 
@@ -1314,7 +1331,11 @@ async function writeSliceToMemory(slice: IngestSlice): Promise<Result<WriteOutco
  * keys the graph already holds would write a second node for the same package instead of
  * updating the first one.
  */
-async function writeSliceToHydra(slice: IngestSlice): Promise<Result<WriteOutcome, Failure>> {
+async function writeSliceToHydra(
+  slice: IngestSlice,
+  runNotes: readonly string[],
+  manifestPath: string,
+): Promise<Result<WriteOutcome, Failure>> {
   const config = readHydraConfigFromEnv();
   if (!config.ok) return config;
 
@@ -1335,6 +1356,17 @@ async function writeSliceToHydra(slice: IngestSlice): Promise<Result<WriteOutcom
   const staged = await stageAndFlush(writer, slice);
   const destination = transport.describe();
 
+  // The record is written here rather than by the caller, because the counts in it are read back
+  // out of the engine and the transport is about to close. The run's own notes are folded in
+  // first, so the file states what this ingest had to assume as well as what it covered.
+  const coverage: CoverageRecord = staged.ok
+    ? await recordLiveGraphCoverage(
+        new HydraGateway(transport),
+        { ...staged.value.manifest, notes: [...staged.value.manifest.notes, ...runNotes] },
+        manifestPath,
+      )
+    : { location: "not written, the graph write failed", failure: null };
+
   const closed = await closeTransport(transport);
   if (!closed.ok) console.warn(`[writeSliceToHydra] ${closed.failure.message}`);
 
@@ -1347,6 +1379,7 @@ async function writeSliceToHydra(slice: IngestSlice): Promise<Result<WriteOutcom
     edgesWritten: staged.value.edgesWritten,
     notes: staged.value.notes,
     graph: null,
+    coverage,
   });
 }
 
@@ -1536,6 +1569,8 @@ type IngestReport = {
   budgetsHit: ReadonlySet<BudgetName>;
   elapsedMs: number;
   notes: readonly string[];
+  /** Where the record went, so the summary states the file that was actually written. */
+  coverage: CoverageRecord;
 };
 
 function printIngestReport(report: IngestReport): void {
@@ -1561,7 +1596,7 @@ function printIngestReport(report: IngestReport): void {
       report.budgetsHit.size === 0 ? "none" : [...report.budgetsHit].join(", "),
     ],
     ["wall clock", `${report.elapsedMs} ms`],
-    ["manifest", report.argumentValues.manifestPath],
+    ["manifest", report.coverage.location],
   ];
 
   const labelWidth = Math.max(...rows.map(([label]) => label.length));
@@ -1582,6 +1617,23 @@ function printIngestReport(report: IngestReport): void {
         report.argumentValues.manifestPath,
     );
   }
+}
+
+/**
+ * Writes the record for an in-process build.
+ *
+ * No read-back and no merge, unlike the live path: this run built the whole graph, so its own
+ * counts are exact, and the snapshot it exports carries the same manifest. A merge here would
+ * fold claims about a live engine into a record of a file.
+ * sourceRef: src/lib/graph/coverage-record.ts.
+ */
+async function writeMemoryCoverage(
+  manifest: SliceManifest,
+  manifestPath: string,
+): Promise<CoverageRecord> {
+  const saved = await saveSliceManifest(manifest, manifestPath);
+  if (!saved.ok) return { location: `not written, ${saved.failure.message}`, failure: saved.failure };
+  return { location: `written to ${manifestPath}`, failure: null };
 }
 
 /** Prints a Failure in full, then the next thing to try. Same shape as hydra-health. */
