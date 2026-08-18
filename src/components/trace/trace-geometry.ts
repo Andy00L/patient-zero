@@ -143,6 +143,16 @@ const LABEL_MAX_CHARS = 22;
 /** U+2026, written as an escape so this file stays ASCII. */
 const LABEL_ELLIPSIS = "\u2026";
 
+/**
+ * Advance width per character, in units, for the two faces labels are set in. The data face
+ * is Tabular, a monospace, so a character count is an exact width rather than a guess.
+ */
+const LABEL_CHAR_WIDTH = 6.6;
+const ORIGIN_LABEL_CHAR_WIDTH = 7.8;
+
+/** Labels stay this far inside the frame, so a nudged one cannot leave the panel. */
+const FRAME_LABEL_MARGIN = 10;
+
 /** Ring number sits just above its ring line, in the gap no node occupies. */
 const RING_LABEL_OFFSET = 8;
 
@@ -165,6 +175,41 @@ const MAX_HALF_SLOT_RADIANS = 0.35;
  * 24 degrees, and not a rational fraction of a turn, so no small ring count re-aligns.
  */
 const RING_ANGLE_OFFSET_RADIANS = 0.42;
+
+/** A label's footprint, for the two places a collision has to be ruled out. */
+type LabelBounds = { left: number; right: number; top: number; bottom: number };
+
+/**
+ * The box a label occupies.
+ *
+ * The vertical extent is half the minimum line gap either side of the baseline, so two labels
+ * whose baselines are exactly `LABEL_MIN_VERTICAL_GAP` apart touch and no closer pair passes.
+ */
+function measureLabel(placement: TraceLabelPlacement, charWidth: number): LabelBounds {
+  const width = placement.text.length * charWidth;
+  const left =
+    placement.anchor === "start"
+      ? placement.point.x
+      : placement.anchor === "end"
+        ? placement.point.x - width
+        : placement.point.x - width / 2;
+
+  return {
+    left,
+    right: left + width,
+    top: placement.point.y - LABEL_MIN_VERTICAL_GAP / 2,
+    bottom: placement.point.y + LABEL_MIN_VERTICAL_GAP / 2,
+  };
+}
+
+function boundsOverlap(first: LabelBounds, second: LabelBounds): boolean {
+  return (
+    first.left < second.right &&
+    second.left < first.right &&
+    first.top < second.bottom &&
+    second.top < first.bottom
+  );
+}
 
 /* -- Placed output. -------------------------------------------------------------------- */
 
@@ -294,6 +339,11 @@ export function placeTrace(input: TraceGeometryInput): TraceLayout {
   const deepestHopReached = findDeepestHop(candidates);
   const ringCount = Math.max(deepestHopReached, MIN_RING_COUNT);
 
+  // Patient zero's own label is placed first and never moves: it names the subject of the
+  // whole drawing, so it is the one label every other label has to work around.
+  const origin = placeOrigin(input.subjectLabel, input.subjectIsInGraph);
+  const originLabelBounds = measureLabel(origin.labelPlacement, ORIGIN_LABEL_CHAR_WIDTH);
+
   const rings: TracePlacedRing[] = [];
   const nodes: TracePlacedNode[] = [];
   let omittedNodeCount = 0;
@@ -305,7 +355,7 @@ export function placeTrace(input: TraceGeometryInput): TraceLayout {
     const omittedCount = onThisRing.length - drawn.length;
     omittedNodeCount += omittedCount;
 
-    const placed = placeNodesOnRing(drawn, hopDistance, radius);
+    const placed = placeNodesOnRing(drawn, hopDistance, radius, originLabelBounds);
     nodes.push(...placed);
 
     rings.push({
@@ -327,7 +377,7 @@ export function placeTrace(input: TraceGeometryInput): TraceLayout {
     // A service the per-ring cap dropped has no mark to select, so it gets no chain either:
     // a polyline running to a node that is not drawn would be a line to nowhere.
     if (serviceNode === undefined) continue;
-    paths.push(placeBranch(branch, serviceNode, nodeByKey, ringCount));
+    paths.push(placeBranch(branch, serviceNode, nodeByKey, ringCount, originLabelBounds));
   }
 
   return {
@@ -335,7 +385,7 @@ export function placeTrace(input: TraceGeometryInput): TraceLayout {
     width: VIEW_WIDTH,
     height: VIEW_HEIGHT,
     center: CENTER,
-    origin: placeOrigin(input.subjectLabel, input.subjectIsInGraph),
+    origin,
     rings,
     nodes,
     paths,
@@ -446,6 +496,7 @@ function placeNodesOnRing(
   candidates: readonly TraceNodeCandidate[],
   hopDistance: number,
   radius: number,
+  originLabelBounds: LabelBounds,
 ): TracePlacedNode[] {
   if (candidates.length === 0) return [];
 
@@ -467,6 +518,12 @@ function placeNodesOnRing(
   );
   const ringCanLabel = canRingCarryNodeLabels(labels);
 
+  // A node label that lands on patient zero's label is dropped even on a ring that can carry
+  // text: the subject's own name is not something a dependency key gets to overwrite.
+  const keepsLabel = labels.map(
+    (label) => ringCanLabel && !boundsOverlap(measureLabel(label, LABEL_CHAR_WIDTH), originLabelBounds),
+  );
+
   return candidates.map((candidate, index) => ({
     id: `${candidate.kind}:${candidate.key}`,
     kind: candidate.kind,
@@ -478,7 +535,7 @@ function placeNodesOnRing(
     markRadius: markRadii[index] ?? VERSION_MARK_RADIUS_MIN,
     servicesBehind: candidate.servicesBehind,
     isWithinUnknownWindow: candidate.isWithinUnknownWindow,
-    labelPlacement: ringCanLabel ? (labels[index] ?? null) : null,
+    labelPlacement: keepsLabel[index] === true ? (labels[index] ?? null) : null,
   }));
 }
 
@@ -571,8 +628,15 @@ function placeBranch(
   serviceNode: TracePlacedNode,
   nodeByKey: ReadonlyMap<string, TracePlacedNode>,
   ringCount: number,
+  originLabelBounds: LabelBounds,
 ): TracePlacedPath {
-  const steps = placeBranchSteps(branch.path, serviceNode, nodeByKey, ringCount);
+  const steps = placeBranchSteps(
+    branch.path,
+    serviceNode,
+    nodeByKey,
+    ringCount,
+    originLabelBounds,
+  );
   const edges: TracePlacedEdge[] = [];
 
   for (let index = 1; index < steps.length; index += 1) {
@@ -603,6 +667,7 @@ function placeBranchSteps(
   serviceNode: TracePlacedNode,
   nodeByKey: ReadonlyMap<string, TracePlacedNode>,
   ringCount: number,
+  originLabelBounds: LabelBounds,
 ): TracePlacedPathStep[] {
   const placed: TracePlacedPathStep[] = [];
 
@@ -632,7 +697,50 @@ function placeBranchSteps(
     });
   }
 
-  return placed;
+  return declutterChainLabels(placed, originLabelBounds);
+}
+
+/**
+ * Nudges a chain's labels apart.
+ *
+ * A chain runs inward at roughly one angle, so its steps land on the same side of the vertical
+ * axis with baselines a few units apart: left alone, a three step chain prints its keys on top
+ * of each other. Rings answer density by dropping labels, but this chain is the one the reader
+ * selected and every key on it has to stay legible, so these are moved instead of dropped.
+ *
+ * Each side is walked in y order and pushed downward only, which keeps the order stable and
+ * cannot loop. A label that would land on patient zero's own label clears it entirely.
+ */
+function declutterChainLabels(
+  steps: readonly TracePlacedPathStep[],
+  originLabelBounds: LabelBounds,
+): TracePlacedPathStep[] {
+  const moved = steps.map((step) => ({ ...step }));
+
+  for (const side of ["start", "end"] as const) {
+    const onThisSide = moved
+      .filter((step) => step.labelPlacement?.anchor === side)
+      .sort((left, right) => (left.labelPlacement?.point.y ?? 0) - (right.labelPlacement?.point.y ?? 0));
+
+    let lowestUsedY = Number.NEGATIVE_INFINITY;
+    for (const step of onThisSide) {
+      const placement = step.labelPlacement;
+      if (placement === null) continue;
+
+      let y = Math.max(placement.point.y, lowestUsedY + LABEL_MIN_VERTICAL_GAP);
+      const wouldOverlapOrigin = boundsOverlap(
+        measureLabel({ ...placement, point: { x: placement.point.x, y } }, LABEL_CHAR_WIDTH),
+        originLabelBounds,
+      );
+      if (wouldOverlapOrigin) y = originLabelBounds.bottom + LABEL_MIN_VERTICAL_GAP / 2;
+
+      y = Math.min(Math.max(y, FRAME_LABEL_MARGIN), VIEW_HEIGHT - FRAME_LABEL_MARGIN);
+      lowestUsedY = y;
+      step.labelPlacement = { ...placement, point: { x: placement.point.x, y: roundUnit(y) } };
+    }
+  }
+
+  return moved;
 }
 
 function placeStepPoint(

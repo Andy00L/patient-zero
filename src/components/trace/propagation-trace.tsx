@@ -183,12 +183,7 @@ export function PropagationTrace({
           />
         ))}
 
-        <Origin
-          layout={layout}
-          verdict={answer.verdict}
-          hatchId={hatchQuietId}
-          isRecessed={selectedPath !== null}
-        />
+        <Origin layout={layout} verdict={answer.verdict} hatchId={hatchQuietId} />
       </svg>
 
       <figcaption className="flex flex-col gap-1">
@@ -506,12 +501,10 @@ function Origin({
   layout,
   verdict,
   hatchId,
-  isRecessed,
 }: {
   layout: TraceLayout;
   verdict: AbstainingAnswer<unknown>["verdict"];
   hatchId: string;
-  isRecessed: boolean;
 }) {
   const { origin, center } = layout;
 
@@ -546,18 +539,11 @@ function Origin({
           fill="var(--color-accent)"
         />
       ) : null}
-      <g
-        opacity={isRecessed ? RECEDE_OPACITY : 1}
-        className="transition-opacity duration-[var(--dur-std)] ease-[var(--ease-out)]"
-      >
-        <Label
-          placement={origin.labelPlacement}
-          fill="var(--color-ink)"
-          sizeClassName="text-data"
-        >
-          {origin.label}
-        </Label>
-      </g>
+      {/* The subject's name never recedes: a chain selected somewhere on a ring is a chain
+          into this artifact, so this is the one label that stays at full strength. */}
+      <Label placement={origin.labelPlacement} fill="var(--color-ink)" sizeClassName="text-data">
+        {origin.label}
+      </Label>
     </g>
   );
 }
@@ -634,10 +620,10 @@ function buildSweepArc(center: TracePoint, radius: number): string {
 function describeRing(ring: TracePlacedRing): string {
   const hops = `hop ${ring.hopDistance}`;
   if (ring.omittedCount > 0) {
-    return `${hops} · ${ring.nodeCount} of ${ring.nodeCount + ring.omittedCount} drawn`;
+    return `${hops}, ${ring.nodeCount} of ${ring.nodeCount + ring.omittedCount} drawn`;
   }
   if (ring.nodeCount > 0 && !ring.hasNodeLabels) {
-    return `${hops} · ${ring.nodeCount} ${ring.nodeCount === 1 ? "node" : "nodes"}`;
+    return `${hops}, ${ring.nodeCount} ${ring.nodeCount === 1 ? "node" : "nodes"}`;
   }
   return hops;
 }
