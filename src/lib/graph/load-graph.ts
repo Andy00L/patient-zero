@@ -173,7 +173,8 @@ async function openHydra(config: HydraConfig): Promise<Result<LoadedGraph, Failu
 
   // One count before anything else. It is the cheapest question that separates a configured
   // DSN from a graph that answers, and getting the failure here means a route never has to
-  // explain a transport error in the middle of a blast radius.
+  // explain a transport error in the middle of a blast radius. The number is kept rather than
+  // discarded, because the manifest below is a claim about a graph and this is the graph.
   const probe = await gateway.countNodes("Version");
   if (!probe.ok) {
     await closeQuietly(gateway);
@@ -200,9 +201,40 @@ async function openHydra(config: HydraConfig): Promise<Result<LoadedGraph, Failu
       kind: "hydradb",
       detail: describeLiveTarget(config),
       generatedAtMs: manifest.value.generatedAtMs,
-      degradedReason: null,
+      degradedReason: describeManifestSkew(manifest.value, probe.value),
     },
   });
+}
+
+/**
+ * Whether the coverage claim on disk can be trusted to describe the graph that just answered.
+ *
+ * On the snapshot path the manifest travels inside the file it describes, so the two cannot
+ * disagree. A live engine has no such guarantee: the manifest is a separate file written by
+ * whichever ingest ran last, and the engine holds whatever was pushed into it. The two drift in
+ * both directions and only one of them is a fault.
+ *
+ * More in the graph than the manifest claims is the expected shape, not a problem. A live run
+ * seeds the incident packs on top of a registry ingest and deliberately leaves the manifest as
+ * the ingest's record, because a coverage claim that is behind can only make an answer abstain,
+ * never make it read clean. sourceRef: scripts/seed-incidents.ts (describeCoverageLocation).
+ *
+ * Fewer is a fault, and it is the one that has already been hit in this repository: an engine
+ * holding two Version nodes answered every surface from the near-empty path while the rail
+ * reported the full ingest, because the rail reads the manifest and the manifest was describing
+ * a graph that was no longer there. Reporting it as degraded is what separates "this slice is
+ * small" from "this claim is about a different graph".
+ *
+ * Counts only. No host, no path, no token: this string is returned to a browser.
+ */
+function describeManifestSkew(manifest: SliceManifest, observedVersionCount: number): string | null {
+  const claimed = manifest.counts.versions;
+  if (claimed <= observedVersionCount) return null;
+
+  return (
+    `the slice manifest claims ${claimed} versions but this graph holds ${observedVersionCount}, ` +
+    "so its coverage claim describes a graph that is not the one answering"
+  );
 }
 
 /**

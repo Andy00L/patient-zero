@@ -37,7 +37,15 @@ export async function StatusBar() {
 }
 
 /**
- * Three readings: how much is in the graph, and how much of it was ingested to closure.
+ * Three readings: how much the ingest claims to have written, and how much of it reached closure.
+ *
+ * Every number here is the manifest's claim, not a count of the answering graph. The distinction
+ * matters on a live engine, where the two are separate artifacts: the engine holds whatever was
+ * pushed into it and the manifest is the record of one ingest, so a live graph legitimately holds
+ * more than the rail reports. `/api/status` is where the graph's own counts are read, label by
+ * label, beside these. When the manifest claims more than the graph holds, which is the direction
+ * that means the claim is about a different graph, the loader marks the source degraded and the
+ * rail says so next to the source name. sourceRef: src/lib/graph/load-graph.ts.
  *
  * The closure reading is the one that qualifies every verdict this tool gives. A package with a
  * partial closure can hide a dependent, so "not exposed" over a partial slice is a weaker
