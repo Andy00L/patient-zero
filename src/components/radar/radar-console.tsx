@@ -14,8 +14,8 @@ import { Panel, PanelBody, PanelHeader } from "@/components/ui/panel";
 import { AbstainNotice, EmptyState } from "@/components/ui/state";
 import { DataValue, DefinitionRow, FieldLabel, UnitSuffix } from "@/components/ui/text";
 import { VerdictPill } from "@/components/ui/verdict";
-import { frameAt, type ReplayTimeline } from "@/lib/analysis/replay";
-import { formatCount, formatInstant, measureDuration } from "@/lib/format";
+import { frameAt, type ReplayExposure, type ReplayTimeline } from "@/lib/analysis/replay";
+import { formatCount, formatInstant, isKnownInstant, measureDuration } from "@/lib/format";
 
 /**
  * The radar: one instant of a replay, and the control that moves between instants.
@@ -36,6 +36,59 @@ import { formatCount, formatInstant, measureDuration } from "@/lib/format";
  * screen and is worth sharing; a frame index is a scroll position, and putting it in the URL
  * would push a history entry for every notch of a drag.
  */
+
+/**
+ * What the selected service is, stated for the instant on screen.
+ *
+ * The selection deliberately survives a frame change, and this sentence is the reason it can.
+ * A reader selects a service on the completed answer, scrubs backward, and the highlighted chain
+ * disappears at the instant that service had not yet resolved the compromised version. Without a
+ * line saying so, that looks like the trace losing the selection; with it, the disappearance is
+ * the finding, and the instant it re-appears is the pin.
+ *
+ * The frame's own exposures decide whether there is a chain to draw. The completed set, which is
+ * the last frame because exposure accumulates, is only consulted to name the pin instant of a
+ * service that has not entered yet.
+ */
+function describeSelection({
+  selectedServiceKey,
+  frameExposures,
+  completeExposures,
+}: {
+  selectedServiceKey: string | null;
+  frameExposures: readonly ReplayExposure[];
+  completeExposures: readonly ReplayExposure[];
+}): string {
+  if (selectedServiceKey === null) {
+    return "Select a service in the trace to read its chain back to patient zero.";
+  }
+
+  const atThisInstant = frameExposures.find((entry) => entry.serviceKey === selectedServiceKey);
+  if (atThisInstant !== undefined) {
+    const hopWord = atThisInstant.hopCount === 1 ? "hop" : "hops";
+    const pin = isKnownInstant(atThisInstant.resolvedAtMs)
+      ? `at ${formatInstant(atThisInstant.resolvedAtMs)}`
+      : "at an instant the lockfile did not record";
+    // Named only when true. Every exposed service is inside the window at some instant of a
+    // replay, so stating the negative case would put the phrase on every row and mean nothing.
+    const blind = atThisInstant.withinUnknownWindow ? ", before any advisory existed" : "";
+    return `${atThisInstant.serviceName} pinned ${atThisInstant.versionKey} ${pin}, ${atThisInstant.hopCount} ${hopWord} from patient zero${blind}.`;
+  }
+
+  const laterInTheReplay = completeExposures.find(
+    (entry) => entry.serviceKey === selectedServiceKey,
+  );
+  if (laterInTheReplay === undefined) {
+    // Unreachable while the selection comes from a node this timeline drew, and stated rather
+    // than asserted: a blank line here would read as the readout failing.
+    return `${selectedServiceKey} is selected and this replay holds no route for it.`;
+  }
+
+  const pin = isKnownInstant(laterInTheReplay.resolvedAtMs)
+    ? `It pins ${laterInTheReplay.versionKey} at ${formatInstant(laterInTheReplay.resolvedAtMs)}, later in this replay.`
+    : `It pins ${laterInTheReplay.versionKey} at an instant the lockfile did not record.`;
+  return `${laterInTheReplay.serviceName} is selected and has no route at this instant. ${pin}`;
+}
 
 export type RadarConsoleProps = {
   /**
@@ -58,6 +111,9 @@ export function RadarConsole({ timeline, subjectLabel }: RadarConsoleProps) {
   // show an empty trace and a zero count on arrival, and a reader cannot tell a replay that has
   // not started from a tool that found nothing.
   const [requestedIndex, setRequestedIndex] = useState(timeline.frames.length - 1);
+  // Not reset when the frame changes. Keeping it is what makes scrubbing informative: the chain
+  // winks out at the instant the service had not yet resolved, and describeSelection says so.
+  const [selectedServiceKey, setSelectedServiceKey] = useState<string | null>(null);
 
   const frameCount = timeline.frames.length;
   const index = clampFrameIndex(requestedIndex, frameCount);
@@ -79,6 +135,10 @@ export function RadarConsole({ timeline, subjectLabel }: RadarConsoleProps) {
   const blindSpotCount = answer.evidence.unknownWindowServiceKeys.length;
   const limits = describeFrameLimits(frame.value);
   const blindSpot = timeline.blindSpot === null ? null : measureDuration(timeline.blindSpot.durationMs);
+  // Exposure accumulates across frames, so the last frame holds every route this replay found.
+  // Read only to name the pin instant of a service selected before it enters.
+  const finalFrame = frameAt(timeline, frameCount - 1);
+  const completeExposures = finalFrame.ok ? finalFrame.value.answer.evidence.exposedServices : [];
 
   return (
     <div className="flex flex-col gap-4">
@@ -101,7 +161,12 @@ export function RadarConsole({ timeline, subjectLabel }: RadarConsoleProps) {
             }
           />
           <PanelBody>
-            <PropagationTrace answer={answer} subjectLabel={subjectLabel} />
+            <PropagationTrace
+              answer={answer}
+              subjectLabel={subjectLabel}
+              selectedServiceKey={selectedServiceKey}
+              onSelectService={setSelectedServiceKey}
+            />
           </PanelBody>
         </Panel>
 
@@ -112,9 +177,21 @@ export function RadarConsole({ timeline, subjectLabel }: RadarConsoleProps) {
             aside={<VerdictPill verdict={answer.verdict} rationale={answer.rationale} />}
           />
           <PanelBody className="flex flex-col gap-4">
-            <div className="flex items-baseline gap-2">
-              <DataValue scale="lg">{formatCount(counts.exposed)}</DataValue>
-              <UnitSuffix>of {formatCount(knownServiceCount)} services exposed</UnitSuffix>
+            <div className="flex flex-col gap-1">
+              <div className="flex items-baseline gap-2">
+                <DataValue scale="lg">{formatCount(counts.exposed)}</DataValue>
+                <UnitSuffix>of {formatCount(knownServiceCount)} services exposed</UnitSuffix>
+              </div>
+              {/* Two lines are reserved in every state, so selecting a service in the trace
+                  never moves the rows below it. The trace panel reserves its caption the same
+                  way, and the two panels sit side by side. */}
+              <p className="line-clamp-2 min-h-[2.9em] text-small text-ink-muted">
+                {describeSelection({
+                  selectedServiceKey,
+                  frameExposures: answer.evidence.exposedServices,
+                  completeExposures,
+                })}
+              </p>
             </div>
 
             <dl className="flex flex-col">
